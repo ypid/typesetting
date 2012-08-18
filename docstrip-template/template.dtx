@@ -1,0 +1,124 @@
+% \iffalse The license starting three lines down applies to this file
+%<*batchfile>
+{\obeylines\obeyspaces \gdef\thepreamble{
+Copyright (C) 2011 by YOUR NAME
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in:
+
+    http://www.latex-project.org/lppl.txt
+
+and version 1.3c or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+This work has the LPPL maintenance status 'maintained'.
+
+The Current Maintainer of this work is YOUR NAME.
+
+This work consists of THISFILE.dtx and the derived file
+THISFILE.sty.
+}}
+\begingroup
+\input docstrip
+\keepsilent
+\usedir{tex/latex/\jobname}
+\expandafter\preamble\thepreamble\endpreamble
+\askforoverwritefalse
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{}}}
+\endgroup
+\documentclass{ltxdoc}
+\usepackage{\jobname}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+
+\CheckSum{0}
+\CharacterTable
+ {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+  Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+  Digits        \0\1\2\3\4\5\6\7\8\9
+  Exclamation   \!     Double quote  \"     Hash (number) \#
+  Dollar        \$     Percent       \%     Ampersand     \&
+  Acute accent  \'     Left paren    \(     Right paren   \)
+  Asterisk      \*     Plus          \+     Comma         \,
+  Minus         \-     Point         \.     Solidus       \/
+  Colon         \:     Semicolon     \;     Less than     \<
+  Equals        \=     Greater than  \>     Question mark \?
+  Commercial at \@     Left bracket  \[     Backslash     \\
+  Right bracket \]     Circumflex    \^     Underscore    \_
+  Grave accent  \`     Left brace    \{     Vertical bar  \|
+  Right brace   \}     Tilde         \~}
+
+\DoNotIndex{\def}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\GetFileInfo{\jobname.sty}
+\title{The \textsf{\jobname} package\thanks{This document
+corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\author{YOUR NAME\\\texttt{YOU@YOUR.ADDRESS}}
+
+\begin{document}
+\maketitle
+
+\phantomsection
+\addcontentsline{toc}{section}{\abstractname}
+\begin{abstract}
+The \textsf{\jobname} package XXX.
+\end{abstract}
+
+\phantomsection
+\addcontentsline{toc}{section}{\contentsname}
+\tableofcontents
+
+\section{Introduction}
+The \textsf{\jobname} package XXX
+
+\section{Usage}
+XXX
+
+\StopEventually{
+        \typeout{**************************************************}
+        \typeout{*}
+        \typeout{* To finish the installation, you have to move the}
+        \typeout{* following file into a directory searched by TeX:}
+        \typeout{*}
+        \typeout{* \space\space \jobname.sty}
+        \typeout{*}
+        \typeout{* Documentation is in \jobname.\ifpdf pdf\else dvi\fi.}
+        \typeout{*}
+        \typeout{* Happy TeXing!}
+        \typeout{**************************************************}
+        \end{document}
+}
+\clearpage
+\DocInput{\jobname.dtx}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Change History}
+\PrintChanges
+\phantomsection
+\addcontentsline{toc}{section}{Index}
+\PrintIndex
+\Finale
+%</batchfile>
+% \fi
+%
+% \section{Implementation}
+% XXX This is the only part of the file where the main text is written
+% with leading comments.
+%
+% \changes{v1.0}{2011/01/09}{Initial version}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\RequirePackage{svn-prov}
+\ProvidesPackageSVN
+        {$Id: template.dtx 1 2011-01-11 07:21:05Z TH $}
+        [v1.0 \revinfo\ SHORT DESCRIPTION.]
+
+% YOUR PACKAGE CONTENTS HERE.
+\endinput
+%    \end{macrocode}
+% \endinput
