@@ -1,64 +1,59 @@
-% \iffalse The license starting three lines down applies to this file
+% \iffalse The license starting four lines down applies to this file
 %<*batchfile>
-{\obeylines\obeyspaces \gdef\thepreamble{
-Copyright (C) 2011 by YOUR NAME
+\begingroup\input docstrip.tex \declarepreamble\mypreamble
 
-This file may be distributed and/or modified under the
-conditions of the LaTeX Project Public License, either
-version 1.3c of this license or (at your option) any later
-version.  The latest version of this license is in:
+Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
 
-    http://www.latex-project.org/lppl.txt
+This file may be distributed and/or modified under the conditions of
+the LaTeX Project Public License, either version 1.2 of this license
+or (at your option) any later version.  The latest version of this
+license is in:
 
-and version 1.3c or later is part of all distributions of
-LaTeX version 2005/12/01 or later.
+   http://www.latex-project.org/lppl.txt
 
-This work has the LPPL maintenance status 'maintained'.
+and version 1.3 or later is part of all distributions of LaTeX version
+2003/12/01 or later.
 
-The Current Maintainer of this work is YOUR NAME.
+\endpreamble
 
-This work consists of THISFILE.dtx and the derived file
-THISFILE.sty.
-}}
-\begingroup
-\input docstrip
 \keepsilent
 \usedir{tex/latex/\jobname}
-\expandafter\preamble\thepreamble\endpreamble
+\usepreamble\mypreamble
 \askforoverwritefalse
-\generate{\file{\jobname.sty}{\from{\jobname.dtx}{}}}
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}}
 \endgroup
-\documentclass{ltxdoc}
-\usepackage{\jobname}
-\usepackage[margin=1.5in]{geometry}
-\usepackage[pdfborder={0 0 0}]{hyperref}
 
-\CheckSum{0}
-\CharacterTable
- {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-  Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-  Digits        \0\1\2\3\4\5\6\7\8\9
-  Exclamation   \!     Double quote  \"     Hash (number) \#
-  Dollar        \$     Percent       \%     Ampersand     \&
-  Acute accent  \'     Left paren    \(     Right paren   \)
-  Asterisk      \*     Plus          \+     Comma         \,
-  Minus         \-     Point         \.     Solidus       \/
-  Colon         \:     Semicolon     \;     Less than     \<
-  Equals        \=     Greater than  \>     Question mark \?
-  Commercial at \@     Left bracket  \[     Backslash     \\
-  Right bracket \]     Circumflex    \^     Underscore    \_
-  Grave accent  \`     Left brace    \{     Vertical bar  \|
-  Right brace   \}     Tilde         \~}
+\documentclass{ltxdoc}
+\newcommand{\PackageURL}{http://ypid.wordpress.com}
+\newcommand{\PackageAuthor}{Robin Schneider}
+\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
+%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\typeout{* If the to package names look the same you can ignore this LaTeX Warning *}
+\typeout{}
+\usepackage{
+	xcolor,
+	url,
+	hyperref
+}
+\GetFileInfo{\jobname.sty}
+\hypersetup{
+	pdftitle={A manual for \jobname},
+	pdfauthor={\PackageAuthor <\PackageAuthorEmail>},
+	pdfsubject={\fileinfo},
+	baseurl={\PackageURL},
+	pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion, dated \filedate}
+}
+
 
 \DoNotIndex{\def}
 
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-\GetFileInfo{\jobname.sty}
 \title{The \textsf{\jobname} package\thanks{This document
 corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
-\author{YOUR NAME\\\texttt{YOU@YOUR.ADDRESS}}
+\author{\PackageAuthor\\\texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
 
 \begin{document}
 \maketitle
@@ -69,8 +64,6 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 The \textsf{\jobname} package XXX.
 \end{abstract}
 
-\phantomsection
-\addcontentsline{toc}{section}{\contentsname}
 \tableofcontents
 
 \section{Introduction}
@@ -112,11 +105,8 @@ XXX
 %
 % \changes{v1.0}{2011/01/09}{Initial version}
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\RequirePackage{svn-prov}
-\ProvidesPackageSVN
-        {$Id: template.dtx 1 2011-01-11 07:21:05Z TH $}
-        [v1.0 \revinfo\ SHORT DESCRIPTION.]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{template}[2012/08/18 v1.0 Template .dtx file]
 
 % YOUR PACKAGE CONTENTS HERE.
 \endinput
