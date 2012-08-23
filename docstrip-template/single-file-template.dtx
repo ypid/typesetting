@@ -14,9 +14,8 @@ version 2005/12/01 or later.
 
 THERE ARE A FEW PROBLEMS WITH THIS TEMPLATE
 (because I cound not figure out how to get them to work):
-- no \CharacterTable
-- no \CheckSum
-- no \DoNotIndex{\if} %% LaTeX commands work but plain TeX commands did't.
+- no CheckSum
+- no DoNotIndex{backslash if} %% LaTeX commands work but plain TeX commands did't.
 
 \endpreamble
 
@@ -36,9 +35,10 @@ THERE ARE A FEW PROBLEMS WITH THIS TEMPLATE
 \usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
 %% ^^A I think there is an error in the comparison (expand \jobname ...)
 \usepackage{
-	xcolor,
-	url,
-	hyperref
+  babel,
+  xcolor,
+  url,
+  hypdoc,
 }
 \GetFileInfo{\jobname.sty}
 \hypersetup{
