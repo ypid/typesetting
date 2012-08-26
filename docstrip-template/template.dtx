@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+% Copyright (C) <+year+> by <+author+> <<+email+>>
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -16,21 +16,22 @@
 %<*driver>
 \ProvidesFile{\jobname.dtx}
 %</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
-%<package>\ProvidesPackage{template}
-%<*package>
-    [2012/08/23 v1.0 Template]
-%</package>
+%<<+type+>>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
+%<<+type+>>\Provides<+Type+>{<+filebase+>}
+%<*<+type+>>
+    [<+date+> v<+version+> <+description+>]
+%</<+type+>>
 %
 %<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages}
-\newcommand{\PackageAuthor}{Robin Schneider}
-\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PackageAuthor}{<+author+>}
+\newcommand{\PackageAuthorEmail}{<+email+>}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
-\typeout{}
-\typeout{* If the two package names look the same you can ignore this LaTeX Warning *}
-\usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
+\typeout{}\typeout{* If the two package names look the same you can ignore this
+LaTeX Warning *}
+\usepackage{\jobname}
+%% ^^A This produces a warning even when there is no problem.
 %% ^^A I think there is an error in the comparison (expand \jobname ...)
 \usepackage{
   babel,
@@ -38,7 +39,7 @@
   url,
   hypdoc,
 }
-\GetFileInfo{\jobname.sty}
+\GetFileInfo{\jobname.dtx}
 \hypersetup{
   pdftitle={A manual for \jobname},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
@@ -51,7 +52,10 @@
 \title{The \PrintPackage{\jobname} package\thanks{This document
 corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \author{\PackageAuthor \\
-  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}{\PackageAuthorEmail}}}
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}%
+    {\PackageAuthorEmail}%
+  }%
+}
 
 \EnableCrossrefs
 \CodelineIndex
@@ -64,7 +68,8 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{0}
+% \CheckSum{<+checksum+>}
+%
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -81,7 +86,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
-% \changes{v1.0}{2012/06/12}{Initial version}
+% \changes{<+version+>}{<+date+>}{Initial version}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -112,25 +117,34 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % in the preamble of your \LaTeXe{} source file.
 % 
 % \DescribeMacro{\templateTest}
-% The macro |\templateTest| {\marg{\LaTeX{} counter name}} takes a name of a LaTeX counter as its only
-% not optional parameter and typesets it.
-% 
+% The macro |\templateTest| {\marg{\LaTeX{} counter name}} takes a name of a
+% LaTeX counter as its only not optional parameter and typesets it.
+%
+%
+<+USAGE+>
 %
 % \StopEventually{}
 %
 % \section{Implementation}
+% \iffalse
+%<*<+type+>>
+% \fi
 % This package depends on these packages.
 %    \begin{macrocode}
-\RequirePackage{xifthen}
+\LaTeXERROR
+
 %    \end{macrocode}
 % \subsection{Macro definition}
 % \begin{macro}{\templateTest}
 % A test macro.
-%    \begin{macrocode}
-\DeclareRobustCommand{\templateTest}[1]{%
-  \arabic{#1}%
-}
-\endinput
-%    \end{macrocode}
+
+<+IMPLEMENTATION+>
+
 % \end{macro}
-% \endinput
+%
+% \iffalse
+%</<+type+>>
+% \fi
+%
+% \Finale
+\endinput
