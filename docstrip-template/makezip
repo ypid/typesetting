@@ -1,0 +1,10 @@
+#!/bin/bash
+## makes a zip file to upload it to ctan
+if [ -z "$1" ]
+then	echo "Please give a package. The package has to be in a directory."
+	exit 1
+fi
+
+archiv="$1.zip"
+rm "$archiv"
+zip "$archiv" "$1/$1.dtx" "$1/$1.ins" "$1/$1.pdf" "$1/README"
