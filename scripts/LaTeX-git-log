@@ -12,6 +12,8 @@ echo '\begin{tabular}{lp{12cm}}
 \end{tabular}
 
 \bigskip
+\newcounter{gitversionnumber}
+\newcommand{\StepPrintgitV}{\stepcounter{gitversionnumber}\arabic{gitversionnumber}}
 
 \iflanguage{ngerman}{\shorthandoff{"}}{}
 \resetplusplus
@@ -35,6 +37,5 @@ echo '\begin{tabular}{lp{12cm}}
 ## git log --pretty=format:'%ai'
 ## git log --date=short --pretty=format:'%ad'
 ## for privacy
-git log --date=short --pretty=format:'\hline \plusplus & TeMpforsed%d TeMpforsedend & %ad & %s &' --shortstat|grep -v "^$"|sed 'N;s/\n/ /'|sed 's/ deletions(-)$/ \\\\/g'|sed 's/ insertions(+),/ \&/g'|sed 's/+0100/CET/g'|sed 's/+0200/CEST/g'|sed 's/files changed,/\&/g'|sed 's/TeMpforsed ([a-zA-Z]*,\ //g'|sed 's/,\ [a-zA-Z]*) TeMpforsedend//g'|sed 's/master)\ \&/\&/g'|sed 's/[a-zA-Z]*) TeMpforsedend//g'|sed 's/TeMpforsed (//g'|sed 's/TeMpforsed TeMpforsedend //g'|sed 's/ TeMpforsed //g'|sed 's/  / /g'|sed 's/_/ /g'|tac
+git log --date=short --pretty=format:'\hline \StepPrintgitV & TeMpforsed%d TeMpforsedend & %ad & %s &' --shortstat|grep -v "^$"|sed 'N;s/\n/ /'|sed 's/ deletions(-)$/ \\\\/g'|sed 's/ insertions(+),/ \&/g'|sed 's/+0100/CET/g'|sed 's/+0200/CEST/g'|sed 's/files changed,/\&/g'|sed 's/TeMpforsed ([a-zA-Z]*,\ //g'|sed 's/,\ [a-zA-Z]*) TeMpforsedend//g'|sed 's/master)\ \&/\&/g'|sed 's/[a-zA-Z]*) TeMpforsedend//g'|sed 's/TeMpforsed (//g'|sed 's/TeMpforsed TeMpforsedend //g'|sed 's/ TeMpforsed //g'|sed 's/  / /g'|sed 's/_/ /g'|tac
 echo '\end{longtable}'
-
