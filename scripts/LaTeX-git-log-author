@@ -1,0 +1,41 @@
+#!/bin/bash
+## Tags auslesen und benutzen
+echo '\begin{tabular}{lp{12cm}}
+%	\lable{tabular:Legende:git-log}
+	\textbf{Abkürzung} & \textbf{Bedeutung} \\
+	V & \texttt{Version} \\
+	Tag & \texttt{Markierung} einer Menge von Dateien,
+		aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt \\
+	Fm & Wie viele \texttt{Dateien} innerhalb dieser Version \texttt{verändert} wurden \\
+	La & Wie viele \texttt{Zeilen} innerhalb dieser Version neu \texttt{hinzugekommen} sind \\
+	Ld & Wie viele \texttt{Zeilen} innerhalb dieser Version \texttt{gelöscht} wurden \\
+\end{tabular}
+
+\bigskip
+
+\iflanguage{ngerman}{\shorthandoff{"}}{}
+\resetplusplus
+\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}
+& \multicolumn{1}{c}{\textbf{Autor}}
+& \multicolumn{1}{c}{\textbf{Datum}}
+& \multicolumn{1}{c}{\textbf{Versionsbericht}} & \multicolumn{1}{c}{\textbf{Fm}}
+& \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\ \hline}
+\begin{longtable}{|rllllrrr|}
+\longtableheader
+\endfirsthead
+
+\longtableheader
+\endhead
+
+\hline \multicolumn{8}{|r|}{\longtableendfoot} \\ \hline
+\endfoot
+
+\hline% \hline
+\endlastfoot
+'
+## git log --pretty=format:'%ai'
+## git log --date=short --pretty=format:'%ad'
+## for privacy
+git log --date=short --pretty=format:'\hline \plusplus & TeMpforsed%d TeMpforsedend & %an & %ad & %s &' --shortstat|grep -v "^$"|sed 'N;s/\n/ /'|sed 's/ deletions(-)$/ \\\\/g'|sed 's/ insertions(+),/ \&/g'|sed 's/+0100/CET/g'|sed 's/+0200/CEST/g'|sed 's/files changed,/\&/g'|sed 's/TeMpforsed ([a-zA-Z]*,\ //g'|sed 's/,\ [a-zA-Z]*) TeMpforsedend//g'|sed 's/master)\ \&/\&/g'|sed 's/[a-zA-Z]*) TeMpforsedend//g'|sed 's/TeMpforsed (//g'|sed 's/TeMpforsed TeMpforsedend //g'|sed 's/ TeMpforsed //g'|sed 's/  / /g'|sed 's/_/ /g'|tac
+echo '\end{longtable}'
+

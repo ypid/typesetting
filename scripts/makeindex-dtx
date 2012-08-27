@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ -z "$1" ]
+then	echo "Please give the jobname as parameter"
+	exit 1
+fi
+jobname=${1%.}
+
+makeindex -s gglo.ist -o "$jobname.gls" "$jobname.glo"
+makeindex -s gind "$jobname"

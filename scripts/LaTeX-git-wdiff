@@ -1,0 +1,115 @@
+#!/bin/bash
+## Konvertiert die Ausgabe von git diff --color-words in LaTeX Befehle
+tmp="/tmp/git-wdiff.tmp"
+convert2latex (){
+sed 's/{/(((((/g' \
+|sed 's/}/)))))/g' \
+|cat -v \
+|filtergitoutput \
+|umlaute \
+|grep -v "\\includegraphics" \
+|grep -v "\\figurewrapper" \
+|sed 's/\\/\\textbackslash /g' \
+|sed 's/%/\\%/g' \
+|sed 's/_/\\_/g' \
+|sed 's/#/\\#/g' \
+|sed 's/&/\\&/g' \
+|sed 's/\^\[\[31m/ \\color{red}/g' \
+|sed 's/\^\[\[32m/\\color{green}/g' \
+|sed 's/\^\[\[36m/\n\\bigskip\\color{blue}/g' \
+|sed 's/\^\[\[m/\\color{black}\\xspace /g' \
+|sed 's/(((((/\\{/g' \
+|sed 's/)))))/\\}/g'
+}
+
+umlaute (){
+sed 's/M-CM-</ü/g' \
+|sed 's/M-CM-^\\/Ü/g' \
+|tr "$" "x"|sed 's/M-CM-x/ä/g' \
+|sed 's/M-CM-^D/Ä/g' \
+|sed 's/M-CM-6/ö/g' \
+|sed 's/M-CM-^V/Ö/g' \
+|sed 's/M-CM-^_/ß/g' \
+|sed 's/M-bM-^@M-^^/„/g' \
+|sed 's/M-bM-^@M-^\\/“/g'
+}
+param="$#"
+
+filtergitoutput (){
+grep -v "\^\[\[1mdiff --git a" \
+|grep -v "\^\[\[1mnew file mode " \
+|grep -v "\^\[\[1mdeleted file mode " \
+|grep -v "\^\[\[1mindex " \
+|grep -v "\^\[\[1m--- " \
+|grep -v "\^\[\[1m+++ "
+}
+
+echoVersionstable (){
+echo '\iflanguage{ngerman}{\shorthandoff{"}}{}
+\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Tag}}
+& \multicolumn{1}{c}{\textbf{Hash}}
+& \multicolumn{1}{c}{\textbf{Erstellungsdatum}}
+& \multicolumn{1}{c|}{\textbf{Versionsbericht}} \\ \hline}
+\begin{longtable}{|lllp{7.5cm}|}
+%p{8cm}
+\longtableheader
+\endfirsthead
+
+\longtableheader
+\endhead
+
+\hline \multicolumn{4}{|r|}{\longtableendfoot} \\ \hline
+\endfoot
+
+\hline% \hline
+\endlastfoot
+'
+(git log --pretty=format:'\hline xXx%dxXx & %h & %ai & %s \\' \
+|grep "$secundhash"'[),]'
+git log --pretty=format:'\hline xXx%dxXx & %h & %ai & %s \\' \
+|grep "$firsthash"'[),]') \
+|sed 's/+0100/CET/g'|sed 's/+0200/CEST/g' \
+|sed 's/, master/,/g' \
+|sed 's/HEAD,/aktuell/g' \
+|sed 's/xXx (//g'|sed 's/)xXx//g'
+echo '\end{longtable}'
+}
+
+echoErklaerung (){
+echo "%\section*{Verglich zweier Versionen}"
+echo "%\pdfbookmark[1]{Versionenvergleich}{versionenvergleich}"
+echo "Alles, was \textcolor{green}{grün} ist, ist in der aktuellen"
+echo "Version neu hinzugekommen."
+echo "Die \textcolor{red}{roten} Textstellen wurden entfernt."
+echo "\textcolor{blue}{Blaue} Textstellen zeigen Kommentarzeilen"
+echo "vom Versionskontrollsystem an."
+echo "Nach einer solchen Kommentarzeile ist ein Textsprung zu erwarten."
+}
+
+
+if [ $param == 0 ]
+then	if [ -n "`git diff --color-words`" ]
+	then	echoErklaerung
+		git diff --color-words | convert2latex
+	fi
+else	if [ -z "`echo $1 |grep -v "\.\."`" ]
+	then	firsthash=${1%..*}
+		secundhash=${1#*..}
+		firstuntilsecund="$firsthash..$secundhash"
+		shift
+		while [ $# -ge 1 ];do files="$files $1";shift;done
+		## git diff --color-words $firsthash..$secundhash &>/dev/null
+		if [ -n "`git diff --color-words "$firstuntilsecund" $files`" ]
+		then	echoVersionstable
+			echoErklaerung
+			git diff --color-words "$firstuntilsecund" $files | convert2latex
+		fi
+	else	while [ $# -ge 1 ];do files="$files $1";shift;done
+		if [ -n "`git diff --color-words $files`" ]
+		then	echoVersionstable
+			echoErklaerung
+			git diff --color-words $files | convert2latex
+		fi
+	fi
+fi
+
