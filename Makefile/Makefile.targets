@@ -1,0 +1,45 @@
+.PHONY: help all clean $(JOBNAME).pdf log main upload echoURL gitdiffs
+## Abhängigkeiten nicht Prüfen
+.SILENT: help all clean $(JOBNAME).pdf log main upload echoURL gitdiffs gitstats files/git/version.tex
+## Befehle nicht vor dem Ausführen anzeigen
+
+$(JOBNAME).pdf: $(JOBNAME).tex
+	$(PDFLATEX) $<
+	$(TPUTDONE)
+	$(ECHO) "$(JOBNAME) done"
+	$(TPUTRESET)
+
+log: $(JOBNAME).log
+	$(TAILLOG) $(JOBNAME).log
+	texloganalyser $(JOBNAME).log
+
+gitstats:
+	./.git/hooks/post-commit
+	$(TPUTDONE)
+	$(ECHO) "gitstats done"
+	$(TPUTRESET)
+
+# Mit pid nach /tmp kopieren...
+upload:
+	$(CP) $(UPLOADFILE) /tmp
+#	$(PDFOPTMOD) /tmp/$(UPLOADFILE)
+	$(UPLOAD)
+	$(TPUTDONE)
+	$(ECHO) "upload done"
+	$(TPUTRESET)
+
+echoURL:
+	$(ECHO) "http://`cat $(UPLOADCONF)|grep "^host"|cut -d " " -f 2`/"$(UPLOADDIR)/$(UPLOADFILE)
+
+clean:
+	$(LATEXCLEAN)
+
+help:
+	$(ECHO) "Dies sind die Grundfunktionen dieses Makefiles:"
+	$(ECHO) " help\t\tZeig diese Hilfe an"
+	$(ECHO) " clean\t\tLöscht rekursiv alle temporären Dateien"
+	$(ECHO) " gitstats\tErzeugt Statistiken aus Git für LaTeX"
+	$(ECHO) " upload\t\tErmöglicht den Upload über FTP"
+	$(ECHO) " echoURL\tZeigt die URL an, über die das PDF abrufbar ist"
+	$(ECHO) "Eventuell ist nicht jeder Befehl verfügbar"
+
