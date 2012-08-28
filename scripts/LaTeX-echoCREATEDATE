@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -e "\\SetCREATEDATE`date +{%Y}{%m}{%d}{%H}{%M}{%S}`\t%% {YYYY}{MM}{DD}{HH}{MM}{SS}"
