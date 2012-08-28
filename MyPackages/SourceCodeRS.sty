@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{SourceCodeRS}
+          [2011/11/01 v1.00 Pakete für das setzen von Quellcode listings von Robin Schneider]
+
+%% LaTeX Hacks O'Reilly #12
+
+\RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
+%[LaTeX]TeX,
+
+%\begin{lstlisting}
+%\RequirePackage{%
+%  amsmath
+% ,listings  % Gute Wiedergabe von Quelltexten
+% ,ngerman
+%}
+%\end{lstlisting}
+
+\endinput

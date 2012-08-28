@@ -1,0 +1,58 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PDFinfoRS}
+          [2012/08/24 v1.01 PDF optimization by Robin Schneider]
+
+\RequirePackage{
+	defaultRS,
+	declareDocumentVariablesRS,
+	readgitRS,
+	xifthen,
+%	footnotebackref,
+%	thumbpdf,					%% PDF Thumbnails erstellen
+}
+
+\ifthenelse{\boolean{@ifCREATEDATE}}{\pdfinfo{/CreationDate(D:\CREATEDATE)/ModDate(D:\pdfdate)}}{}
+
+\ifgitversion{
+	\newcommand{\PDFinfoRS@version}{\LanguageVersionName: \printversion ~| }
+}{	\newcommand{\PDFinfoRS@version}{}
+}
+
+\ifthenelse{\equal{\LICENSEname}{}}{
+	\newcommand{\PDFinfoRS@license}{}
+}{	\newcommand{\PDFinfoRS@license}{\LanguageLicenceName: \LICENSEname ~| }
+}
+
+\ifthenelse{\equal{\SUBJECT}{}}{
+	\newcommand{\PDFinfoRS@subject}{}
+}{	\newcommand{\PDFinfoRS@subject}{~-- \SUBJECT}
+}
+
+\RequirePackage{hyperref}
+\hypersetup{
+%	linktocpage,						%% verlinkt die Seitenzahl und nicht das label
+%	pdfstartpage= {1},					%% Startseite
+	bookmarksnumbered= true,			%% Nummerierung in bookmarks
+%	backref		= true,
+%	unicode		= false,				%% non-Latin characters in Acrobat’s bookmarks
+%	pdftoolbar	= true,					%% show Acrobat’s toolbar?
+%	pdfmenubar	= true,					%% show Acrobat’s menu?
+%	pdffitwindow= false,				%% window fit to page when opened
+%	pdfstartview= {FitH},				%% fits the width of the page to the window
+%	pdfpagemode	= {FullScreen},			%% wie die Datei in Acrobat geöffnet wird
+	pdflang		= {\LanguagePDFLang},	%% pdflang hat noch keinen Effekt?
+	pdftitle	= {\TITEL},
+	pdfauthor	= {\AUTHOR},
+	pdfsubject	= {\SUBJECT},
+	pdfkeywords	= {\TITEL \PDFinfoRS@subject ~| \PDFinfoRS@license \PDFinfoRS@version \AUTHOR},
+	pdfcreator	= {\LanguageSignatureShort},	%% Ersteller, creator of the document
+%	pdfproducer	= {},							%% Hersteller, producer of the document
+	baseurl		= {\URL},  %% URL des PDF-Dokuments (oder Hintergrundinformationen)
+%	pdfnewwindow= true,							%% links in new window
+}
+
+\ifthenelse{\equal{\value{Author@ChosenNumber}}{4}}{
+	\hypersetup{pdfcreator={\Typesetter}}
+}{}
+
+\endinput

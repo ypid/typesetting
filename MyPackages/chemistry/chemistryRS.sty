@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chemistryRS}
+	[2012/02/06 v1.01 chemistry packages by Robin Schneider]
+
+\RequirePackage[version=3]{mhchem}
+%\RequirePackage{chemarrow}				%% Wird durch mhchem ersetzt
+%\RequirePackage{rsphrase}				%% \rsnumber{R1} \rsphrase{R1}
+%\RequirePackage{bpchem}				%% Leider kein strackrel
+%\RequirePackage{pst-labo}
+%\RequirePackage{chemexec}
+\RequirePackage{chemfig}
+%% chemfig ohne \ce{} benutzen ...
+\definesubmol{CH2}{C(-[::90]H)(-[::-90]H)}
+\setatomsep{2.5em}
+
+\newcommand{\aggre}[1]{\, \textit{(#1)}}
+
+\RequirePackage[nohyperlinks,nolist]{acronym}
+\newcommand{\includeListOfAbbreviationsChemistry}[1][]{%
+\setlength{\columnsep}{5cm}%
+%\setlength{\columnseprule}{0.4pt}%	%% Für multicols (funktioniert nicht)
+\begin{acronym}[\hspace{3.5cm}]%
+\setlength{\itemsep}{-\parsep}%
+%% Chemische Elemente als Abkürzungen, mit dem label 'Ordnungszahl'
+%% Chemische Moleküle als Abkürzungen, mit dem label 'Formel'
+\ifthenelse{\equal{#1}{multicols}}{%
+\begin{multicols}{2}%	%% Für Chemie Praktikum deaktivieren
+}{}%
+\input{ListOfAbbreviationsChemistry.tex}
+\ifthenelse{\equal{#1}{multicols}}{\end{multicols}}{}%
+\end{acronym}%
+\setlength{\columnsep}{1.5pc}%
+%\setlength{\columnseprule}{0pt}
+}
+
+\newcommand{\printSectionListOfAbbreviationsChemistry}{%
+\section*{Abkürzungsverzeichnis\protect\footnote{Verzeichnis aller im Text benutzten chemischen
+Elemente, sortiert nach ihrer Ordnungszahl und Moleküle. Die Elemente und Moleküle wurden beim
+ersten Auftreten ausgeschrieben und die Abkürzungen in Klammern dahinter gesetzt. Alle folgenden
+Male wurde nur die Abkürzung benutzt. In Überschriften wurde davon unabhängig die Langform
+benutzt.}}%
+%% Section ist größer als Inhaltsverzeichnis
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}%
+}
+
+\endinput

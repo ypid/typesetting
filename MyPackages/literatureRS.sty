@@ -1,0 +1,26 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{literatureRS}
+          [2012/01/29 v1.00 Standard Pakete für Literatur von Robin Schneider]
+
+\RequirePackage[
+%	style=numeric,
+%	style=alphabetic,sorting=anyt,
+%	style=authoryear,
+%	style=authortitle,
+	style=authortitle-comp,
+%	style=verbose,
+%	style=verbose-note,
+%	style=verbose-trad1,
+%	style=verbose-trad2,
+%	style=reading,
+%	style=draft,
+%	sorting=none,			%% In zitierter Reihenfolge in Literaturverzeichnis
+	natbib=true,
+	backend=biber,
+%	url=false				%% default: true
+]{biblatex}
+%\bibliography{}
+\DeclareFieldFormat{urldate}{\mkbibparens{abgerufen am\space#1}}
+\defbibheading{quell}{\section{Quellenverzeichnis}}
+
+\endinput

@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{debugRS}
+          [2011/09/24 v1.00 packages for testing and debugging by Robin Schneider]
+
+\listfiles		%% listfiles in die Logdatei
+\usepackage{blindtext}		%%
+%\usepackage{lipsum}		%%
+\setlength{\overfullrule}{3mm}	%% Hilfestellung beim Finden der Problemstellen
+%\usepackage{fontsmpl}		%% \fontsample
+%\usepackage{trace}
+\usepackage{layout}		%% \layout Anzeigen (mit Zeichnung) der Seitenmaße #32
+\usepackage{layouts}	%% \currentpage\pagedesign #32
+\usepackage{showkeys}
+\usepackage{showframe}
+\usepackage{syntonly}
+%\syntaxonly
+
+%% Vor \documentclass laden
+%\RequirePackage{snapshot}
+%% Listet die externen Abhängigkeiten eines Latex-Dokuments in \jobname.dep auf
+
+%% benutze \immediate\write\outfile{\befehl} ...
+%% Funktioniert nur sehr begrenzt
+
+\pdfobjcompresslevel=0
+
+\endinput

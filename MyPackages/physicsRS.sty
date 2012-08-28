@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{physicsRS}
+          [2011/09/24 v1.00 physics packages by Robin Schneider]
+
+\usepackage{siunitx}       % \centi\meter	%% Einheiten darstellen
+\sisetup{
+	per-mode				= symbol,		%% verändert km h^{-1} in km/h
+	output-decimal-marker	= {,},
+%	detect-all				= true,			%% verhindert die Nutzung von +-
+	detect-weight			= true,
+%	mode					= text,
+%	round-mode				= places,
+%	round-precision			= 3,
+%	multi-part-units		= brackets,
+%	range-units				= brackets,
+%	range-phrase			= {--},
+%	separate-uncertainty	= true,
+%	uncertainty-separator	= {\,},
+}
+%\SI{180.3}{\kilo\metre\per\hour}
+%\textbf{\SI{+- 30}{cm}}
+
+\endinput

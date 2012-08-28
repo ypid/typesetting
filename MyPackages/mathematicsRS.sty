@@ -1,0 +1,75 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathematicsRS}
+          [2012/01/28 v1.00 Standard Mathematik Pakete von Robin Schneider]
+
+\usepackage[all,warning]{onlyamsmath}  %% warnt bei Verwendung von nicht amsmath-Umgebungen z.\,B. $$...$$
+\usepackage{amsmath}	%[fleqn]	%% Matheumgebung
+%% http://www.golatex.de/abstand-zwischen-zwei-align-formeln-aendern-t3223.html
+%% keine Veränderung
+\usepackage{amsfonts}
+\usepackage{fixmath}	%% ISO-konforme griech. Buchstaben
+\usepackage{array}
+%\usepackage{lcg}		%% erzeugt zufallszahlen %\rand\arabic{rand}
+%\input random.tex	%\setrannum{\temp}{1}{6}\the\temp
+
+%\RequirePackage{zahl2string}		%% \Numstring{page}\Numstr{23}
+%\input binhex						%% conversion into binary-based number systems
+%\RequirePackage{fp}
+
+%\usepackage{tabularcalc}		%% Berechnet Formeln in einer tabellarischen Umgebung
+%\usepackage{pgfplotstable}
+
+%% use \textrm{test}
+
+%% Funktionen Plotten
+%% wird durch pgfplots ersetzt ...
+%\usepackage{pgfplots}
+\newcounter{mathplotcount}
+\FPset\gitter{0.2}
+
+\newenvironment{mathgrobplot}[7]{
+\begin{tikzpicture}[scale=#5]
+    \FPset\fxmax{#1}
+    \FPset\fxmin{#2}
+    \FPset\fymax{#3}
+    \FPset\fymin{#4}
+%% Berechnung
+    \FPadd\xmax\fxmax\gitter
+    \FPadd\ymax\fymax\gitter
+    \FPsub\xmin\fxmin\gitter
+    \FPsub\ymin\fymin\gitter
+%% Achsen
+    \draw[->] (\xmin,0) -- (\xmax,0) node[right] {#6};
+    \draw[->] (0,\ymin) -- (0,\ymax) node[above] {#7};
+}{\end{tikzpicture}\stepcounter{mathplotcount}}
+
+\newenvironment{mathplot}[7]{
+\begin{tikzpicture}[scale=#5]
+    \FPset\fxmax{#1}
+    \FPset\fxmin{#2}
+    \FPset\fymax{#3}
+    \FPset\fymin{#4}
+%% Berechnung
+    \FPadd\xmax\fxmax\gitter
+    \FPadd\ymax\fymax\gitter
+    \FPsub\xmin\fxmin\gitter
+    \FPsub\ymin\fymin\gitter
+%% Gitter
+    \draw[very thin,color=gray] (\FPprint\xmin,\FPprint\ymin) grid (\FPprint\xmax,\FPprint\ymax);
+%% Achsen
+    \draw[->] (\xmin,0) -- (\xmax,0) node[right] {#6};
+    \draw[->] (0,\ymin) -- (0,\ymax) node[above] {#7};
+%% Zahlen
+    \foreach \y in {\fymin,...,\fymax}{
+      \ifthenelse{\equal{\y}{0}}{}{
+        \draw (0.1,\y) -- (-0.1,\y) node[left] {\y};
+      }
+    }
+    \foreach \x in {\fxmin,...,\fxmax}{
+      \ifthenelse{\equal{\x}{0}}{}{
+        \draw (\x,0.1) -- (\x,-0.1) node[below] {\x};
+      }
+    }
+}{\end{tikzpicture}\stepcounter{mathplotcount}}
+
+\endinput

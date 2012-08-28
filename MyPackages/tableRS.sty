@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tableRS}
+          [2011/09/24 v1.00 Standart Pakete und Einstellungen für Tabellen von Robin Schneider]
+
+\RequirePackage{ltxtable}			%% longtable und tabularx vereint in einer Tabelle, lädt beide
+	%% Sollte noch hyperref geladen werden um footnote Verlinkung zu ermöglichen
+\newcommand{\longtableheader}{}
+\newcommand{\longtableendfoot}{\emph{Siehe nächste Seite}}
+\RequirePackage{multirow}			%% Erzeugt mehrzeilige Zellen in Tabellen
+\RequirePackage{slashbox}			%% Doppelüberschriften in einer Tabellenzelle
+\RequirePackage{dcolumn}			%% D{,}{,}{Nachkommastellen}
+	%% arbeitet nicht mit den Paketen isonums, icomma und ziffer zusammen
+	%% \ZifferPunktAus\begin{tabular}{D{,}{,}{2}}3,22\\\end{tabular}\ZifferPunktAn
+\newcolumntype{d}[1]{D{,}{,}{#1}}	%% #36
+\RequirePackage{colortbl}			%% Tabellen farbig gestalten
+\RequirePackage{colorrowsRS}		%% Do I use this package?
+%\RequirePackage{booktabs}			%% weitere Linien zur Strukturierung von Tabellen (\toprule, ...)
+\newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+%\renewcommand \thetable{\arabic{section}-\@arabic\c@table}
+%% Auszeichnung für Tabellenkopf...
+
+%\RequirePackage{tabu}
+
+\endinput

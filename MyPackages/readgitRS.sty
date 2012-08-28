@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{readgitRS}
+	[2011/09/24 v1.00 Git Version einlesen von Robin Schneider]
+
+\RequirePackage{IfconstructsRS}
+\newcounter{reversiongit}	%% Auf dies Variable werden if Abfragen gefahren
+\newcommand{\ifgitversion}[2]{\ifthenelse{\equal{\value{reversiongit}}{0}}{#2}{#1}}
+
+\newcommand{\readgitstat}[1]{%
+	\sixIF{#1}{
+		\immediate\write18{git-commit-count.sh > /tmp/.\jobname.git}%
+		\newcommand{\printversion}{\input{/tmp/.\jobname.git}}
+	}{%
+		\newcommand{\printversion}{\textdiscount}
+	}{%
+		\newcommand{\printversion}{\input{info.git.txt}}
+	}{%
+		\newcommand{\printversion}{\input{files/info.git.txt}}
+	}{%
+		\newcommand{\printversion}{\input{files/git/info.git.txt}}
+	}{%
+		\newcommand{\printversion}{\input{files/git/version}}
+	}{%
+		\input{files/git/version}%
+		\newcommand{\printversion}{\arabic{reversiongit} (\shorthashgit)}
+	}%
+}
+
+\newcommand{\printVersionNotes}{%
+	\ifthenelse{\isundefined\chapter}%
+		{\pdfbookmark[2]{Versionshinweise}{versionshinweise}\subsection*{Versionshinweise}}%
+		{\pdfbookmark[1]{Versionshinweise}{versionshinweise}\section*{Versionshinweise}}%
+	\input{files/git/versions-log}
+}
+
+\endinput

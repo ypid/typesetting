@@ -1,0 +1,54 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{graphicRS}
+          [2011/09/24 v1.00 Pakete um Grafiken erstellen und einbinden zu können von Robin Schneider]
+
+\setlength{\unitlength}{1mm}	%% Definiert die in der picture-Umgebung verwendete Masseinheit
+\RequirePackage{graphicx}			%% Einbinden von Grafiken
+%% trim=l b r t 	This option will crop the imported image by l from the left, b from the bottom, r from the right, and t
+%% from the top. Where l, b, r and t are lengths.
+%% width=0.7\hsize
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{niceblue}{HTML}{92dcec}			%% Benutzt für Kuchendiagramm
+%\RequirePackage{overpic}       %% Annotieren von Bildern
+
+%\RequirePackage{subcaption}		%% Unterbilder
+%\RequirePackage{subfigure}
+\RequirePackage{tikz}			%% Verbraucht Speicher im PDF (211 Byte)
+%\usetikzlibrary{shadows}	%% Verbraucht Speicher im PDF (331 Byte)
+
+%\RequirePackage{scalebar}		%% Erzeugt Maßstäbe für Karten, Diagramme oder Fotos
+
+\RequirePackage{caption}		%% Fortsetzung von Überschriften und Legenden für Floats
+\addto\captionsngerman{%	%% oder \iflanguage{ngerman}{}{}
+	\renewcommand{\figurename}{Abb.}%
+	\renewcommand{\tablename}{Tab.}%
+}
+%\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+%\@addtoreset{figure}{section}
+\RequirePackage{float}			%%
+%\floatstyle{boxed}			%% Erzeugt eine Box um das Bild
+%\floatstyle{ruled}			%% Erzeugt eine Box Horizontale Linien und caption vor dem Bild
+%\floatstyle{plaintop}		%% Caption vor dem Bild
+%\restylefloat{figure}		%% Notwendig um \floatstyle für das gesamte Dokument anzuwenden
+\newenvironment{figurewrapper}{\begin{figure}[hbt]\centering}{\end{figure}%
+%\stepcounter{figure}		%% ging Führer ohne einen extra stepcounter...
+}
+
+\usetikzlibrary{fadings}		%% for: fading=south
+\newcommand{\spiegelschrift}[2]{
+\node[at={(0,0)},text=bleu]{\bfseries #1};
+\node[at={(0,#2)},above,yscale=-1,scope fading=south,
+opacity=0.5,text=bleu]{\bfseries #1};
+}
+
+%\RequirePackage{progressbar}
+
+%\RequirePackage{picinpar}
+
+\endinput
