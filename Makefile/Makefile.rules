@@ -4,6 +4,7 @@ AUTHOR		= Robin Scheider
 # = ESSENTIAL PROGRAMS =
 # == Basic Shell Utilities ==
 ECHO		?= echo
+CP		?= cp
 TAIL		?= tail
 TPUT		?= tput
 # == LaTeX ==
