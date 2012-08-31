@@ -10,6 +10,21 @@ The latest version of this license is in
 and version 1.3 or later is part of all distributions of LaTeX
 version 2005/12/01 or later.
 
+CTAN: http://www.ctan.org/pkg/XXXPACKAGEXXX
 Code repository: https://github.com/ypid/latex-packages/XXXPACKAGEXXX
 
-DESCRIPTION
+
+	DESCRIPTION
+ASDSDASJKLFEJIOAFJEIOFJOSDJISJDIASDSDASJKLFEJIOAFJEIOFJOSDJISJDI
+
+
+	GENERATING THE FILES
+You can generate the XXXPACKAGEXXX.sty file with: pdflatex XXXPACKAGEXXX.ins
+
+The documentation can be generated with:
+pdflatex XXXPACKAGEXXX.dtx
+makeindex -s gglo.ist -o XXXPACKAGEXXX.gls XXXPACKAGEXXX.glo
+makeindex -s gind XXXPACKAGEXXX
+pdflatex XXXPACKAGEXXX.dtx
+thumbpdf XXXPACKAGEXXX
+pdflatex XXXPACKAGEXXX.dtx

@@ -1,0 +1,8 @@
+#!/bin/sh
+## kpseshow -- Datei anzeigen, die TeX finden würde
+## O'Reilly LaTeX Hack #91
+
+file=`kpsewhich $1`
+if [ -n "$file" ]
+then	editor $file
+fi

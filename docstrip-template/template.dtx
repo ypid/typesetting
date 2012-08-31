@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %
 % Copyright (C) <+year+> by <+author+> <<+email+>>
-% 
+%
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
@@ -21,7 +21,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{\jobname.dtx}
+\ProvidesFile{<+filebase+>.dtx}
 %</driver>
 %<<+type+>>%% See file '<+filebase+>.dtx' for copyright and licence.
 %<<+type+>>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
@@ -33,14 +33,12 @@
 %<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/<+filebase+>}
+\newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/<+filebase+>}
 \newcommand{\PackageAuthor}{<+author+>}
 \newcommand{\PackageAuthorEmail}{<+email+>}
+\newcommand{\PackageName}{\PrintPackage{<+filebase+>}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
-\typeout{}\typeout{* If the two package names look the same you can ignore this
-LaTeX Warning *}
-\usepackage{\jobname}
-%% ^^A This produces a warning even when there is no problem.
-%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\usepackage{<+filebase+>}
 \usepackage{
   babel,
   csquotes,
@@ -48,20 +46,20 @@ LaTeX Warning *}
   url,
   hypdoc,
 }
-\GetFileInfo{\jobname.dtx}
+\GetFileInfo{<+filebase+>.dtx}
 \hypersetup{
-  pdftitle={A manual for \jobname},
+  pdftitle={A manual for \PackageName},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
-  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion,
+  pdfkeywords={This document corresponds to \PackageName~\fileversion,
     dated \filedate}
 }
 
-\title{The \PrintPackage{\jobname} package\thanks{This document
-corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\title{The \PackageName{} package\thanks{This document
+corresponds to \PackageName~\fileversion, dated \filedate.}}
 \author{\PackageAuthor \\
-  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}%
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package <+filebase+>}%
     {\PackageAuthorEmail}%
   }%
 }
@@ -70,7 +68,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{\jobname.dtx}
+  \DocInput{<+filebase+>.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -102,7 +100,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
 % \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\ProcessKeyvalOptions, \SetupKeyvalOptions, \DeclareBoolOption}
-% \DoNotIndex{\newenvironment, \jobname}
+% \DoNotIndex{\newenvironment}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
 % \DoNotIndex{\equal, \@currname, \newcounter, \setcounter}
 % \DoNotIndex{\endinput}
@@ -112,21 +110,22 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \phantomsection
 % \addcontentsline{toc}{section}{\abstractname}
 % \begin{abstract}
-% The \PrintPackage{\jobname} package \\
+% The \PackageName{} package \\
+%% ^^A Location on CTAN: \url{\PackageCTANURL} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
-% 
+%
 % \tableofcontents
-% 
+%
 % \section{Introduction}
-% The \PrintPackage{\jobname} package defines
-% 
+% The \PrintPackage{<+filebase+>} package defines
+%
 % \section{Usage}
 % Just load the package placing
 % \begin{quote}
 %   |\usepackage{<+filebase+>}|
 % \end{quote}
 % in the preamble of your \LaTeXe{} source file.
-% 
+%
 % \DescribeMacro{\templateTest}
 % The macro |\templateTest| {\marg{\LaTeX{} counter name}} takes a name of a
 % LaTeX counter as its only not optional parameter and typesets it.
