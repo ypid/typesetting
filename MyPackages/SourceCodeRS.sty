@@ -6,8 +6,14 @@
 
 \RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
 \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
-\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
-%[LaTeX]TeX,
+%\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
+\lstset{
+	numbers=left,
+	numberstyle=\tiny,
+	frame=single,
+	commentstyle=\color{gray},
+	language=[LaTeX]TeX,
+}
 
 %\begin{lstlisting}
 %\RequirePackage{%

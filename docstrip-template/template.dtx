@@ -38,6 +38,8 @@
 \newcommand{\PackageAuthorEmail}{<+email+>}
 \newcommand{\PackageName}{\PrintPackage{<+filebase+>}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
+\newcommand{\PrintOptionF}[1]{\textbf{#1}} %% ^^A This macro is used for
+%% ^^A explaining any parameter when they first come up in the documentation.
 \usepackage{<+filebase+>}
 \usepackage{
   babel,
@@ -75,7 +77,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{<+checksum+>}
+% \CheckSum{0}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -97,12 +99,15 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
-% \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
+% \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand, \def, \edef}
 % \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\ProcessKeyvalOptions, \SetupKeyvalOptions, \DeclareBoolOption}
 % \DoNotIndex{\newenvironment}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
-% \DoNotIndex{\equal, \@currname, \newcounter, \setcounter}
+% \DoNotIndex{\(, \), \NOT, \OR}
+% \DoNotIndex{\loop, \repeat, \the, \ifnum}
+% \DoNotIndex{\equal, \boolean, \@currname, \newcounter, \setcounter}
+% \DoNotIndex{\stepcounter, \addtocounter}
 % \DoNotIndex{\endinput}
 %
 % \maketitle
@@ -126,12 +131,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \end{quote}
 % in the preamble of your \LaTeXe{} source file.
 %
-% \DescribeMacro{\templateTest}
-% The macro |\templateTest| {\marg{\LaTeX{} counter name}} takes a name of a
+<+USAGE+>
+% The macro |\<+filebase+>| \marg{\LaTeX{} counter name} takes a name of a
 % LaTeX counter as its only not optional parameter and typesets it.
 %
-%
-<+USAGE+>
 %
 % \StopEventually{}
 %

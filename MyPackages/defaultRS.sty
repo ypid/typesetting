@@ -34,7 +34,8 @@
 %\RequirePackage{lcd}				%% Setzt Text im Still von LCD Displays
 %\RequirePackage{keystroke}			%% Setzt Computer Tasten von Tastaturen \Esc
 %\RequirePackage{telprint}			%% Ordentliches Darstellen German phone numbers
-\RequirePackage{numprint}			%% Ordentliches Darstellen von Zahlen im Text und Mathe Modus
+\RequirePackage[autolanguage]{numprint}
+%% Ordentliches Darstellen von Zahlen im Text und Mathe Modus
 \npfourdigitnosep
 \RequirePackage{romanbar}
 \newcommand{\RM}[1]{\Romanbar{#1}}
@@ -74,6 +75,8 @@
 %\RequirePackage{linenoWorkaroundRS}
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
 
+\let\fancynumprintcount\fnumprintc
+\let\fancynumprintstr\fnumprint
 %% Sprachdefinition laden
 \RequirePackage{fnumprint}	%% fnumprint@language
 \RequirePackage{IfconstructsRS}
