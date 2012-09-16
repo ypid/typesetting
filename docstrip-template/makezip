@@ -6,5 +6,5 @@ then	echo "Please give a package. The package has to be in a directory."
 fi
 
 archiv="$1.zip"
-rm "$archiv"
+rm -f "$archiv"
 zip "$archiv" "$1/$1.dtx" "$1/$1.ins" "$1/$1.pdf" "$1/README"
