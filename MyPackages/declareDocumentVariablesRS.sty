@@ -1,0 +1,168 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{declareDocumentVariablesRS}
+          [2012/08/24 v1.00 packages for declaring document variables by Robin Schneider]
+\newcommand{\Typesetter}{\href{https://ypid.wordpress.com/}{Robin Schneider}\xspace}
+
+\RequirePackage{
+	xifthen,
+	IfconstructsRS,
+	timeRS,
+	xspace,
+	ccicons,
+}
+
+\newcommand{\choosedefaultlicense}{\SetLICENSE{CreativeCommons/by-nc-sa}{0}}
+
+\newcommand{\LICENSE}{}		%% The command must exist
+\newcommand{\LICENSEname}{} %% The command must exist
+\newcommand{\SetLICENSE}[3][]{
+	\newcounter{LICENSEadd}
+	\setcounter{LICENSEadd}{#3}
+	\renewcommand{\LICENSE}{#2}
+	\ifthenelse{\isempty{#1}}{
+		\ifthenelse{\equal{#2}{CreativeCommons/by-nc-sa}}{
+			\renewcommand{\LICENSEname}{Creative Commons BY-NC-SA}
+		}{
+			\PackageError{declareDocumentVariablesRS}{Unknown parameter}%
+				{The parameter "#2" is unknown}
+		}
+	}{	\renewcommand{\LICENSEname}{#1}
+	}
+}
+\newcommand{\licenseadd}{\IfCounterOne{LICENSEadd}{ größtenteils\xspace}{\xspace}}
+
+%\newboolean{licensetext}
+%\setboolean{licensetext}{true}
+\newboolean{licenseNameDate}
+\setboolean{licenseNameDate}{true}
+
+\newcommand{\printlicense}{%
+	\ifthenelse{\equal{\LICENSE}{}}{}%
+		{\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE}}%
+}
+
+\newcommand{\printlicenseicons}{%
+	\ifthenelse{\equal{\LICENSE}{CreativeCommons/by-nc-nd}}{%
+		\ccbyncndeu%
+	}{%
+		\ifthenelse{\equal{\LICENSE}{CreativeCommons/by-nc-sa}}{%
+			\ccbyncsaeu%
+		}{%
+%			\PackageError{docExtensionsRS}{printlicenseicons}%
+%				{something went wrong}%
+% Falls %\choosedefaultlicense
+		}%
+	}%
+\xspace%
+}
+
+\newcommand{\printshortlicense}{%
+	\ifthenelse{\equal{\LICENSE}{}}{\textdiscount}%
+		{\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE-url}}%
+}
+
+\newcommand{\printshortlicensename}{%
+	\ifthenelse{\equal{\LICENSE}{}}{Keine}%
+	{\ifthenelse{\equal{\LICENSEname}{}}%
+	{\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE-name}}%
+	{\LICENSEname}}%
+}
+
+
+
+\newcommand{\SetTITEL}[1]{\newcommand{\TITEL}{#1\xspace}}
+\newcommand{\SUBJECT}{}
+\newcommand{\SetSUBJECT}[1]{\renewcommand{\SUBJECT}{#1\xspace}}
+
+\newcommand{\URL}{}
+\newcommand{\SetURL}[1]{\renewcommand{\URL}{#1}}
+\newcommand{\printURLshort}{\ifthenelse{\equal{\URL}{}}{}{\url{\URL}\xspace}}
+\newcommand{\printURLlong}[1][3cm]{%
+	\ifthenelse{\equal{\URL}{}}{}{%
+		\immediate\write18{qrencode -s 1 -m 0 -o /tmp/\jobname-qr.png "\URL"}%
+		\newlength{\hURLlongtextsize}%
+		\iflandscape%
+		{\setlength{\hURLlongtextsize}{21.5cm}}%	%% landscape
+		{\setlength{\hURLlongtextsize}{12.5cm}}%	%% no landscape
+		\begin{center}%
+		\ifthenelse{\lengthtest{\textwidth > 815pt}}		%% für lernator.de-Statistiken
+			{\hspace{1.5cm}}{}
+			\begin{minipage}{#1}%
+				\href{\URL}{\includegraphics[width=#1]{/tmp/\jobname-qr.png}}%
+			\end{minipage}%
+			\hfill
+			\begin{minipage}{\hURLlongtextsize}%
+				Dieses Dokument \ifgitversion{liegt in Version \printversion{} vor.\\
+				Die aktuelle Version }{}ist als PDF Datei unter \printURLshort abrufbar.
+				\printURLlongextension%
+			\end{minipage}%
+		\ifthenelse{\lengthtest{\textwidth > 815pt}}		%% für lernator.de-Statistiken
+			{\hspace{1.5cm}~}{}
+		\end{center}%
+	}%
+}
+
+\newboolean{@ifCREATEDATE}
+\newcommand{\SetCREATEDATE}[7][]{
+	\ifthenelse{\equal{#1}{usecurrent}}{
+		\newcommand{\CREATEDYEAR}{\the\year}
+		\newcommand{\CREATEDMONTH}{\the\month}
+		\newcommand{\CREATEDDAY}{\the\day}
+		\newcommand{\CREATEDHOUR}{\the\currenthour}
+		\newcommand{\CREATEDMINUTE}{\the\currentminute}
+		\newcommand{\CREATEDSECOND}{\the\currentsecond}
+		\newcommand{\CREATEDATE}{\pdfdate}
+		\setboolean{@ifCREATEDATE}{false}
+	}{
+		\newcommand{\CREATEDYEAR}{#2}
+		\newcommand{\CREATEDMONTH}{#3}
+		\newcommand{\CREATEDDAY}{#4}
+		\newcommand{\CREATEDHOUR}{#5}
+		\newcommand{\CREATEDMINUTE}{#6}
+		\newcommand{\CREATEDSECOND}{#7}
+
+		\newcommand{\CREATEDATE}{\CREATEDYEAR\CREATEDMONTH\CREATEDDAY%
+			\CREATEDHOUR\CREATEDMINUTE\CREATEDSECOND}
+		\setboolean{@ifCREATEDATE}{true}
+	}
+}
+
+\newcommand{\SetAUTHOR}[2]{
+	\newcounter{Author@ChosenNumber}	%% Sets the pdfcreator to \Typesetter
+	\setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
+	\threeIF{#1}{\newcommand{\AUTHOR}{\Typesetter}}
+    {\newcommand{\AUTHOR}{\input{/home/rsadmin/.userinfo/name-fake}\xspace}}
+    {\newcommand{\AUTHOR}{Name nicht Definiert\xspace}}
+    {\newcommand{\AUTHOR}{#2\xspace}}	%% if #1 == 4
+}
+
+\newcommand{\SetABGABEDATUM}[5]{
+\newcommand{\ReleaseDateName}{Abgabedatum}
+\newcounter{ReleaseDate@ChosenNumber}
+\setcounter{ReleaseDate@ChosenNumber}{#1}
+\sixIF{#1}{ %% if #1 == 1
+		\newcommand{\ABGABEDATUM}{\today}
+	}{ %% if #1 == 2
+		\newcommand{\ABGABEDATUM}{vorgelegt am: \printdate{#4.#3.#2}}
+		\newcommand{\ABGABETag}{#4}
+		\newcommand{\ABGABEMonat}{#3}
+		\newcommand{\ABGABEJahr}{#2}
+	}{ %% if #1 == 3
+		\newcounter{ReleaseDate@DaysUntilDate}
+		\setcounter{ReleaseDate@DaysUntilDate}{#5}
+		\newcommand{\ABGABEDATUM}{vorgelegt am: \dateNday{#5}}
+	}{ %% if #1 == 4
+		\newcommand{\ABGABEDATUM}{\printdate{#4.#3.#2}}
+		\newcommand{\ABGABETag}{#4}
+		\newcommand{\ABGABEMonat}{#3}
+		\newcommand{\ABGABEJahr}{#2}
+	}{ %% if #1 == 5
+		\newcounter{ReleaseDate@DaysUntilDate}
+		\setcounter{ReleaseDate@DaysUntilDate}{#5}
+		\newcommand{\ABGABEDATUM}{\dateNday{#5}}
+	}{ %% if #1 == 6
+		\newcommand{\ABGABEDATUM}{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
+	}{\PackageError{\@currname}{Unknown parameter}}
+}
+
+\endinput

@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{scrartclRS}
+          [2012/01/24 v1.00 Speziell für die Dokumentklasse scrartcl von Robin Schneider]
+
+%% Speziell für die dokumentklasse scrartcl, baut auf standard.tex auf.
+%% standard.tex soll dennoch nach diesem Header eingebunden werden
+\RequirePackage[utf8]{inputenc}	%% Schriftkodierung
+% If your LaTeX compiler complains about utf8, try utf8x instead.
+\RequirePackage{verse}
+\newcommand{\attrib}[1]{\nopagebreak{\raggedleft\footnotesize #1\par}}
+\RequirePackage{totpages}		%% Sorgt dafür dass bei moderncv die Seitenzahlen entfernt werden
+\addtokomafont{sectioning}{\boldmath}
+%%\setcounter{tocdepth}{5}				%% Gliederungstiefe im Inhaltsverzeichnis
+\newcommand{\printifnotbeamer}[1]{#1}
+\newcommand{\printifbeamer}[1]{}
+\newcommand{\pause}{}
+\RequirePackage[hyphens,obeyspaces,spaces]{url}
+%% hyphens,obeyspaces,spaces geht nicht in scrlttr2
+
+\endinput

@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{extensionsRS}
+          [2012/01/28 Erweiterung der Funktionen von Robin Schneider]
+
+\RequirePackage{
+	xifthen,
+	IfconstructsRS,
+	xspace,
+	counttexruns,
+}
+
+\newlength{\templen}		%% Für alles mögliche
+\newcounter{tmp}			%% Für alles mögliche
+\newcount\temp				%% Für alles mögliche
+
+
+\newcommand{\Prozent}{\,\%\xspace}
+\newcommand{\up}[1]{\textsuperscript{#1}}
+\newcommand{\down}[1]{\textsubscript{#1}}
+\newcommand{\entspricht}{$\mathrel{\widehat{=}}$\xspace}    
+%%\stackrel{\scriptscriptstyle\wedge}{=} or \stackrel{\wedge}{=}
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+
+
+%%% Klammern {
+\newcommand{\Kf}[1]{(#1)\xspace}
+\newcommand{\Ks}[1]{[#1]\xspace}
+%%% Klammern }
+
+\newcounter{plusplus}
+\newcommand{\plusplus}{%
+	\stepcounter{plusplus}%
+	\arabic{plusplus}%
+}
+\newcommand{\resetplusplus}{%
+	\setcounter{plusplus}{0}%
+}
+
+\newcounter{headpages}
+\newcounter{vorstatpage}
+\newcounter{tablesvorstat}	%% Alternative: \@arabic\c@table
+
+\newcommand{\Calcprogresspromille}{
+	\ifthenelse{\equal{\value{ReleaseDate@ChosenNumber}}{2}}{
+		\daydiffCValuetodayU{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}
+		\ifthenelse{0 > \value{datetwo}}{}{
+			\setcounter{tmp}{\value{datetwo}}
+			\daydiffCValue{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{\ABGABEJahr}{\ABGABEMonat}{\ABGABETag}
+			\ifthenelse{0 > \value{datetwo}}{}{
+				\ifthenelse{\value{tmp} > \value{datetwo}}
+				{\FPset\myprogresskomma{1}}
+				{\FPeval\myprogresskomma{\thetmp/\thedatetwo}}
+				\FPround\myprogresskomma\myprogresskomma3
+				\FPeval\myprogress{\myprogresskomma*1000}
+				\FPtrunc\myprogress\myprogress0
+			}
+		}
+	}{}
+}
+\newcommand{\ifmyprogressdef}[2]{\ifthenelse{\isnamedefined{myprogress}}{#1}{#2}}
+
+%% Draft -- Final {
+\newcommand{\ifoptiondraft}{%
+  \expandafter
+  \@if@pti@ns\expandafter{\@classoptionslist}{final}%
+    \@secondoftwo{%
+      \expandafter
+      \@if@pti@ns\expandafter{\@classoptionslist}{draft}%
+        \@firstoftwo\@secondoftwo
+    }%
+}
+
+\newboolean{extensionsRS@draft}	%% Can be changed in the file
+\newboolean{extensionsRS@draftclassoption} %% Static
+\ifoptiondraft{
+	\setboolean{extensionsRS@draft}{true}
+	\setboolean{extensionsRS@draftclassoption}{true}
+}{
+	\setboolean{extensionsRS@draft}{false}
+	\setboolean{extensionsRS@draftclassoption}{false}
+}
+
+\newcommand{\ifDraft}[2]{\ifthenelse{\boolean{extensionsRS@draft}}{#1}{#2}}
+
+
+\newcommand{\SetDraft}[1]{
+	\ifthenelse{\equal{#1}{on}}{\setboolean{extensionsRS@draft}{true}}{
+		\ifthenelse{\equal{#1}{off}}{\setboolean{extensionsRS@draft}{false}}{}
+	}
+}
+
+\newcommand{\ifDraftv}{\ifDraft{\ifthenelse{\boolean{extensionsRS@draftclassoption}}{Entwurf}{Final- und
+Entwurfsversion}}{Finale Version}
+}
+\newcommand{\ifDraftQ}[1]{\ifDraft{\textcolor{red}{??? #1}}{}
+
+}
+
+\newcommand{\ifDraftH}[1]{\ifDraft{!!! #1}{}}
+%% Draft -- Final }
+
+\endinput

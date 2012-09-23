@@ -75,8 +75,6 @@
 %\RequirePackage{linenoWorkaroundRS}
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
 
-\let\fancynumprintcount\fnumprintc
-\let\fancynumprintstr\fnumprint
 %% Sprachdefinition laden
 \RequirePackage{fnumprint}	%% fnumprint@language
 \RequirePackage{IfconstructsRS}
@@ -91,5 +89,8 @@
 		\iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
 	}
 }}
+
+\let\fancynumprintcount\fnumprintc
+\let\fancynumprintstr\fnumprint
 
 \endinput
