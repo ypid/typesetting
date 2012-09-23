@@ -2,29 +2,30 @@
 \ProvidesPackage{mathematicsRS}
           [2012/01/28 v1.00 Standard Mathematik Pakete von Robin Schneider]
 
-\usepackage[all,warning]{onlyamsmath}  %% warnt bei Verwendung von nicht amsmath-Umgebungen z.\,B. $$...$$
-\usepackage{amsmath}	%[fleqn]	%% Matheumgebung
+\RequirePackage[all,warning]{onlyamsmath}
+%% warnt bei Verwendung von nicht amsmath-Umgebungen z. B. $$...$$
+\RequirePackage{amsmath}	%[fleqn]	%% Matheumgebung
 %% http://www.golatex.de/abstand-zwischen-zwei-align-formeln-aendern-t3223.html
 %% keine Veränderung
-\usepackage{amsfonts}
-\usepackage{fixmath}	%% ISO-konforme griech. Buchstaben
-\usepackage{array}
-%\usepackage{lcg}		%% erzeugt zufallszahlen %\rand\arabic{rand}
+\RequirePackage{amsfonts}
+\RequirePackage{fixmath}	%% ISO-konforme griech. Buchstaben
+\RequirePackage{array}
+%\RequirePackage{lcg}		%% erzeugt zufallszahlen %\rand\arabic{rand}
 %\input{random.tex}	%\setrannum{\temp}{1}{6}\the\temp
 
 %\RequirePackage{zahl2string}		%% \Numstring{page}\Numstr{23}
 %\input{binhex.tex}						%% conversion into binary-based number systems
-%\RequirePackage{fp}
 
-%\usepackage{tabularcalc}		%% Berechnet Formeln in einer tabellarischen Umgebung
-%\usepackage{pgfplotstable}
+%\RequirePackage{tabularcalc}		%% Berechnet Formeln in einer tabellarischen Umgebung
+%\RequirePackage{pgfplotstable}
 
 %% use \textrm{test}
 
 %% Funktionen Plotten
 %% wird durch pgfplots ersetzt ...
-%\usepackage{pgfplots}
+%\RequirePackage{pgfplots}
 \newcounter{mathplotcount}
+\RequirePackage{fp}
 \FPset\gitter{0.2}
 
 \newenvironment{mathgrobplot}[7]{

@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{auto-pst-pdf}
+
+\pagestyle{empty}
+\usepackage{pst-labo}
+\usepackage{verbatim}
+\begin{comment}
+:Title: Alkohol Destillieren
+:Author: Robin Schneider https://ypid.wordpress.com/
+\end{comment}
+
+\begin{document}
+
+\newpsstyle{graulight}{linestyle=none,fillstyle=solid,fillcolor=gray!30}
+\newpsstyle{grau}{linestyle=none,fillstyle=solid,fillcolor=gray!60}
+\newpsstyle{weiß}{linestyle=none,fillstyle=solid,fillcolor=white}
+\newpsstyle{newred}{linestyle=none,fillstyle=solid,fillcolor=red!60!white!70!black}
+\newpsstyle{dest}{linestyle=none,fillstyle=solid,fillcolor=blue!10!white}
+
+\begin{pspicture}(0,11)
+\psset{unit=0.58cm}
+%\psgrid
+\rule{0pt}{4cm}
+\rput(-2,0.35){\PSTBun}
+\rput(-0.1,7.75){\pstTubeEssais[substance={\pstBilles},tubeCoude=true,tubePenche=-60,
+aspectLiquide1=newred]}
+\rput(3.5,2.94){\pstBallon[glassType=becher,xunit=1.5,yunit=1.3,runit=0.8,niveauLiquide1=63]}
+\rput(3.6,3.2){\pstTubeEssais[glassType=tube,xunit=1,yunit=1.5,niveauLiquide1=70,niveauLiquide2=15,aspectLiquide2=dest,
+aspectLiquide1=weiß]}
+\pscircle[fillstyle=solid,linewidth=0.2\pslinewidth,linecolor=white](-2,5.7){0.14\psunit}
+\pscircle[fillstyle=solid,linewidth=0.2\pslinewidth,linecolor=white](-2.4,5.8){0.11\psunit}
+%\pscircle[fillstyle=solid,linewidth=0.2\pslinewidth,linecolor=white](-1.9,6){0.13\psunit}
+%\pstDistillation(-3,-10)(7,6) Tropfen benutzen
+%\rput(0,-7){\pstDistillation}
+\rput(3.6,5){\tropfen}
+\rput(3.6,2){\tropfen}
+\end{pspicture}
+
+\end{document}

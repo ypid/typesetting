@@ -1,0 +1,75 @@
+%% <school/Schulischer-Kurztext.tex> template version 1.1.2 <Robin Schneider>
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles	%% listfiles in die Logdatei
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft
+\usepackage{
+%	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+%	graphicRS,
+%	mathematicsRS,
+%	gamesRS,
+	layoutRS,
+	extensionsRS,
+	docExtensionsRS,
+	footingShortRS,
+	schoolRS,
+%	chemistryRS,
+}
+%% Spetzifische angaben
+\readgitstat{2}
+\SetTITEL{Vorlage}
+\SetAUTHOR{1}{}
+\SetCLASS{12}
+%\SetSUBJECT{Epochenheft}
+%\SetURL{}
+\choosedefaultlicense
+\SetCREATEDATE{2010}{07}{06}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{1}{2011}{05}{23}{1}
+\usepackage{
+	schoolPDFinfoRS,
+	tableRS,
+}
+\begin{document}
+\setcounter{headpages}{0}\pagenumbering{arabic}
+%%%%%%%%%%%
+\sectionStar{Einführung}{einfuehrung}
+Dies ist eine \TITEL{} für ein kurzes schulisches Dokument
+
+%\ifDraft{
+\newpage
+\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
+\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+\vfill
+\printlicense
+\printendsignature
+\newpage\Statistiken
+Status:~\progressbar{.00} (eigenes Ermessen)
+%\newpage
+  \begin{sourcefiletable}{1}
+	\sourcefile{Hauptdatei}{\jobname.tex}
+%	\sourcefile{Metainformationen}{files/metainfos.tex}
+%	\sourcefile{Titelseite}{files/titlepage.tex}
+%	\sourcefile{Literatur-Datenbank}{files/header/bibliographie.bib}
+  \end{sourcefiletable}
+%}{}
+%\ifDraft{
+%  \begin{landscape}
+%	\pagestyle{empty}
+%	\pdfbookmark[2]{Versionshinweise}{versionshinweise}
+%	\subsection*{Versionshinweise}
+%	\input{files/git/versions-log}
+%	\printgitstatlandscape{1}
+%  \end{landscape}
+%	\printgitstat{1}
+%	\subsubsection*{Dateien?}
+%	\pdfbookmark[3]{Dateien?}{files_by_date}
+%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
+%	\listoffixmes
+%}{}
+\end{document}

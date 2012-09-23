@@ -1,0 +1,15 @@
+\begin{titlepage}
+	\centering
+	\vspace*{5ex}
+	\huge \begin{tikzpicture}\spiegelschrift{\TITEL}{-0.1}\end{tikzpicture} \\[2cm]
+	\LARGE\textsc{\SUBJECT} \\[1cm]
+	\normalsize
+	\ABGABEDATUM \\[6cm]
+	\Large
+	\printClass \\
+	\vfill
+	\AUTHOR \\
+	\ifthenelse{\isnamedefined{Teacher}}{%
+		\vspace{0.4ex}\large Basiert auf dem Unterricht von \Teacher
+	}{}
+\end{titlepage}

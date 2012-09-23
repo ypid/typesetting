@@ -5,4 +5,5 @@
 ./scripts                    Some scripts
 ./MyPackages                 My packages which I use in my document templates
 ./Makefile                   My Makefile
+./templates                  My template files
 </pre>

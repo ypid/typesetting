@@ -6,7 +6,13 @@
 	declareDocumentVariablesRS,
 	pdflscape,
 	sourcefiletable,
+	varioref,
 }
+
+%\RequirePackage[abspage,user,lastpage,counter,savepos,titleref]{zref}
+%% Arbeitet leider noch nicht mit hyperref zusammen (Stand 2011-04-10)
+%\RequirePackage{zref-hyperref}
+%\RequirePackage{titleref}
 
 \attachfilesetup{%
 	author={Robin Schneider},
@@ -23,7 +29,7 @@
 }{%
 	\Language@SignatureText{}
 }%
-\Language@SignatureTeX
+\Language@SignatureTeX{}
 \Language@SignatureOS%
 \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
 	\setcounter{vorstatpage}{\value{page}}%
@@ -57,8 +63,9 @@
 	Status:~\progressbar{\myprogresskomma} (verstrichene Zeit) \\}{}
 }
 
-\newcommand{\Siehe}[1]{Siehe \autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
-\newcommand{\siehe}[1]{siehe \autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
+\newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
+\newcommand{\Siehe}[1]{\LanguageWordSee{} \docExtensionsRS@see{#1}}
+\newcommand{\siehe}[1]{\MakeLowercase{\LanguageWordSee} \docExtensionsRS@see{#1}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 
@@ -73,9 +80,7 @@
 	}
 }
 
-%\newcommand{\backfootnote}{%% Erzeugt eine falsche Verlinkung mit hyperref
-%\addtocounter{footnote}{-1}\footnotemark}
-
+\RequirePackage{refcount}
 \newcommand{\footnoteremember}[2]{%
 	\footnote{#1\label{foot:#2}}%
 }
@@ -92,8 +97,9 @@
 %% Die Warnung wird im Paket footmisc weggelassen. \footref
 
 \newcommand{\sectionStar}[2]{%
-  \section*{#1}%
+  \phantomsection
   \pdfbookmark[1]{#1}{#2}%
+  \section*{#1}%
 }
 
 \newboolean{saveprivacy}

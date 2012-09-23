@@ -1,0 +1,102 @@
+%% <school/chemistry protocol/2-chemistry-protocol-2011-01-25.tex> template version 1.3 <Robin Schneider>
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft
+\usepackage{
+%	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+	graphicRS,
+%	mathematicsRS,
+%	gamesRS,
+	layoutRS,
+	extensionsRS,
+	docExtensionsRS,
+	schoolRS,
+	chemistryRS,
+	footingChemMinutesRS,
+}
+%% spezifische Angaben
+\readgitstat{2}
+\SetTITEL{Chemie Praktikum}
+\SetAUTHOR{4}{Namen}
+\SetCLASS{12}
+\SetSUBJECT{Protokoll Nr.~2}
+%\SetURL{}
+\choosedefaultlicense
+\SetCREATEDATE{2011}{01}{25}{15}{23}{23}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{2}{2011}{02}{08}{}
+\usepackage{
+	schoolPDFinfoRS,
+	tableRS,
+}
+\hypersetup{pdfcreator={Robin Schneider}}
+%\SetDraft{on}
+\begin{document}
+\setcounter{headpages}{0}\pagenumbering{arabic}
+%%%%%%%%%%%
+{
+
+  \centering \huge{Chemie-Protokoll: Rotwein Destillation}
+
+}
+\section*{Aufgabe}
+Gewinnung von hochprozentigem Alkohol aus einer wässrigen Lösung
+
+\begin{multicols}{2}
+\section*{Geräte}
+Stativ\\
+Statirvmuffe\\
+Stativklemme\\
+Abdampfschalen\\
+Becherglaß\\
+Siedesteine\\
+Holzstab\\
+Trichter\\
+Bunsenbrenner\\
+Reagenzgläser\\
+Stopfen (durchbohrt)\\
+Glaswinkel
+
+\columnbreak
+\section*{Chemikalien}
+\includeListOfAbbreviationsChemistry
+
+\vspace{-3.7cm}
+\end{multicols}
+
+\section*{Versuchsskizze}
+\vspace{-2.02cm}
+\begin{center}
+\includegraphics[scale=2.1]{pst-labo/Alkohol_Destillieren-pics.pdf}
+\end{center}
+
+\section*{Durchführung}
+Siehe Kopie
+
+\section*{Beobachtungen}
+
+
+\section*{Auswertung}
+
+
+\ifDraft{
+\setcounter{sectionsV}{\value{section}}      %% Speichert die sectionnummer vor \appendix zwischen
+\appendix   %% Sorgt für Buchstaben im Inhaltsverzeichnis
+\vfill
+\printlicense
+\printendsignature
+}{}
+\newpage\Statistiken
+Status:~\progressbar{.98} (eigenes Ermessen)
+\newpage
+\begin{sourcefiletable}{1}
+	\sourcefile{Hauptdatei}{\jobname.tex}
+	\sourcefile{Versuchsskizze (tex)}{pst-labo/Alkohol_Destillieren.tex}
+	\sourcefile{Versuchsskizze (pdf-crop)}{pst-labo/Alkohol_Destillieren-pics.pdf}
+\end{sourcefiletable}
+\end{document}

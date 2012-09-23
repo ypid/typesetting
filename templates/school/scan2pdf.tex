@@ -1,0 +1,30 @@
+%% <school/scan2pdf.tex> template version 1.5 <Robin Schneider>
+%% Um Bilder Ganzseitig in ein DIN A4 PDF zu konvertieren
+%%% preamble
+%\listfiles %% listfiles in die Logdatei
+\documentclass[a4paper,ngerman]{scrartcl}
+\usepackage{
+	scrartclRS,
+	defaultRS,
+%	debugRS,
+	datetime,
+%	graphicRS,
+	extensionsRS,
+	readgitRS,
+	schoolRS,
+}
+%% spezifische Angaben
+\SetTITEL{\jobname}
+\SetAUTHOR{4}{Heisenberg}
+\SetCLASS{12}
+%\SetSUBJECT{}
+%\SetURL{}
+%\choosedefaultlicense
+\SetCREATEDATE{2011}{02}{13}{15}{23}{05}        %% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\usepackage{schoolPDFinfoRS}
+%\hypersetup{pdfcreator={Robin Schneider}}
+\begin{document}
+%\includepdf[landscape]{1-V2.png}
+%\includepdf[pagecommand={\thispagestyle{empty}
+%	\pdfbookmark[2]{\contentsname}{tableofcontents}}]{1-V2.png}
+\end{document}
