@@ -1,0 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{footingRS}
+          [2011/09/24 v0.99 Standard Fußzeile von Robin Schneider]
+
+%\RequirePackage{fancyhdr}\pagestyle{fancy}
+\RequirePackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\ifoot{\thepage}
+\cfoot{}
+\ofoot{\AUTHOR}\chead{}
+%% Verbraucht viel Speicher im PDF (20 kB)
+
+\endinput

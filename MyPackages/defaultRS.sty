@@ -69,12 +69,17 @@
 %\RequirePackage{linenoWorkaroundRS}
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
 
-%% Sprachdefinition laden
+%% language definition
 \RequirePackage{fnumprint}	%% fnumprint@language
 \RequirePackage{IfconstructsRS}
-\twoIF{\value{fnumprint@language}}%
-{\input{/home/rsadmin/Dokumente/LaTeX/Header/Sprachdefinitionen/ngerman}}
-{\input{/home/rsadmin/Dokumente/LaTeX/Header/Sprachdefinitionen/english}}{fail}
+\twoIF{\value{fnumprint@language}}{
+	\input{defaultRS-ngerman.ldf}
+}{
+	\input{defaultRS-english.ldf}
+}{
+	\PackageError{docExtensionsRS}{language definition}
+			{I don't know the language you have asked for}
+}
 \newcommand{\Titlepagename}{\LanguageTitlepageName}
 
 \newcommand{\printlanguage}{

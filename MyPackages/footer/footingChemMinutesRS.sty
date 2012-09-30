@@ -1,0 +1,11 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{footingChemMinutesRS}
+          [2012/09/23 v1.00 chemistry minutes footing]
+
+\RequirePackage{footingRS,ifthen}
+\ihead{\TITEL}
+\ohead{\AUTHOR ~-- \printClass}
+%\chead{}
+\ofoot[]{\SUBJECT ~vom \printdate{\CREATEDDAY.\CREATEDMONTH.\CREATEDYEAR}}
+
+\endinput

@@ -1,0 +1,56 @@
+%% <Querformat.tex> template version 1.2 <Robin Schneider>
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles	%% listfiles in die Logdatei
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,landscape,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft
+\usepackage{
+%	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+%	graphicRS,
+%	mathematicsRS,
+%	gamesRS,
+	layoutRS,
+	footingRS,
+	extensionsRS,
+	docExtensionsRS,
+%	chemistryRS,
+}
+%% spezifische Angaben
+\readgitstat{2}
+\SetTITEL{Querformat}
+\SetAUTHOR{1}{}
+%\SetSUBJECT{}
+%\SetURL{}
+\choosedefaultlicense
+\SetCREATEDATE{2010}{10}{06}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{1}{2011}{05}{23}{1}
+\usepackage{
+	PDFinfoRS,
+	tableRS,
+}
+\SetDraft{on}
+\begin{document}
+\setcounter{headpages}{0}\pagenumbering{arabic}\thispagestyle{empty}
+%%%%%%%%%%%
+Querformat Vorlage
+
+\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
+\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+\vfill
+\printlicense
+\printURLlong
+\printendsignature
+\ifDraft{\newpage\Statistiken
+  \begin{sourcefiletable}{1}
+    \sourcefile{Hauptdatei}{\jobname.tex}
+%    \sourcefile{Metainformationen}{files/metainfos.tex}
+%    \sourcefile{Titelseite}{files/titlepage.tex}
+%    \sourcefile{Literatur-Datenbank}{files/bibliographie.bib}
+  \end{sourcefiletable}
+}{}
+\end{document}

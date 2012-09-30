@@ -1,0 +1,77 @@
+%% <Protokoll.tex> template version 1.1.1 <Robin Schneider>
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles	%% listfiles in die Logdatei
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof,toc=bib]{scrartcl}	%% ,draft
+\usepackage{
+%	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+%	graphicRS,
+%	mathematicsRS,
+%	gamesRS,
+	layoutRS,
+	footingRS,
+	extensionsRS,
+	docExtensionsRS,
+%	chemistryRS,
+}
+%% spezifische Angaben
+\readgitstat{2}
+\SetTITEL{Kurztext-Vorlage}
+\SetAUTHOR{1}{}
+%\SetSUBJECT{}
+%\SetURL{}
+\choosedefaultlicense
+\SetCREATEDATE{2010}{11}{24}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{1}{2011}{05}{23}{1}
+\usepackage{
+	PDFinfoRS,
+	minutes,
+	tableRS,
+}
+\SetDraft{on}
+\begin{document}
+%\thispagestyle{empty}
+%%%%%%%%%%%%
+\begin{Protokoll}{Planungsprotokoll}
+\protokollant{\AUTHOR}
+\teilnehmer{Ariadne, Mars, Neptun}
+\sitzungsdatum{25.\ Dezember 1999}
+\sitzungsbeginn{10:00}
+\verteiler{AllOlymp}
+\fehlendEntschuldigt{Plato}
+\fehlendUnentschuldigt{Archimedes}
+\protokollKopf
+
+\topic{Termine und Aufgaben}
+\subtopic{Termine}
+
+\termin{2006/10/07}[10:00]{Heiliger Vormittag}
+\termin{2006/11/30}{Heiligabend}
+\termin{2006/12/14}[20:00]{Bescherung}[Lorem Ipsum.]
+\end{Protokoll}
+
+\subtopic{Aufgaben}
+
+\aufgabe{Krieg gegen Hades fuehren}{Mars Venus}
+\aufgabe*{Fußball schauen}
+
+\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
+\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+\vfill
+\printlicense
+\printendsignature
+\ifDraft{\newpage\Statistiken
+  \begin{sourcefiletable}{1}
+    \sourcefile{Hauptdatei}{\jobname.tex}
+%    \sourcefile{Metainformationen}{files/metainfos.tex}
+%    \sourcefile{Titelseite}{files/titlepage.tex}
+%    \sourcefile{Literatur-Datenbank}{files/bibliographie.bib}
+  \end{sourcefiletable}
+}{}
+\end{document}

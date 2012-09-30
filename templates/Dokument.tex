@@ -1,0 +1,87 @@
+%% <Dokument.tex> template version 1.2 <Robin Schneider>
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles	%% listfiles in die Logdatei
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft
+\usepackage{
+%	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+%	graphicRS,
+%	mathematicsRS,
+	layoutRS,
+	footingRS,
+	extensionsRS,
+	docExtensionsRS,
+%	chemistryRS,
+}
+%% spezifische Angaben
+\readgitstat{2}
+\SetTITEL{Vorlage}
+\SetAUTHOR{1}{}
+\SetSUBJECT{\jobname}
+%\SetURL{}
+\choosedefaultlicense
+\SetCREATEDATE{2010}{07}{06}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{2}{2011}{05}{23}{1}
+\usepackage{
+	PDFinfoRS,
+	tableRS,
+}
+\SetDraft{on}
+\begin{document}
+\pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}\thispagestyle{empty}
+\PrintDefaultTitlepage
+\newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
+\tableofcontents	%% Inhaltsverzeichnis
+%\listoffigures		%% Abbildungsverzeichnis
+%\listoftables		%% Tabellenverzeichnis
+%\lstlistoflistings	%% Quellcodeverzeichnis
+
+\setcounter{headpages}{\value{page}}\newpage\pagenumbering{arabic}
+%%%%%%%%%%%
+\section{Einführung}
+\label{sec:einleitung}
+Dies ist eine \TITEL ~für ein \SUBJECT
+
+\section{Überschrift \newline mit Umbruch}
+
+\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
+\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+
+%\newpage\printbibliography[heading=bibnumbered]
+
+\vfill
+\printURLlong
+\printlicense
+\printendsignature
+%\ifDraft{
+\newpage\Statistiken
+	Status:~\progressbar{.00} (eigenes Ermessen)\newpage
+	\begin{sourcefiletable}{1}
+		\sourcefile{Hauptdatei}{\jobname.tex}
+		%\Isourcefile{\LaTeX-Hacks}{files/header/hacks.tex}
+%		\sourcefile{Metainformationen}{files/metainfos.tex}
+%		\sourcefile{Titelseite}{files/titlepage.tex}
+%		\sourcefile{Literatur-Datenbank}{files/bibliographie.bib}
+	\end{sourcefiletable}
+%}{}
+%\ifDraft{
+%  \begin{landscape}
+%	\pagestyle{empty}
+%	\pdfbookmark[2]{Versionshinweise}{versionshinweise}
+%	\subsection*{Versionshinweise}
+%	\input{files/git/versions-log}
+%	\printgitstatlandscape{1}
+%  \end{landscape}
+%	\printgitstat{1}
+%	\subsubsection*{Dateien?}
+%	\pdfbookmark[3]{Dateien?}{files_by_date}
+%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
+%	\listoffixmes
+%}{}
+\end{document}

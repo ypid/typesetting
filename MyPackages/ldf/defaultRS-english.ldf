@@ -1,0 +1,22 @@
+\ProvidesFile{defaultRS-english.ldf}
+
+\newcommand{\LanguagePDFLang}{en-VG}
+\newcommand{\LanguageClassName}{class}
+\newcommand{\LanguageLicenceName}{licence}
+\newcommand{\LanguageVersionName}{version}
+\newcommand{\printURLlongextension}{This PDF file also contains a version history and statistics
+about this document}
+\newcommand{\LanguageTitlepageName}{Front page}
+\newcommand{\LanguageWordSee}{See}
+
+\newcommand{\Language@SignatureTextWithTypesetter}{%
+	Typesetted by \Typesetter with the typesetting program}
+\newcommand{\Language@SignatureText}{Created with the typesetting program}
+\newcommand{\Language@SignatureTeX}{\href{http://en.wikipedia.org/wiki/LaTeX}{\LaTeXe} on}
+\newcommand{\Language@SignatureOS}{%
+\href{http://en.wikipedia.org/wiki/Ubuntu_(operating_system)}{Ubuntu}
+%\href{http://en.wikipedia.org/wiki/Debian}{Debian}
+\href{http://en.wikipedia.org/wiki/GNU_Project}{GNU}/%
+\href{http://en.wikipedia.org/wiki/Linux}{Linux}%
+}
+\newcommand{\LanguageSignatureShort}{LaTeX on \Language@SignatureOS}

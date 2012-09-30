@@ -1,0 +1,21 @@
+\ProvidesFile{defaultRS-ngerman.ldf}
+
+\newcommand{\LanguagePDFLang}{de-DE}
+\newcommand{\LanguageClassName}{Klasse}
+\newcommand{\LanguageLicenceName}{Lizenz}
+\newcommand{\LanguageVersionName}{Version}
+\newcommand{\printURLlongextension}{In dieser PDF Datei finden sich auch noch Versionshinweise
+und Statistiken über dieses Dokument.}
+\newcommand{\LanguageTitlepageName}{Titelseite}
+\newcommand{\LanguageWordSee}{Siehe}
+
+\newcommand{\Language@SignatureTextWithTypesetter}{Gesetzt von \Typesetter mit dem Textsatzsystem}
+\newcommand{\Language@SignatureText}{Erstellt mit dem Textsatzsystem}
+\newcommand{\Language@SignatureTeX}{\href{http://de.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
+\newcommand{\Language@SignatureOS}{%
+\href{http://de.wikipedia.org/wiki/Ubuntu}{Ubuntu}
+%\href{http://de.wikipedia.org/wiki/Debian}{Debian}
+\href{http://de.wikipedia.org/wiki/GNU-Projekt}{GNU}/%
+\href{http://de.wikipedia.org/wiki/Linux}{Linux}%
+}
+\newcommand{\LanguageSignatureShort}{LaTeX auf \Language@SignatureOS}
