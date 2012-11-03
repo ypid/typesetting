@@ -1,14 +1,26 @@
-#!/bin/bash
+#!/usr/bin/perl
+use strict;
+use warnings;
+use autodie;
+use feature qw(say);
+use IPC::System::Simple qw(capturex);
+use Getopt::Long;
+
+my $print_author = 0;
+my $commit_count = 1;
+GetOptions ('startcommit=s' => \$commit_count,
+            'author' => \$print_author,
+    );
 ## Tags auslesen und benutzen
-echo '\begin{tabular}{lp{12cm}}
+say '\begin{tabular}{lp{12cm}}
 %	\lable{tabular:Legende:git-log}
-	\textbf{Abkürzung} & \textbf{Bedeutung} \\
-	V & \texttt{Version} \\
+	\textbf{Abkürzung} & \textbf{Bedeutung} \\\\\\
+	V & \texttt{Version} \\\\
 	Tag & \texttt{Markierung} einer Menge von Dateien,
-		aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt \\
-	Fm & Wie viele \texttt{Dateien} innerhalb dieser Version \texttt{verändert} wurden \\
-	La & Wie viele \texttt{Zeilen} innerhalb dieser Version neu \texttt{hinzugekommen} sind \\
-	Ld & Wie viele \texttt{Zeilen} innerhalb dieser Version \texttt{gelöscht} wurden \\
+		aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt \\\\
+	Fm & Wie viele \texttt{Dateien} innerhalb dieser Version \texttt{verändert} wurden \\\\
+	La & Wie viele \texttt{Zeilen} innerhalb dieser Version neu \texttt{hinzugekommen} sind \\\\
+	Ld & Wie viele \texttt{Zeilen} innerhalb dieser Version \texttt{gelöscht} wurden \\\\
 \end{tabular}
 
 \bigskip
@@ -17,25 +29,57 @@ echo '\begin{tabular}{lp{12cm}}
 
 \iflanguage{ngerman}{\shorthandoff{"}}{}
 \resetplusplus
-\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}
-& \multicolumn{1}{c}{\textbf{Datum}}
+\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}';
+say '& \multicolumn{1}{c}{\textbf{Autor}}' if $print_author;
+say '& \multicolumn{1}{c}{\textbf{Datum}}
 & \multicolumn{1}{c}{\textbf{Versionsbericht}} & \multicolumn{1}{c}{\textbf{Fm}}
-& \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\ \hline}
-\begin{longtable}{|rlllrrr|}
-\longtableheader
+& \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\\\ \hline}';
+if ($print_author) {
+    say '\begin{longtable}{|rllllrrr|}';
+} else {
+    say '\begin{longtable}{|rlllrrr|}';
+}
+say '\longtableheader
 \endfirsthead
 
 \longtableheader
 \endhead
-
-\hline \multicolumn{7}{|r|}{\longtableendfoot} \\ \hline
-\endfoot
+';
+if ($print_author) {
+    say '\hline \multicolumn{8}{|r|}{\longtableendfoot} \\\\ \hline';
+} else {
+    say '\hline \multicolumn{7}{|r|}{\longtableendfoot} \\\\ \hline';
+}
+say '\endfoot
 
 \hline% \hline
 \endlastfoot
-'
+';
 ## git log --pretty=format:'%ai'
 ## git log --date=short --pretty=format:'%ad'
 ## for privacy
-git log --date=short --pretty=format:'\hline \StepPrintgitV & TeMpforsed%d TeMpforsedend & %ad & %s &' --shortstat|grep -v "^$"|sed 'N;s/\n/ /'|sed 's/ deletions(-)$/ \\\\/g'|sed 's/ insertions(+),/ \&/g'|sed 's/+0100/CET/g'|sed 's/+0200/CEST/g'|sed 's/files changed,/\&/g'|sed 's/TeMpforsed ([a-zA-Z]*,\ //g'|sed 's/,\ [a-zA-Z]*) TeMpforsedend//g'|sed 's/master)\ \&/\&/g'|sed 's/[a-zA-Z]*) TeMpforsedend//g'|sed 's/TeMpforsed (//g'|sed 's/TeMpforsed TeMpforsedend //g'|sed 's/ TeMpforsed //g'|sed 's/  / /g'|sed 's/_/ /g'|tac
-echo '\end{longtable}'
+my @lines;
+if ($print_author) {
+   @lines = reverse capturex(qw(git log --date=short --shortstat),
+       q(--pretty=format:%d & %an & %ad & %s));
+} else {
+   @lines = reverse capturex(qw(git log --date=short --shortstat),
+       q(--pretty=format:%d & %ad & %s));
+}
+my $which_line = 0;
+my @changes;
+for (@lines) {
+    next if /\A\Z/xms;
+    chomp;
+    if ($which_line) {
+        s/\((?:HEAD, |)(.*?)(?:, master|)\)/$1/;
+        say "\\hline $commit_count &$_ & " . join(' & ', @changes) . ' \\\\';
+        $commit_count++;
+    } else {
+        /(\d+) files? changed/ and $changes[0] = $1;
+        /(\d+) insertions?/ and $changes[1] = $1;
+        /(\d+) deletions?/ and $changes[2] = $1;
+    }
+    $which_line ^= 1; ## toggle bit
+}
+say '\end{longtable}'
