@@ -59,11 +59,12 @@ say '\endfoot
 ## git log --date=short --pretty=format:'%ad'
 ## for privacy
 my @lines;
+my @git_command = qw(git log --date=short --shortstat);
 if ($print_author) {
-   @lines = reverse capturex(qw(git log --date=short --shortstat),
+   @lines = reverse capturex(@git_command,
        q(--pretty=format:%d & %an & %ad & %s));
 } else {
-   @lines = reverse capturex(qw(git log --date=short --shortstat),
+   @lines = reverse capturex(@git_command,
        q(--pretty=format:%d & %ad & %s));
 }
 my $which_line = 0;
