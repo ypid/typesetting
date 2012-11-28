@@ -74,9 +74,11 @@ for (@lines) {
     chomp;
     if ($which_line) {
         s/\((?:HEAD, |)(.*?)(?:, master|)\)/$1/;
+        s/ master//;
         say "\\hline $commit_count &$_ & " . join(' & ', @changes) . ' \\\\';
         $commit_count++;
     } else {
+        @changes = (0, 0, 0);
         /(\d+) files? changed/ and $changes[0] = $1;
         /(\d+) insertions?/ and $changes[1] = $1;
         /(\d+) deletions?/ and $changes[2] = $1;
