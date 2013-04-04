@@ -2,6 +2,8 @@
 ## \readgitstat{7}
 reversiongit="`git log --pretty="%h"|wc -l`"
 shorthashgit="`git rev-parse --short HEAD`"
+if [ -n "$1"  ];then
+	reversiongit=$((reversiongit + $1 -1))
+fi
 echo '\setcounter{reversiongit}{'${reversiongit}'}'
 echo '\newcommand{\shorthashgit}{'${shorthashgit}'}'
-

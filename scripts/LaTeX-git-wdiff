@@ -25,7 +25,8 @@ sed 's/{/(((((/g' \
 umlaute (){
 sed 's/M-CM-</ü/g' \
 |sed 's/M-CM-^\\/Ü/g' \
-|tr "$" "x"|sed 's/M-CM-x/ä/g' \
+|tr "$" "x" \
+|sed 's/M-CM-x/ä/g' \
 |sed 's/M-CM-^D/Ä/g' \
 |sed 's/M-CM-6/ö/g' \
 |sed 's/M-CM-^V/Ö/g' \

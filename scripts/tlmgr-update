@@ -5,5 +5,3 @@ source /etc/profile
 export http_proxy='http://knuth.intra:3128/' ## change this
 tlmgr update --self bin-texlive texlive.infra
 tlmgr update --all
-
-
