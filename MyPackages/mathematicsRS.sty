@@ -28,6 +28,17 @@
 \RequirePackage{fp}
 \FPset\gitter{0.2}
 
+\newcommand{\PotenzValue}[2]{\setcounter{tmp}{#2}
+\temp=1
+\whiledo {\value{tmp} > 0}%
+{
+\addtocounter{tmp}{-1}
+\multiply\temp by #1
+}}
+
+\newcommand{\Potenz}[2]{\setcounter{tmp}{#2}
+\PotenzValue{#1}{#2}\the\temp}
+
 \newenvironment{mathgrobplot}[7]{
 \begin{tikzpicture}[scale=#5]
     \FPset\fxmax{#1}
