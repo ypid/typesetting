@@ -2,8 +2,7 @@
 # Post-{commit,checkout,merge}
 #
 LaTeX-git-commit-count > files/git/version.tex ## \readgitstat{7}
-LaTeX-git-log |sed 's/rlllrrr/rllp{14cm}rrr/g' > files/git/versions-log.tex
-## Falls die Tabele über den rechten Rand geht: |sed 's/rlllrrr/rllp{12cm}rrr/g'
+LaTeX-git-log --width=14 > files/git/versions-log.tex
 # LaTeX-gitstats >/dev/null
 #LaTeX-gitstats.sh "" >/dev/null
 git fsck --full

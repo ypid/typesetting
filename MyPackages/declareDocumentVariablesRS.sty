@@ -83,6 +83,9 @@
 		\iflandscape%
 		{\setlength{\hURLlongtextsize}{21.5cm}}%	%% landscape
 		{\setlength{\hURLlongtextsize}{12.5cm}}%	%% no landscape
+		\ifthenelse{\isnamedefined{setkomavar}}{% scrlttr2
+			\addtolength{\hURLlongtextsize}{-1cm}%
+		}{}%
 		\begin{center}%
 		\ifthenelse{\lengthtest{\textwidth > 815pt}}		%% für lernator.de-Statistiken
 			{\hspace{1.5cm}}{}
@@ -95,7 +98,7 @@
 			\begin{minipage}{\hURLlongtextsize}%
 				Dieses Dokument \ifgitversion{liegt in Version \printversion{} vor.\\
 				Die aktuelle Version }{}ist als PDF Datei unter \printURLshort abrufbar.
-				\printURLlongextension%
+				\LanguageURLlongExtension%
 			\end{minipage}%
 		\ifthenelse{\lengthtest{\textwidth > 815pt}}		%% für lernator.de-Statistiken
 			{\hspace{1.5cm}~}{}
@@ -108,7 +111,7 @@
 \newcommand{\SetGitURL}[1]{\renewcommand{\GitURL}{#1}}
 \newcommand{\printGitURLlong}{%
 	\ifthenelse{\equal{\GitURL}{}}{}{%
-		Der Quellcode für dies Dokument ist auf GitHub: \url{\GitURL}
+		\LanguageGitURLlong \url{\GitURL}
 	}%
 }
 
@@ -137,13 +140,14 @@
 	}
 }
 
+\newcounter{Author@ChosenNumber}	%% Sets the pdfcreator to \Typesetter
+\newcommand{\AUTHOR}{}
 \newcommand{\SetAUTHOR}[2]{
-	\newcounter{Author@ChosenNumber}	%% Sets the pdfcreator to \Typesetter
 	\setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
-	\threeIF{#1}{\newcommand{\AUTHOR}{\Typesetter}}
-    {\newcommand{\AUTHOR}{}}
-    {\newcommand{\AUTHOR}{Name nicht Definiert\xspace}}
-    {\newcommand{\AUTHOR}{#2\xspace}}	%% if #1 == 4
+	\threeIF{#1}{\renewcommand{\AUTHOR}{\Typesetter}}
+    {\renewcommand{\AUTHOR}{}}
+    {\renewcommand{\AUTHOR}{Name nicht Definiert\xspace}}
+    {\renewcommand{\AUTHOR}{#2\xspace}}	%% if #1 == 4
 }
 
 \newcommand{\SetABGABEDATUM}[5]{

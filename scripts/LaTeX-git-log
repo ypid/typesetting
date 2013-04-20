@@ -8,9 +8,18 @@ use Getopt::Long;
 
 my $print_author = 0;
 my $commit_count = 1;
+my $width = 0;
+my $git_commit_address = 'https://github.com/ypid/document-Stundenplan/commit';
 GetOptions ('startcommit=s' => \$commit_count,
             'author' => \$print_author,
+            'width=s' => \$width,
+				'git-c-add=s' => \$git_commit_address,
 );
+if ($width) {
+	$width = "p{${width}cm}";
+} else {
+	$width = 'l';
+}
 ## Tags auslesen und benutzen
 say '\begin{tabular}{lp{12cm}}
 %	\lable{tabular:Legende:git-log}
@@ -35,9 +44,9 @@ say '& \multicolumn{1}{c}{\textbf{Datum}}
 & \multicolumn{1}{c}{\textbf{Versionsbericht}} & \multicolumn{1}{c}{\textbf{Fm}}
 & \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\\\ \hline}';
 if ($print_author) {
-    say '\begin{longtable}{|rllllrrr|}';
+    say "\\begin{longtable}{|rllllrrr|}";
 } else {
-    say '\begin{longtable}{|rlllrrr|}';
+    say "\\begin{longtable}{|rll${width}rrr|}";
 }
 say '\longtableheader
 \endfirsthead
@@ -62,10 +71,10 @@ my @lines;
 my @git_command = qw(git log --date=short --shortstat);
 if ($print_author) {
    @lines = reverse capturex(@git_command,
-       q(--pretty=format:%d & %an & %ad & %s));
+       qq(--pretty=format:%d & %an & %ad & \\href{$git_commit_address/%H}{%s}));
 } else {
    @lines = reverse capturex(@git_command,
-       q(--pretty=format:%d & %ad & %s));
+       qq(--pretty=format:%d & %ad & \\href{$git_commit_address/%H}{%s}));
 }
 my $which_line = 0;
 my @changes;
@@ -86,4 +95,4 @@ for (@lines) {
     }
     $which_line ^= 1; ## toggle bit
 }
-say '\end{longtable}'
+say '\end{longtable}';

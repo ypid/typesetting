@@ -4,7 +4,8 @@
 \newcommand{\LanguageClassName}{class}
 \newcommand{\LanguageLicenceName}{licence}
 \newcommand{\LanguageVersionName}{version}
-\newcommand{\printURLlongextension}{This PDF file also contains a version history and statistics
+\newcommand{\LanguageGitURLlong}{The source code for this document can be found on GitHub: }
+\newcommand{\LanguageURLlongExtension}{This PDF file also contains a version history and statistics
 about this document}
 \newcommand{\LanguageTitlepageName}{Front page}
 \newcommand{\LanguageWordSee}{See}
