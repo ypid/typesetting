@@ -13,7 +13,7 @@ while (<>) {
 	s{\A%% <(?:Schule|school)/([^<>]+?).tex> (?:Vorlageversion|template version) ([^<> ]+?) <Robin Schneider>}{%% <school/$1.tex> template $2 by Robin `ypid` Schneider <ypid23\@aol.de>}ms;
     s{\A%%%Präambel\Z}{%%% preamble}ms;
     s{\A%\\listfiles.*}{%\\listfiles %% listfiles to logfile}m;
-    s{\A%% Spet?zifische angaben\Z}{%% specific indications}msi;
+    s{\A%% spet?zifische angaben\Z}{%% specific indications}msi;
     s{\A%%%Body\Z}{%%% body}ms;
 	# if (/\A#!/) {
 	# 	$_ .= "## Copyright (C) 2011 by Yours Truly";

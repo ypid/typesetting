@@ -7,17 +7,19 @@
 \RequirePackage{amsmath}	%[fleqn]	%% Matheumgebung
 %% http://www.golatex.de/abstand-zwischen-zwei-align-formeln-aendern-t3223.html
 %% keine Veränderung
-\RequirePackage{amsfonts}
-\RequirePackage{fixmath}	%% ISO-konforme griech. Buchstaben
-\RequirePackage{array}
-%\RequirePackage{lcg}		%% erzeugt zufallszahlen %\rand\arabic{rand}
-%\input{random.tex}	%\setrannum{\temp}{1}{6}\the\temp
 
-%\RequirePackage{zahl2string}		%% \Numstring{page}\Numstr{23}
 %\input{binhex.tex}						%% conversion into binary-based number systems
-
-%\RequirePackage{tabularcalc}		%% Berechnet Formeln in einer tabellarischen Umgebung
-%\RequirePackage{pgfplotstable}
+%\input{random.tex}	%\setrannum{\temp}{1}{6}\the\temp
+\RequirePackage{
+	amsfonts,
+	fixmath,		%% ISO-konforme griech. Buchstaben
+	array,
+	fp,
+%	lcg,			%% erzeugt zufallszahlen %\rand\arabic{rand}
+%	zahl2string,	%% \Numstring{page}\Numstr{23}
+%	tabularcalc,		%% Berechnet Formeln in einer tabellarischen Umgebung
+%	pgfplotstable,
+%	skmath,
 
 %% use \textrm{test}
 
@@ -25,7 +27,6 @@
 %% wird durch pgfplots ersetzt ...
 %\RequirePackage{pgfplots}
 \newcounter{mathplotcount}
-\RequirePackage{fp}
 \FPset\gitter{0.2}
 
 \newcommand{\PotenzValue}[2]{\setcounter{tmp}{#2}

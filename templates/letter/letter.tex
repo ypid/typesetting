@@ -1,0 +1,25 @@
+%% <scrlttr2/letter.tex> template version 1.2.1 <Robin Schneider>
+%%% preamble
+%\listfiles	%% listfiles in die Logdatei
+\RequirePackage{RequirePackageRS}
+\documentclass[ngerman,default_settings,address_Robin,signature_picture]{scrlttr2}
+
+%% spezifische Angaben
+\AnschriftAuslesen{MaxMustermann}
+%\renewcommand{\EmVorname}{}\renewcommand{\EmSex}{f}
+%\setkomavar{signature}{}
+%\setkomavar{subject}{}
+
+\begin{document}
+\begin{letter}{\EmName\\ \EmAddress}
+\Osehrgeehrte{\EmSex}{\EmNachname}
+
+ich wollte ihnen nur mal \LaTeX{} empfehlen~\dots
+
+\closing{Mit freudlichen Grüßen}
+%\cc{name1 \\ name2}
+%\renewcaptionname{ngerman}{\enclname}{Anlage}
+%\encl{ anlage1 \\ anlage2}
+%\ps{PS: Text}
+\end{letter}
+\end{document}

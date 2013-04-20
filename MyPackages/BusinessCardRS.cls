@@ -11,7 +11,7 @@
 \RequirePackage[T1]{fontenc}
 \definecolor{uni}{gray}{.4}
 \RequirePackage[zw32010,crossmark]{ticket}
-\input{/home/rsadmin/Dokumente/LaTeX/input-document/eigene-angaben}
+\input{Robin-Schneider-eigene-angaben}
 
 \renewcommand{\ticketdefault}{%
 	%\put( 45, 5){\includegraphics[width=38mm,origin=bl]{tux-logo}}
