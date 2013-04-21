@@ -1,7 +1,9 @@
 #!/bin/bash
-#http://dante.ctan.org/mirmon/#de
-#tlmgr option location http://ftp.uni-erlangen.de/mirrors/CTAN/systems/texlive/tlnet/
 source /etc/profile
 export http_proxy='http://knuth.intra:3128/' ## change this
+export ftp_proxy=$http_proxy
+
+## http://dante.ctan.org/mirmon/#de
+tlmgr option repository http://ftp.uni-erlangen.de/mirrors/CTAN/systems/texlive/tlnet/
 tlmgr update --self bin-texlive texlive.infra
 tlmgr update --all

@@ -9,16 +9,31 @@ use Getopt::Long;
 my $print_author = 0;
 my $commit_count = 1;
 my $width = 0;
-my $git_commit_address = 'https://github.com/ypid/document-Stundenplan/commit';
+my( $git_user, $git_repo, $git_commit_address );
 GetOptions ('startcommit=s' => \$commit_count,
             'author' => \$print_author,
             'width=s' => \$width,
-				'git-c-add=s' => \$git_commit_address,
+            'git-c-add=s' => \$git_commit_address,
+            'user=s' => \$git_user,
+            'repo=s' => \$git_repo,
 );
+my $git_remote = (split /\n/, capturex(qw(git remote -v)))[0];
+if ($git_remote =~ m#\s.*?:(?<user>\w+?)/(?<repo>.*?)\.git\ \(fetch\)\Z#xms) {
+    $git_user = $+{user};
+    $git_repo = $+{repo};
+}
+my $git_command_commit_msg = '%H';
+if (defined $git_user and defined $git_repo) {
+    unless (defined $git_commit_address) {
+        $git_commit_address = "https://github.com/$+{user}/$+{repo}/commit";
+    }
+    $git_command_commit_msg = "\\href{$git_commit_address/%H}{%s}";
+    say "%% Base git commit URL: ". $git_commit_address;
+}
 if ($width) {
-	$width = "p{${width}cm}";
+    $width = "p{${width}cm}";
 } else {
-	$width = 'l';
+    $width = 'l';
 }
 ## Tags auslesen und benutzen
 say '\begin{tabular}{lp{12cm}}
@@ -70,12 +85,11 @@ say '\endfoot
 my @lines;
 my @git_command = qw(git log --date=short --shortstat);
 if ($print_author) {
-   @lines = reverse capturex(@git_command,
-       qq(--pretty=format:%d & %an & %ad & \\href{$git_commit_address/%H}{%s}));
+    push(@git_command, qq(--pretty=format:%d & %an & %ad & $git_command_commit_msg));
 } else {
-   @lines = reverse capturex(@git_command,
-       qq(--pretty=format:%d & %ad & \\href{$git_commit_address/%H}{%s}));
+    push(@git_command, qq(--pretty=format:%d & %ad & $git_command_commit_msg));
 }
+@lines = reverse capturex(@git_command);
 my $which_line = 0;
 my @changes;
 for (@lines) {

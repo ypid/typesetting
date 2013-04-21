@@ -21,7 +21,8 @@
 %	description={},
 }
 
-\newcommand{\printendsignature}[1][]{%
+\newcommand{\printendsignature}[1][]{%% Empty line is needed
+
 { \Centering%
 \ifthenelse{\( \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4} \) \AND
 \( \NOT \equal{#1}{without-typesetter} \)}{%
