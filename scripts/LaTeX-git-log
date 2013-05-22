@@ -1,50 +1,70 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
 use autodie;
 use feature qw(say);
+use utf8;
+use open qw(:std :utf8);
+binmode STDOUT, ':encoding(UTF-8)';
 use IPC::System::Simple qw(capturex);
 use Getopt::Long;
+use Pod::Usage;
 
+# Optional parameters {{{
+my $man          = 0;
+my $help         = 0;
 my $print_author = 0;
 my $commit_count = 1;
-my $width = 0;
-my( $git_user, $git_repo, $git_commit_address );
-GetOptions ('startcommit=s' => \$commit_count,
-            'author' => \$print_author,
-            'width=s' => \$width,
-            'git-c-add=s' => \$git_commit_address,
-            'user=s' => \$git_user,
-            'repo=s' => \$git_repo,
+my $width        = 0;
+my ( $git_user, $git_repo, $git_commit_address );
+GetOptions(
+    'startcommit=s' => \$commit_count,
+    'author'        => \$print_author,
+    'width=s'       => \$width,
+    'git-c-add=s'   => \$git_commit_address,
+    'user=s'        => \$git_user,
+    'repo=s'        => \$git_repo,
+    'help|?'        => \$help,
+    'man'           => \$man,
 );
-my $git_remote = (split /\n/, capturex(qw(git remote -v)))[0];
-if ($git_remote =~ m#\s.*?:(?<user>\w+?)/(?<repo>.*?)\.git\ \(fetch\)\Z#xms) {
+pod2usage(1) if $help;
+pod2usage( -exitstatus => 0, -verbose => 2 ) if $man;
+my $git_remote = ( split /\n/xms, capturex(qw(git remote -v)) )[0];
+
+if (    not defined $git_user
+    and not defined $git_repo
+    and defined $git_remote
+    and $git_remote =~ m#\s.*?:(?<user>\w+?)/(?<repo>.*?)\.git\ \(fetch\)\Z#xms )
+{
     $git_user = $+{user};
     $git_repo = $+{repo};
 }
-my $git_command_commit_msg = '%H';
-if (defined $git_user and defined $git_repo) {
-    unless (defined $git_commit_address) {
+my $git_command_commit_msg = '%s';
+if ( defined $git_user and defined $git_repo ) {
+    unless ( defined $git_commit_address ) {
         $git_commit_address = "https://github.com/$+{user}/$+{repo}/commit";
     }
     $git_command_commit_msg = "\\href{$git_commit_address/%H}{%s}";
-    say "%% Base git commit URL: ". $git_commit_address;
+    say "%% Base git commit URL: " . $git_commit_address;
 }
 if ($width) {
     $width = "p{${width}cm}";
-} else {
+}
+else {
     $width = 'l';
 }
-## Tags auslesen und benutzen
+# }}}
+
+# LaTeX template {{{
 say '\begin{tabular}{lp{12cm}}
-%	\lable{tabular:Legende:git-log}
-	\textbf{Abkürzung} & \textbf{Bedeutung} \\\\\\
-	V & \texttt{Version} \\\\
-	Tag & \texttt{Markierung} einer Menge von Dateien,
-		aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt \\\\
-	Fm & Wie viele \texttt{Dateien} innerhalb dieser Version \texttt{verändert} wurden \\\\
-	La & Wie viele \texttt{Zeilen} innerhalb dieser Version neu \texttt{hinzugekommen} sind \\\\
-	Ld & Wie viele \texttt{Zeilen} innerhalb dieser Version \texttt{gelöscht} wurden \\\\
+%  \lable{tabular:Legende:git-log}
+  \textbf{Abkürzung} & \textbf{Bedeutung} \\\\\\
+  V & \texttt{Version} \\\\
+  Tag & \texttt{Markierung} einer Menge von Dateien,
+    aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt \\\\
+  Fm & Wie viele \texttt{Dateien} innerhalb dieser Version \texttt{verändert} wurden \\\\
+  La & Wie viele \texttt{Zeilen} innerhalb dieser Version neu \texttt{hinzugekommen} sind \\\\
+  Ld & Wie viele \texttt{Zeilen} innerhalb dieser Version \texttt{gelöscht} wurden \\\\
 \end{tabular}
 
 \bigskip
@@ -60,7 +80,8 @@ say '& \multicolumn{1}{c}{\textbf{Datum}}
 & \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\\\ \hline}';
 if ($print_author) {
     say "\\begin{longtable}{|rllllrrr|}";
-} else {
+}
+else {
     say "\\begin{longtable}{|rll${width}rrr|}";
 }
 say '\longtableheader
@@ -71,7 +92,8 @@ say '\longtableheader
 ';
 if ($print_author) {
     say '\hline \multicolumn{8}{|r|}{\longtableendfoot} \\\\ \hline';
-} else {
+}
+else {
     say '\hline \multicolumn{7}{|r|}{\longtableendfoot} \\\\ \hline';
 }
 say '\endfoot
@@ -79,34 +101,106 @@ say '\endfoot
 \hline% \hline
 \endlastfoot
 ';
-## git log --pretty=format:'%ai'
-## git log --date=short --pretty=format:'%ad'
-## for privacy
+# }}}
+
+# Get version history from git log {{{
+# git log --pretty=format:'%ai'
+# git log --date=short --pretty=format:'%ad'
 my @lines;
 my @git_command = qw(git log --date=short --shortstat);
 if ($print_author) {
-    push(@git_command, qq(--pretty=format:%d & %an & %ad & $git_command_commit_msg));
-} else {
-    push(@git_command, qq(--pretty=format:%d & %ad & $git_command_commit_msg));
+    push( @git_command, qq(--pretty=format:%H & %an & %ad & $git_command_commit_msg) );
+}
+else {
+    push( @git_command, qq(--pretty=format:%H %ad & $git_command_commit_msg) );
 }
 @lines = reverse capturex(@git_command);
+# }}}
+
+# Get tags {{{
+my @tags_commits = capturex( 'git', 'for-each-ref', '--format=%(refname:short) %(objectname)', 'refs/tags' );
+my %commit_tags; # The key will be a SHA1 commit hash and the value a comma separated list of all tags.
+for (@tags_commits) {
+    my ( $tag, $c_hash ) = split /\s/xms, $_;
+    chomp($c_hash);
+    if ( defined $commit_tags{$c_hash} ) {
+        $commit_tags{$c_hash} .= ", $tag";
+    }
+    else {
+        $commit_tags{$c_hash} = $tag;
+    }
+}
+# }}}
+
+# Loop over all commits {{{
 my $which_line = 0;
 my @changes;
 for (@lines) {
     next if /\A\Z/xms;
     chomp;
     if ($which_line) {
-        s#\(\w+?/\w+?\) ##;
-        s/\((?:HEAD, |)(.*?)(?:, master|)\)/$1/;
-        s/ master//;
-        say "\\hline $commit_count &$_ & " . join(' & ', @changes) . ' \\\\';
+        s/\A([0-9a-f]{40})\s//xms or die "Did not match the commit hash\n";
+        my $tags = exists $commit_tags{$1} ? $commit_tags{$1} : q();
+        say "\\hline $commit_count & $tags & $_ & " . join( ' & ', @changes ) . ' \\\\';
         $commit_count++;
-    } else {
-        @changes = (0, 0, 0);
+    }
+    else {
+        @changes = ( 0, 0, 0 );
         /(\d+) files? changed/ and $changes[0] = $1;
-        /(\d+) insertions?/ and $changes[1] = $1;
-        /(\d+) deletions?/ and $changes[2] = $1;
+        /(\d+) insertions?/    and $changes[1] = $1;
+        /(\d+) deletions?/     and $changes[2] = $1;
     }
     $which_line ^= 1; ## toggle bit
 }
 say '\end{longtable}';
+# }}}
+
+__END__
+
+=head1 NAME
+
+LaTeX-git-log - output the version history of git as LaTeX source code.
+
+=head1 SYNOPSIS
+
+LaTeX-git-log [options]
+
+Options:
+
+  --help            brief help message
+
+  --man             full documentation
+
+  --man             full documentation
+
+  --startcommit     set the start value of count commit
+
+  --author          set this if you want the author included
+
+  --width           set the width in cm of the commit message field in the LaTeX table
+
+  --git-c-add       set an base URL to show a commit. This script will automaticly try to the the base URL for github.
+
+  --user            set a github user to derive the base URL
+
+  --repo            set a github repository to derive the base URL
+
+=head1 OPTIONS
+
+=over 8
+
+=item B<-help>
+
+Print a brief help message and exits.
+
+=item B<-man>
+
+Prints the manual page and exits.
+
+=back
+
+=head1 DESCRIPTION
+
+If you execute B<this program> within a git repository it will output the entiry version history as table written in LaTeX.
+
+=cut

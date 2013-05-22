@@ -1,0 +1,46 @@
+#!/bin/bash
+SCRIPT="`readlink -e $0`"
+SCRIPTPATH="`dirname $SCRIPT`"
+if [ $# != 2 ];then
+    echo "Dieses Skript bitte in dem Ordner ausführen wo die Daten abgelegt werden sollen."
+    echo "Bitte übergeben Sie einen Verzeichnisnamen und einen Dateinamen für das PDF."
+    exit 1
+fi
+dirname="$1"
+jobfile="$2"
+
+mkdir -p "$dirname/images-raw" "$dirname/images"
+
+echo "Bitte alle Bilder [pdf,png,jpg] in den Ordner \"$dirname/images\" verschieben."
+echo "Wenn bei Bildern [png,jpg] vorher noch der Kontrast erhöht werden sollen dann in \"$dirname/images-raw\" verschieben..."
+echo "Die Dateinamen der Bilder dürfen keine Leerzeichen und keine Kommata enthalten."
+read fnord
+
+(find "$dirname/images-raw/" -name "*.png"
+find "$dirname/images-raw/" -name "*.jpg")|sort|while read i;do
+    filename="`basename "$i"`";filename="${filename%.*}"
+    if [ ! -s "`echo "$dirname/images/$filename-V2.png"|sed 's/ /_/g'`" ]
+    then    echo -n "."
+        image-scan-tweak "$i"
+        mv "$dirname/images-raw/$filename-V2.png" "`echo "$dirname/images/$filename-V2.png"|sed 's/ /_/g'`"
+    else    echo -n "+"
+    fi
+done
+echo
+rmdir --ignore-fail-on-non-empty "$dirname/images-raw"
+
+cd "$dirname"
+Cdate="`LaTeX-echoCREATEDATE`"
+(
+    grep -v "\end{document}" $SCRIPTPATH/../templates/scan2pdf.tex|sed -e s/\\SetCREATEDATE.*$/"$Cdate"/
+        (
+            find images/ -name "*.pdf"
+            find images/ -name "*.png"
+            find images/ -name "*.jpg"
+        )|sort|while read i;do
+            echo '\includepdf'"{$i}"
+        done
+    echo "\end{document}"
+) > "$jobfile.tex"
+
+echo "Jetzt muss nur noch mit einer LaTeX IDE der Wahl die Datei $jobfile.tex angepasst und übersetzt weden."

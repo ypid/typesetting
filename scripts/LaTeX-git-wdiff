@@ -1,5 +1,5 @@
 #!/bin/bash
-## Konvertiert die Ausgabe von git diff --color-words in LaTeX Befehle
+## Converts the output of git diff --color-words to LaTeX commands.
 tmp="/tmp/git-wdiff.tmp"
 convert2latex (){
 sed 's/{/(((((/g' \
