@@ -46,7 +46,7 @@ Options:
 
             In this case you should specify the width of the column
             containing the commit messages. I normally use something like
-            --width=14 for DIN A4.
+            --width=14 for DIN A4 in landscape.
 
     --git-c-add
             Set an base URL to link to a commit. This script will

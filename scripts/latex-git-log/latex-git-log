@@ -79,18 +79,16 @@ else {
 
 # LaTeX template {{{
 say '\begin{tabular}{lp{12cm}}
-%  \lable{tabular:legend:git-log}
+  \label{tabular:legend:git-log}
   \textbf{'. loc('acronym') .'} & \textbf{'. loc('meaning') .'} \\\\
   V & \texttt{'. loc('version') .'} \\\\
-  Tag & '. loc('git tag') .' \\\\
+  Tag & '. loc('\texttt{git tag}') .' \\\\
   Fm & '. loc('Number of \texttt{modified files}.') .' \\\\
   La & '. loc('Number of \texttt{added lines}.') .' \\\\
   Ld & '. loc('Number of \texttt{deleted lines}.') .' \\\\
 \end{tabular}
 
 \bigskip
-\newcounter{gitversionnumber}
-\newcommand{\StepPrintgitV}{\stepcounter{gitversionnumber}\arabic{gitversionnumber}}
 
 \iflanguage{ngerman}{\shorthandoff{"}}{}';
 if ($print_author) {
@@ -206,7 +204,7 @@ you have a very long commit message then the table will not actually on the
 page and you will get a "Overfull" error message from TeX.
 
 In this case you should specify the width of the column containing the commit messages.
-I normally use something like --width=14 for DIN A4.
+I normally use something like --width=14 for DIN A4 in landscape.
 
 =item B<--git-c-add>
 
