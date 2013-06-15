@@ -155,6 +155,7 @@ for (@lines) {
 say '\end{longtable}';
 # }}}
 
+# Documentation {{{
 __END__
 
 =head1 NAME
@@ -168,21 +169,12 @@ LaTeX-git-log [options]
 Options:
 
   --help            brief help message
-
   --man             full documentation
-
-  --man             full documentation
-
   --startcommit     set the start value of count commit
-
   --author          set this if you want the author included
-
   --width           set the width in cm of the commit message field in the LaTeX table
-
   --git-c-add       set an base URL to show a commit. This script will automaticly try to the the base URL for github.
-
   --user            set a github user to derive the base URL
-
   --repo            set a github repository to derive the base URL
 
 =head1 OPTIONS
@@ -204,3 +196,4 @@ Prints the manual page and exits.
 If you execute B<this program> within a git repository it will output the entiry version history as table written in LaTeX.
 
 =cut
+# }}}

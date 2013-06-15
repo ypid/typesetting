@@ -21,6 +21,7 @@
 \newcommand{\EmStrasse}{}
 \newcommand{\EmPLZ}{}
 \newcommand{\EmOrt}{}
+\newcommand{\EmKompAddresse}{}
 
 \newcommand{\Anschrift}[7]{
 \renewcommand{\EmVorname}{#1}
@@ -40,14 +41,23 @@
 \newcommand{\EmAddress}{\EmStrasse\\ \EmPLZ ~\EmOrt}
 \newcommand{\EmName}{\EmVorname ~\EmNachname}
 
-\newcommand{\AnschriftAuslesen}[1]{
-\input{/home/rsadmin/Dokumente/LaTeX/input-document/Anschrift/#1.tex}
+\newcommand{\AnschriftAuslesen}[1]{%
+\input{/home/rsadmin/Dokumente/LaTeX/input-document/Anschrift/#1.tex}%
+\CheckIfEmFirma%
 }
 
 \newcommand{\BriefAn}[1]{
 \Anschrift{}{}{}{}{}{}{}
 \AnschriftAuslesen{#1}
 \Serienbrief{\EmVorname}{\EmNachname}{\EmSex}{\EmStrasse}{\EmPLZ}{\EmOrt}
+}
+
+\newcommand{\CheckIfEmFirma}{%
+\ifthenelse{\equal{\EmFirma}{}}{%
+	\renewcommand{\EmKompAddresse}{\EmName\\ \EmAddress}%
+}{%
+	\renewcommand{\EmKompAddresse}{\EmFirma\\ \EmName\\ \EmAddress}%
+}%
 }
 
 \newcommand{\Osehrgeehrte}[2]{
