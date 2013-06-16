@@ -4,20 +4,20 @@
   \label{tabular:legend:git-log}
   \textbf{acronym} & \textbf{meaning} \\
   V & \texttt{version} \\
-  Tag & \texttt{git tag} \\
-  Fm & Number of \texttt{modified files}. \\
-  La & Number of \texttt{added lines}. \\
-  Ld & Number of \texttt{deleted lines}. \\
+  tag & \texttt{git tag} \\
+  MF & Number of \texttt{modified files}. \\
+  AL & Number of \texttt{added lines}. \\
+  DL & Number of \texttt{deleted lines}. \\
 \end{tabular}
 
 \bigskip
 
 \iflanguage{ngerman}{\shorthandoff{"}}{}
 \begin{longtable}{|rllp{13cm}rrr|}
-\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}
+\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{tag}}
 & \multicolumn{1}{c}{\textbf{date}}
-& \multicolumn{1}{c}{\textbf{commit message}} & \multicolumn{1}{c}{\textbf{Fm}}
-& \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\ \hline
+& \multicolumn{1}{c}{\textbf{commit message}} & \multicolumn{1}{c}{\textbf{MF}}
+& \multicolumn{1}{c}{\textbf{AL}} & \multicolumn{1}{c|}{\textbf{DL}} \\ \hline
 \endhead
 
 \hline \multicolumn{7}{|r|}{\longtableendfoot} \\ \hline
@@ -66,4 +66,5 @@
 \hline 38 &  & 2013-06-16 & \href{https://github.com/ypid/typesetting/commit/2c128bf3eb4d734a11f3e7ebfdc93c01eafbd6f4}{Taking care about special charters in the commit message.} & 2 & 48 & 10 \\
 \hline 39 &  & 2013-06-16 & \href{https://github.com/ypid/typesetting/commit/7b1683a671fe687ca58f895564341ee4c82a7f7d}{Fixed problem with escaped $\backslash$href.} & 1 & 10 & 3 \\
 \hline 40 &  & 2013-06-16 & \href{https://github.com/ypid/typesetting/commit/6b25666f78ff276bbe161a0a7b659ad0c836aa22}{Made the script prettier with perltidy.} & 1 & 33 & 25 \\
+\hline 41 &  & 2013-06-16 & \href{https://github.com/ypid/typesetting/commit/38698ff91b2253abddacd135e332d9ace5127122}{Also escape the author field.} & 3 & 10 & 10 \\
 \end{longtable}

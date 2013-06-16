@@ -20,6 +20,21 @@ msgstr "Bedeutung"
 msgid "version"
 msgstr "Version"
 
+msgid "V"
+msgid "V"
+
+msgid "tag"
+msgstr "Tag"
+
+msgid "MF"
+msgstr "DV"
+
+msgid "AL"
+msgstr "ZH"
+
+msgid "DL"
+msgstr "ZG"
+
 msgid "\\texttt{git tag}"
 msgstr "\\texttt{Markierung} einer Menge von Dateien, aus denen sich zu einem beliebigen Zeitpunkt eine bestimmte Version wiederherstellen lässt"
 

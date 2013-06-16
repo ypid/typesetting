@@ -86,10 +86,10 @@ say '\begin{tabular}{lp{12cm}}
   \label{tabular:legend:git-log}
   \textbf{' . loc('acronym') . '} & \textbf{' . loc('meaning') . '} \\\\
   V & \texttt{' . loc('version') . '} \\\\
-  Tag & ' . loc('\texttt{git tag}') . ' \\\\
-  Fm & ' . loc('Number of \texttt{modified files}.') . ' \\\\
-  La & ' . loc('Number of \texttt{added lines}.') . ' \\\\
-  Ld & ' . loc('Number of \texttt{deleted lines}.') . ' \\\\
+  ' . loc('tag') . ' & ' . loc('\texttt{git tag}') . ' \\\\
+  ' . loc('MF') . ' & ' . loc('Number of \texttt{modified files}.') . ' \\\\
+  ' . loc('AL') . ' & ' . loc('Number of \texttt{added lines}.') . ' \\\\
+  ' . loc('DL') . ' & ' . loc('Number of \texttt{deleted lines}.') . ' \\\\
 \end{tabular}
 
 \bigskip
@@ -102,11 +102,11 @@ if ($print_author) {
 else {
     say "\\begin{longtable}{|rll${width}rrr|}";
 }
-say '\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}';
+say '\hline \multicolumn{1}{|c}{\textbf{' . loc('V') . '}} & \multicolumn{1}{c}{\textbf{' . loc('tag') . '}}';
 say '& \multicolumn{1}{c}{\textbf{' . loc('author') . '}}' if $print_author;
 say '& \multicolumn{1}{c}{\textbf{' . loc('date') . '}}
-& \multicolumn{1}{c}{\textbf{' . loc('commit message') . '}} & \multicolumn{1}{c}{\textbf{Fm}}
-& \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\\\ \hline
+& \multicolumn{1}{c}{\textbf{' . loc('commit message') . '}} & \multicolumn{1}{c}{\textbf{' . loc('MF') . '}}
+& \multicolumn{1}{c}{\textbf{' . loc('AL') . '}} & \multicolumn{1}{c|}{\textbf{' . loc('DL') . '}} \\\\ \hline
 \endhead
 ';
 if ($print_author) {
@@ -191,9 +191,9 @@ for (@lines) {
         my $date_author = '';
         my $c_msg;
         if ($print_author) {
-            /(& )(.*?)NoTinAuthorFiled(& .*? &) (.*)/;
-            $date_author = $1 . latex_escape($2) . $3;
-            $c_msg       = $4;
+            /(?:& )(.*?)NoTinAuthorFiled(& .*? &) (.*)/;
+            $date_author = latex_escape($1) . $2;
+            $c_msg       = $3;
         }
         else {
             /(.*? &) (.*)/;
