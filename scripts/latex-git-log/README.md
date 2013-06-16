@@ -53,12 +53,9 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
 
     --width Set the width in cm of the commit message field in the LaTeX
             table. If this parameter is not set then the table is not
-Set the width in cm of the commit message field in the LaTeX table. If this
-parameter is not set then the table is not vertically limited. That means that
-if you have a very long commit message then the table will probably not fit on
-the page and you will get a "Overfull" error message from
-TeX.
-
+            vertically limited. That means that if you have a very long
+            commit message then the table will probably not fit on the page
+            and you will get a "Overfull" error message from TeX.
 
             In this case you should specify the width of the column
             containing the commit messages. I normally use something like
