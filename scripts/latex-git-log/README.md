@@ -15,11 +15,11 @@ This module requires these other modules and libraries:
 Everything else should already be installed.
 
 ### To compile the output
-The table is using the B<longtable> package and the links to a web resource for
-each commit use the \href macro from B<hyperref>. So this two packages have to be
+The table is using the *longtable* package and the links to a web resource for
+each commit use the \href macro from *hyperref*. So this two packages have to be
 loaded.
 
-Furthermore you need to defined the macro B<\longtableendfoot> which will be
+Furthermore you need to defined the macro *\longtableendfoot* which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
@@ -29,10 +29,13 @@ landscape page.
 
 ## License and Copyright
 Copyright (C) by Robin Schneider <ypid23@aol.de>
+
 Source code repository: https://github.com/ypid/typesetting
+
 Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
 
-## Usage:
+## Usage
+
     latex-git-log [options]
 
     Options:
@@ -48,7 +51,8 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
       --help            brief help message
       --man             full documentation
 
-Options:
+### Description of some options
+
     --width Set the width in cm of the commit message field in the LaTeX
             table. If this parameter is not set then the table is not
             vertically limited. That means that if you have a very long
