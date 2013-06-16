@@ -16,10 +16,10 @@ Everything else should already be installed.
 
 ### To compile the output
 The table is using the *longtable* package and the links to a web resource for
-each commit use the \href macro from *hyperref*. So this two packages have to be
+each commit use the `\href` macro from *hyperref*. So this two packages have to be
 loaded.
 
-Furthermore you need to defined the macro *\longtableendfoot* which will be
+Furthermore you need to defined the macro `\longtableendfoot` which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
@@ -28,11 +28,9 @@ Because the table can be very large you might want to put the thing on a
 landscape page.
 
 ## License and Copyright
-Copyright (C) by Robin Schneider <ypid23@aol.de>
-
-Source code repository: https://github.com/ypid/typesetting
-
-Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
+Copyright (C) by Robin Schneider <ypid23@aol.de> <br />
+Source code repository: https://github.com/ypid/typesetting <br />
+Please report bugs and feature requests at https://github.com/ypid/typesetting/issues <br />
 
 ## Usage
 
@@ -40,7 +38,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
 
     Options:
 
-      --author          set this to 1 if you want the author included
+      --author          set this if you want the author included
       --startcommit     set the start value of count commit
       --width           set the width in cm of the commit message field in the LaTeX table
       --git-c-add       set an base URL to link to a commit

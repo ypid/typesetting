@@ -149,6 +149,34 @@ for (@tags_commits) {
 }
 # }}}
 
+# Helper function {{{
+sub latex_escape {
+    # Source: http://ommammatips.blogspot.de/2011/01/perl-function-for-latex-escape.html
+    my $paragraph = shift;
+
+    # Replace a \ with $\backslash$
+    # This is made more complicated because the dollars will be escaped
+    # by the subsequent replacement. Easiest to add \backslash
+    # now and then add the dollars
+    $paragraph =~ s/\\/\\backslash/g;
+
+    # Must be done after escape of \ since this command adds latex escapes
+    # Replace characters that can be escaped
+    $paragraph =~ s/([\$\#&%_{}])/\\$1/g;
+
+    # Replace ^ characters with \^{} so that $^F works okay
+    $paragraph =~ s/(\^)/\\$1\{\}/g;
+
+    # Replace tilde (~) with \texttt{\~{}}
+    # $paragraph =~ s/~/\\texttt\{\\~\{\}\}/g;
+    $paragraph =~ s/~/\\~\{\}/g;
+
+    # Now add the dollars around each \backslash
+    $paragraph =~ s/(\\backslash)/\$$1\$/g;
+    return $paragraph;
+}
+# }}}
+
 # Loop over all commits {{{
 my $which_line = 0;
 my @changes;
@@ -158,7 +186,19 @@ for (@lines) {
     if ($which_line) {
         s/\A([0-9a-f]{40})\s//xms or die "Did not match the commit hash\n";
         my $tags = exists $commit_tags{$1} ? $commit_tags{$1} : q();
-        say "\\hline $commit_count & $tags & $_ & " . join( ' & ', @changes ) . ' \\\\';
+        my $date_author = '';
+        my $c_msg;
+        if ($print_author) {
+        /((?:.*? &){2}) (.*)/;
+        $date_author = $1;
+        $c_msg  = latex_escape($2);
+        }
+        else {
+        /(.*? &) (.*)/;
+        $date_author = $1;
+        $c_msg  = latex_escape($2);
+        }
+        say "\\hline $commit_count & $tags & $date_author $c_msg & " . join( ' & ', @changes ) . ' \\\\';
         $commit_count++;
     }
     else {
@@ -185,7 +225,7 @@ latex-git-log [options]
 
 Options:
 
-  --author          set this to 1 if you want the author included
+  --author          set this if you want the author included
   --startcommit     set the start value of count commit
   --width           set the width in cm of the commit message field in the LaTeX table
   --git-c-add       set an base URL to link to a commit
