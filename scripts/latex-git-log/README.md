@@ -5,6 +5,9 @@ if it is executed within a git repository.
 It is intended that you redirect the standard output of this script to a file
 which can then be included from your main TeX document.
 
+Because the table can be very large you might want to put the thing on a
+landscape page.
+
 ## Dependencies
 ### Of this script
 This module requires these other modules and libraries:
@@ -16,16 +19,13 @@ Everything else should already be installed.
 
 ### To compile the output
 The table is using the *longtable* package and the links to a web resource for
-each commit use the `\href` macro from *hyperref*. So this two packages have to be
-loaded.
+each commit use the `\href` macro from *hyperref*. So these two packages have
+to be loaded.
 
 Furthermore you need to defined the macro `\longtableendfoot` which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
-
-Because the table can be very large you might want to put the thing on a
-landscape page.
 
 ## License and Copyright
 Copyright (C) by Robin Schneider <ypid23@aol.de> <br />
@@ -53,10 +53,12 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
 
     --width Set the width in cm of the commit message field in the LaTeX
             table. If this parameter is not set then the table is not
-            vertically limited. That means that if you have a very long
-            commit message then the table will not actually be completely
-            fit on the page and you will get a "Overfull" error message from
-            TeX.
+Set the width in cm of the commit message field in the LaTeX table. If this
+parameter is not set then the table is not vertically limited. That means that
+if you have a very long commit message then the table will probably not fit on
+the page and you will get a "Overfull" error message from
+TeX.
+
 
             In this case you should specify the width of the column
             containing the commit messages. I normally use something like

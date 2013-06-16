@@ -253,9 +253,8 @@ Options:
 
 Set the width in cm of the commit message field in the LaTeX table. If this
 parameter is not set then the table is not vertically limited. That means that
-if you have a very long commit message then the table will not actually be
-completely fit on the page and you will get a "Overfull" error message from
-TeX.
+if you have a very long commit message then the table will probably not fit on
+the page and you will get a "Overfull" error message from TeX.
 
 In this case you should specify the width of the column containing the commit messages.
 I normally use something like --width=14 for DIN A4 in landscape.
@@ -296,14 +295,13 @@ Everything else should already be installed.
 =head2 To compile the output
 
 The table is using the B<longtable> package and the links to a web resource for
-each commit use the \href macro from B<hyperref>. So this two packages have to be
-loaded.
+each commit use the \href macro from B<hyperref>. So these two packages have to
+be loaded.
 
 Furthermore you need to defined the macro B<\longtableendfoot> which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
-
 
 =head1 DESCRIPTION
 
