@@ -27,9 +27,9 @@ expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
 
-## License and Copyright
+## License and development
 Copyright (C) by Robin Schneider <ypid23@aol.de> <br />
-Source code repository: https://github.com/ypid/typesetting <br />
+Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/latex-git-log <br />
 Please report bugs and feature requests at https://github.com/ypid/typesetting/issues <br />
 
 ## Usage

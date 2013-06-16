@@ -322,6 +322,12 @@ landscape page.
 
 Robin Schneider <ypid23@aol.de>
 
+=head1 Development
+
+Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/latex-git-log
+
+Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright (C) 2012-2013 by Robin Schneider
