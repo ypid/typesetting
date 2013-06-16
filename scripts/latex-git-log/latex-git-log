@@ -128,7 +128,7 @@ say '\endfoot
 my @lines;
 my @git_command = qw(git log --date=short --shortstat);
 if ($print_author) {
-    push( @git_command, qq(--pretty=format:%H & %an & %ad & $git_command_commit_msg) );
+    push( @git_command, qq(--pretty=format:%H & %an NoTinAuthorFiled& %ad & $git_command_commit_msg) );
 }
 else {
     push( @git_command, qq(--pretty=format:%H %ad & $git_command_commit_msg) );
@@ -191,9 +191,9 @@ for (@lines) {
         my $date_author = '';
         my $c_msg;
         if ($print_author) {
-            /((?:.*? &){2}) (.*)/;
-            $date_author = $1;
-            $c_msg       = $2;
+            /(& )(.*?)NoTinAuthorFiled(& .*? &) (.*)/;
+            $date_author = $1 . latex_escape($2) . $3;
+            $c_msg       = $4;
         }
         else {
             /(.*? &) (.*)/;
@@ -315,12 +315,6 @@ which can then be included from your main TeX document.
 
 Because the table can be very large you might want to put the thing on a
 landscape page.
-
-=head1 BUGS AND LIMITATIONS
-
-The author section is currently not escaped. This means, that if the author
-filed contains charters that are special to (La)TeX, then this can cause
-problems.
 
 =head1 Version
 
