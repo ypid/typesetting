@@ -33,6 +33,7 @@ my $print_author = 0;
 my $commit_count = 1;
 my $width        = 0;
 my $lang         = undef;
+my $version      = 0;
 my $help         = 0;
 my $man          = 0;
 my ( $git_user, $git_repo, $git_commit_address );
@@ -44,11 +45,13 @@ GetOptions(
     'user=s'        => \$git_user,
     'repo=s'        => \$git_repo,
     'lang=s'        => \$lang,
+    'version'       => \$version,
     'help|?'        => \$help,
     'man'           => \$man,
 );
 pod2usage(1) if $help;
-pod2usage( -exitstatus => 0, -verbose => 2 ) if $man;
+pod2usage( -verbose =>  2, -exitstatus => 0, ) if $man;
+pod2usage( -verbose => 99, -sections => 'Version' ) if $version;
 my $git_remote = ( split /\n/xms, capturex(qw(git remote -v)) )[0];
 
 loc_lang($lang) if (defined $lang);
@@ -169,12 +172,12 @@ for (@lines) {
 say '\end{longtable}';
 # }}}
 
-# Documentation {{{
 __END__
+# Documentation {{{
 
 =head1 NAME
 
-latex-git-log - output the version history of git as LaTeX source code.
+latex-git-log - output the version history of a git project as LaTeX source code.
 
 =head1 SYNOPSIS
 
@@ -189,6 +192,7 @@ Options:
   --user            set a github user to derive the base URL
   --repo            set a github repository to derive the base URL
   --lang            language of the legend and all strings in the output
+  --version, -v     print version of this script
   --help            brief help message
   --man             full documentation
 
@@ -198,10 +202,11 @@ Options:
 
 =item B<--width>
 
-Set the width in cm of the commit message field in the LaTeX table.  If this
-parameter is not set then the table is not verticly limited. That means that if
-you have a very long commit message then the table will not actually on the
-page and you will get a "Overfull" error message from TeX.
+Set the width in cm of the commit message field in the LaTeX table. If this
+parameter is not set then the table is not vertically limited. That means that
+if you have a very long commit message then the table will not actually be
+completely fit on the page and you will get a "Overfull" error message from
+TeX.
 
 In this case you should specify the width of the column containing the commit messages.
 I normally use something like --width=14 for DIN A4 in landscape.
@@ -222,7 +227,7 @@ this project on one of those websites for online translation.
 
 =back
 
-=head1 USAGE
+=head1 Example
 
 You can use it like this:
 
@@ -230,14 +235,26 @@ You can use it like this:
 
 =head1 DEPENDENCIES
 
-The table is using the longtable package and the links to a web resource for
-each commit use the \href macro from hyperref. So this two packages have to be
+=head2 Of this script
+
+This module requires these other modules and libraries:
+
+    IPC::System::Simple
+    Locale::Maketext::Simple
+
+Everything else should already be installed.
+
+=head2 To compile the output
+
+The table is using the B<longtable> package and the links to a web resource for
+each commit use the \href macro from B<hyperref>. So this two packages have to be
 loaded.
 
-Furthermore you need to defined the macro \longtableendfoot which will be
+Furthermore you need to defined the macro B<\longtableendfoot> which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
+
 
 =head1 DESCRIPTION
 
@@ -249,6 +266,10 @@ which can then be included from your main TeX document.
 
 Because the table can be very large you might want to put the thing on a
 landscape page.
+
+=head1 Version
+
+0.9
 
 =head1 AUTHOR
 
