@@ -16,10 +16,11 @@ use Pod::Usage;
 
 # Get the path where this script is located {{{
 my $dirpath;
+
 BEGIN {
     use File::Basename qw(fileparse);
     use Cwd qw(abs_path);
-    $dirpath = (fileparse(abs_path($0)))[1];
+    $dirpath = ( fileparse( abs_path($0) ) )[1];
 }
 # }}}
 use Locale::Maketext::Simple (
@@ -50,11 +51,11 @@ GetOptions(
     'man'           => \$man,
 );
 pod2usage(1) if $help;
-pod2usage( -verbose =>  2, -exitstatus => 0, ) if $man;
-pod2usage( -verbose => 99, -sections => 'Version' ) if $version;
+pod2usage( -verbose => 2,  -exitstatus => 0, )        if $man;
+pod2usage( -verbose => 99, -sections   => 'Version' ) if $version;
 my $git_remote = ( split /\n/xms, capturex(qw(git remote -v)) )[0];
 
-loc_lang($lang) if (defined $lang);
+loc_lang($lang) if ( defined $lang );
 if (    not defined $git_user
     and not defined $git_repo
     and defined $git_remote
@@ -83,17 +84,18 @@ else {
 # LaTeX template {{{
 say '\begin{tabular}{lp{12cm}}
   \label{tabular:legend:git-log}
-  \textbf{'. loc('acronym') .'} & \textbf{'. loc('meaning') .'} \\\\
-  V & \texttt{'. loc('version') .'} \\\\
-  Tag & '. loc('\texttt{git tag}') .' \\\\
-  Fm & '. loc('Number of \texttt{modified files}.') .' \\\\
-  La & '. loc('Number of \texttt{added lines}.') .' \\\\
-  Ld & '. loc('Number of \texttt{deleted lines}.') .' \\\\
+  \textbf{' . loc('acronym') . '} & \textbf{' . loc('meaning') . '} \\\\
+  V & \texttt{' . loc('version') . '} \\\\
+  Tag & ' . loc('\texttt{git tag}') . ' \\\\
+  Fm & ' . loc('Number of \texttt{modified files}.') . ' \\\\
+  La & ' . loc('Number of \texttt{added lines}.') . ' \\\\
+  Ld & ' . loc('Number of \texttt{deleted lines}.') . ' \\\\
 \end{tabular}
 
 \bigskip
 
 \iflanguage{ngerman}{\shorthandoff{"}}{}';
+
 if ($print_author) {
     say "\\begin{longtable}{|rllllrrr|}";
 }
@@ -101,9 +103,9 @@ else {
     say "\\begin{longtable}{|rll${width}rrr|}";
 }
 say '\hline \multicolumn{1}{|c}{\textbf{V}} & \multicolumn{1}{c}{\textbf{Tag}}';
-say '& \multicolumn{1}{c}{\textbf{'. loc('author') .'}}' if $print_author;
-say '& \multicolumn{1}{c}{\textbf{'. loc('date') .'}}
-& \multicolumn{1}{c}{\textbf{'. loc('commit message') .'}} & \multicolumn{1}{c}{\textbf{Fm}}
+say '& \multicolumn{1}{c}{\textbf{' . loc('author') . '}}' if $print_author;
+say '& \multicolumn{1}{c}{\textbf{' . loc('date') . '}}
+& \multicolumn{1}{c}{\textbf{' . loc('commit message') . '}} & \multicolumn{1}{c}{\textbf{Fm}}
 & \multicolumn{1}{c}{\textbf{La}} & \multicolumn{1}{c|}{\textbf{Ld}} \\\\ \hline
 \endhead
 ';
@@ -174,7 +176,7 @@ sub latex_escape {
     # Now add the dollars around each \backslash
     $paragraph =~ s/(\\backslash)/\$$1\$/g;
     return $paragraph;
-}
+} ## end sub latex_escape
 # }}}
 
 # Loop over all commits {{{
@@ -189,25 +191,25 @@ for (@lines) {
         my $date_author = '';
         my $c_msg;
         if ($print_author) {
-        /((?:.*? &){2}) (.*)/;
-        $date_author = $1;
-        $c_msg  = $2;
+            /((?:.*? &){2}) (.*)/;
+            $date_author = $1;
+            $c_msg       = $2;
         }
         else {
-        /(.*? &) (.*)/;
-        $date_author = $1;
-        $c_msg  = $2;
+            /(.*? &) (.*)/;
+            $date_author = $1;
+            $c_msg       = $2;
         }
         if ( defined $git_user and defined $git_repo ) {
-          $c_msg =~ /(.*?) & (.*)/;
-          $c_msg = sprintf '\\href{%s/%s}{%s}', $git_commit_address, $1, latex_escape($2);
+            $c_msg =~ /(.*?) & (.*)/;
+            $c_msg = sprintf '\\href{%s/%s}{%s}', $git_commit_address, $1, latex_escape($2);
         }
         else {
-          $c_msg = latex_escape($c_msg);
+            $c_msg = latex_escape($c_msg);
         }
         say "\\hline $commit_count & $tags & $date_author $c_msg & " . join( ' & ', @changes ) . ' \\\\';
         $commit_count++;
-    }
+    } ## end if ($which_line)
     else {
         @changes = ( 0, 0, 0 );
         /(\d+) files? changed/ and $changes[0] = $1;
@@ -215,7 +217,7 @@ for (@lines) {
         /(\d+) deletions?/     and $changes[2] = $1;
     }
     $which_line ^= 1; ## toggle bit
-}
+} ## end for (@lines)
 say '\end{longtable}';
 # }}}
 
@@ -313,6 +315,12 @@ which can then be included from your main TeX document.
 
 Because the table can be very large you might want to put the thing on a
 landscape page.
+
+=head1 BUGS AND LIMITATIONS
+
+The author section is currently not escaped. This means, that if the author
+filed contains charters that are special to (La)TeX, then this can cause
+problems.
 
 =head1 Version
 
