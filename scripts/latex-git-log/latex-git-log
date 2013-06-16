@@ -69,7 +69,7 @@ if ( defined $git_user and defined $git_repo ) {
     unless ( defined $git_commit_address ) {
         $git_commit_address = "https://github.com/$+{user}/$+{repo}/commit";
     }
-    $git_command_commit_msg = "\\href{$git_commit_address/%H}{%s}";
+    $git_command_commit_msg = '%H & %s';
     say '%% Base git commit URL: ' . $git_commit_address;
 }
 if ($width) {
@@ -191,12 +191,19 @@ for (@lines) {
         if ($print_author) {
         /((?:.*? &){2}) (.*)/;
         $date_author = $1;
-        $c_msg  = latex_escape($2);
+        $c_msg  = $2;
         }
         else {
         /(.*? &) (.*)/;
         $date_author = $1;
-        $c_msg  = latex_escape($2);
+        $c_msg  = $2;
+        }
+        if ( defined $git_user and defined $git_repo ) {
+          $c_msg =~ /(.*?) & (.*)/;
+          $c_msg = sprintf '\\href{%s/%s}{%s}', $git_commit_address, $1, latex_escape($2);
+        }
+        else {
+          $c_msg = latex_escape($c_msg);
         }
         say "\\hline $commit_count & $tags & $date_author $c_msg & " . join( ' & ', @changes ) . ' \\\\';
         $commit_count++;
