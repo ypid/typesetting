@@ -65,7 +65,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
             Set an base URL to link to a commit. This script will
             automatically try to use the base URL for github.
 
-    --lang  Set the language of the legend and all strings in the output. Be
+    --lang  Set the language of the legend and all strings in the output. By
             default the language of your system is used but you can
             overwrite this with this parameter.
 

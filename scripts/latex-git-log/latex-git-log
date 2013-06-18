@@ -266,7 +266,7 @@ This script will automatically try to use the base URL for github.
 
 =item B<--lang>
 
-Set the language of the legend and all strings in the output. Be default the
+Set the language of the legend and all strings in the output. By default the
 language of your system is used but you can overwrite this with this parameter.
 
 Currently this script only supports English and German. If you need a translation
