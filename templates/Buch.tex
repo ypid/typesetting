@@ -15,7 +15,7 @@
 %	graphicRS,
 %	mathematicsRS,
 	layoutRS,
-	footingRS,
+	% footingRS,
 	extensionsRS,
 	docExtensionsRS,
 %	chemistryRS,
@@ -34,14 +34,13 @@
 }
 \SetDraft{on}
 \begin{document}
-\pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}\thispagestyle{empty}
-\PrintDefaultTitlepage
+\MakeTitle
 \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
 \tableofcontents
 \listoffigures
 \listoftables
 %\lstlistoflistings	%% Quellcodeverzeichnis
-\setcounter{headpages}{\value{page}}\newpage\pagenumbering{arabic}
+\mainmatter
 %%%%%%%%%%%
 \part{Teil}
 \chapter{TEIL}
@@ -49,8 +48,7 @@
 \label{sec:einleitung}
 \lettrine{D}{ies} ist eine \TITEL.
 
-\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
-\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+\appendix
 
 \vfill
 \printURLlong

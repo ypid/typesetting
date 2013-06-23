@@ -1,4 +1,4 @@
-%% <school/Epochenheft.tex> template 1.2 by Robin `ypid` Schneider <ypid23@aol.de>
+%% <school/Epochenheft.tex> template 1.3 by Robin `ypid` Schneider <ypid23@aol.de>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
 %%% preamble
 %\RequirePackage{snapshot}		%% \jobname.dep
@@ -40,7 +40,7 @@
 }
 \SetDraft{on}
 \begin{document}
-\pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}\thispagestyle{empty}
+\frontmatter
 \input{titelpages-EpochenheftRS.tex}
 \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
 \tableofcontents	%% Inhaltsverzeichnis
@@ -48,14 +48,13 @@
 %\listoftables		%% Tabellenverzeichnis
 %\lstlistoflistings	%% Quellcodeverzeichnis
 
-\setcounter{headpages}{\value{page}}\newpage\pagenumbering{arabic}
+\mainmatter
 %%%%%%%%%%%
 \section{Einführung}
 \label{sec:einleitung}
 Dies ist eine \TITEL für \SUBJECT{}
 
-\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
-\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+\appendix
 
 \vfill
 \printURLlong

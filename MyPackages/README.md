@@ -9,3 +9,7 @@ available on CTAN then I will consider creating a single package with a
 corresponding documentation. These packages can be found in a different
 repository:
 https://github.com/ypid/latex-packages
+
+## Usage
+To use these packages you can make it like I do and create a symbolic link in
+your local TEXMF directory under `tex/latex/`.

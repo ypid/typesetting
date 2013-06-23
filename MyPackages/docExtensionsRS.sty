@@ -40,6 +40,10 @@
 
 \newcommand{\PrintDefaultTitlepage}{\input{/home/rsadmin/Dokumente/LaTeX/input-document/titelpages/maketitle}}
 
+\providecommand{\frontmatter}{%
+  \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}%
+  \thispagestyle{empty}%
+}
 
 \newcommand{\MakeTitle}{%
   \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}%
@@ -53,7 +57,7 @@
   \@Appendix%
 }
 
-\newcommand{\mainmatter}{%
+\providecommand{\mainmatter}{%
   \setcounter{headpages}{\value{page}}\clearpage\pagenumbering{arabic}%
 }
 
