@@ -4,10 +4,12 @@
 
 %\RequirePackage{fancyhdr}\pagestyle{fancy}
 \RequirePackage[automark]{scrpage2}
+\setkomafont{pagehead}{\normalfont} % \sffamily\bfseries
 \pagestyle{scrheadings}
-\ifoot{\thepage}
+\ifoot{\pagemark}
+\ofoot{\AUTHOR}
 \cfoot{}
-\ofoot{\AUTHOR}\chead{}
+% \chead{}
 %% Verbraucht viel Speicher im PDF (20 kB)
 
 \endinput

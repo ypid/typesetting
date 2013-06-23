@@ -1,16 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{defaultRS}
-          [2011/09/24 v1.00 Standard Pakete und Einstellungen von Robin Schneider]
+  [2011/09/24 v1.00 Standard Pakete und Einstellungen von Robin Schneider]
 
 \RequirePackage{cmap}
-\RequirePackage{babel}	% \showhyphens{Trennungen} %% sprach Unterstützung
-\RequirePackage[T1]{fontenc}		%% use TeX encoding then Type 1
+\RequirePackage{babel}  % \showhyphens{Trennungen} %% sprach Unterstützung
+\RequirePackage[T1]{fontenc}  %% use TeX encoding then Type 1
 %% Verbraucht Speicher im PDF (2101 Byte)
 
 \RequirePackage{amsthm}
-\RequirePackage{amssymb}			%% Zusatzsymbole z.B. Square Vartriangle etc
-\RequirePackage{textcomp}			%% Symbol z. B. \textdiscount
-\RequirePackage{eurosym}			%% \EUR{2342,50}
+\RequirePackage{amssymb}    %% Zusatzsymbole z.B. Square Vartriangle etc
+\RequirePackage{textcomp}    %% Symbol z. B. \textdiscount
+\RequirePackage{eurosym}    %% \EUR{2342,50}
 \let\RawEUR\EUR
 \renewcommand{\EUR}[1]{\RawEUR{\numprint{#1}}}
 \usepackage{ziffer}
@@ -22,47 +22,47 @@
 \RequirePackage{calc}
 \RequirePackage{verbatim}
 %\RequirePackage{comment}
-\RequirePackage[normalem]{ulem}		%% Unterstreichungen
-%\RequirePackage{soulpos}			%% Unterstreichungen aller Art,
+\RequirePackage[normalem]{ulem}  %% Unterstreichungen
+%\RequirePackage{soulpos}    %% Unterstreichungen aller Art,
 %% auch Linien mit zufälligem Zittern
-%\RequirePackage{lcd}				%% Setzt Text im Still von LCD Displays
-%\RequirePackage{keystroke}			%% Setzt Computer Tasten von Tastaturen \Esc
-%\RequirePackage{telprint}			%% Ordentliches Darstellen German phone numbers
+%\RequirePackage{lcd}  %% Setzt Text im Still von LCD Displays
+%\RequirePackage{keystroke}    %% Setzt Computer Tasten von Tastaturen \Esc
+%\RequirePackage{telprint}    %% Ordentliches Darstellen German phone numbers
 \RequirePackage[autolanguage]{numprint}
 %% Ordentliches Darstellen von Zahlen im Text und Mathe Modus
 \npfourdigitnosep
 \RequirePackage{romanbar}
 \newcommand{\RM}[1]{\Romanbar{#1}}
 \newcommand{\Rm}[1]{\romannum{#1}}
-%\RequirePackage{minutes}			%% Erstellung von Protokollen
-%\RequirePackage{changes}			%% Manuelle Änderungsmarkierung
-\RequirePackage{multicol}			%% \begin{multicols}{2}
-\RequirePackage{paralist}			%% besseres enumerate und itemize und neue compactenum/compactitem
-\RequirePackage{enumerate}			%% \begin{enumerate}[{Teil }I] oder i,a,A,1
+%\RequirePackage{minutes}    %% Erstellung von Protokollen
+%\RequirePackage{changes}    %% Manuelle Änderungsmarkierung
+\RequirePackage{multicol}    %% \begin{multicols}{2}
+\RequirePackage{paralist}    %% besseres enumerate und itemize und neue compactenum/compactitem
+\RequirePackage{enumerate}    %% \begin{enumerate}[{Teil }I] oder i,a,A,1
 \newenvironment{itemizewrapper}{\begin{compactitem}}{\end{compactitem}}
-\RequirePackage{eqlist}			%% Beschreibungslisten mit gleicher Einrückung
+\RequirePackage{eqlist}    %% Beschreibungslisten mit gleicher Einrückung
 %% Es kann auch die labeling Umgebung aus (scrextend) der KOMA-Script Klasse benutzt werden
 %% Hier muss aber die Breite manuell definiert werden: {\textbf{1990--2000}}
 %\begin{labeling}[]{\textbf{1990--2000}}
 %\item[\textbf{1994--2002}] Gymnasium Leipzig
 %\end{labeling}
-\RequirePackage{rotating}			%% Text drehen
-\RequirePackage{xcolor}				%% Farbdefinitionen möglich
+\RequirePackage{rotating}    %% Text drehen
+\RequirePackage{xcolor}  %% Farbdefinitionen möglich
 %% Verbraucht Speicher im PDF (211 Byte)
-%\selectcolormodel{cmyk}			%% Aus LaTeX Hacks O'Reilly #16
+%\selectcolormodel{cmyk}    %% Aus LaTeX Hacks O'Reilly #16
 %% sorgt dafür, dass alle Farbdefinitionen in der Ausgabedatei dem cmyk-Modell folgen.
 %% Sichtbarer Unterschied ...
 
-%\RequirePackage{moreverb}			%% erweiterte verbatim Umgebung
-\RequirePackage{pdfpages}			%% Einbinden von PDF Seiten aus PDF Dokument
-\RequirePackage{nicefrac}			%% Darstellung eines Bruchs im Fließtext; Aussehen zB 1/4
-%\RequirePackage{gensymb}			%% celsius, micro, ohm, perthousand, degree in Mathe und Textmodus
-%\RequirePackage{lastpage}			%% durch totpages ersetzt %% \pageref{LastPage}
-%\RequirePackage{fink}				% \finkpath		%% Der LaTeX2e File Name Keeper
-\RequirePackage{stringstrings}		%% String manipulation
-	%% \wordcount fail with \section
+%\RequirePackage{moreverb}    %% erweiterte verbatim Umgebung
+\RequirePackage{pdfpages}    %% Einbinden von PDF Seiten aus PDF Dokument
+\RequirePackage{nicefrac}    %% Darstellung eines Bruchs im Fließtext; Aussehen zB 1/4
+%\RequirePackage{gensymb}    %% celsius, micro, ohm, perthousand, degree in Mathe und Textmodus
+%\RequirePackage{lastpage}    %% durch totpages ersetzt %% \pageref{LastPage}
+%\RequirePackage{fink}  % \finkpath  %% Der LaTeX2e File Name Keeper
+\RequirePackage{stringstrings}  %% String manipulation
+  %% \wordcount fail with \section
 \RequirePackage[babel]{csquotes} %\enquote{nur} %% Anführungszeichen ,german=quotes
-\clubpenalty=10000			%% Unendlich
+\clubpenalty=10000    %% Unendlich
 \widowpenalty=10000
 \displaywidowpenalty=10000
 
@@ -70,26 +70,36 @@
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
 
 %% language definition
-\RequirePackage{fnumprint}	%% fnumprint@language
+\RequirePackage{fnumprint}  %% fnumprint@language
 \RequirePackage{IfconstructsRS}
 \twoIF{\value{fnumprint@language}}{
-	\input{defaultRS-ngerman.ldf}
+  \input{defaultRS-ngerman.ldf}
 }{
-	\input{defaultRS-english.ldf}
+  \input{defaultRS-english.ldf}
 }{
-	\PackageError{docExtensionsRS}{language definition}
-			{I don't know the language you have asked for}
+  \PackageError{docExtensionsRS}{language definition}
+    {I don't know the language you have asked for}
 }
 \newcommand{\Titlepagename}{\LanguageTitlepageName}
 
 \newcommand{\printlanguage}{
 \iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{
-	\iflanguage{english}{Englisch}{
-		\iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
-	}
+  \iflanguage{english}{Englisch}{
+  \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
+  }
 }}
 
-\let\fancynumprintcount\fnumprintc
-\let\fancynumprintstr\fnumprint
+\let\fancynumprintcount\fnumprintc%
+\let\fancynumprintstr\fnumprint%
+
+\let\pagenumberingRaw\pagenumbering\relax%
+\renewcommand{\pagenumbering}[1]{%
+  \pagenumberingRaw{#1}%
+  \ifthenelse{\equal{#1}{Roman}}{%
+    \renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}%
+  }{
+    \renewcommand*{\pagemark}{\thepage}%
+  }
+}
 
 \endinput

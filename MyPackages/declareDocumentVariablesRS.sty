@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{declareDocumentVariablesRS}
-          [2012/08/24 v1.00 packages for declaring document variables by Robin Schneider]
+          [2013/06/23 v1.01 packages for declaring document variables by Robin Schneider]
 \newcommand{\Typesetter}{\href{https://ypid.wordpress.com/}{Robin Schneider}\xspace}
+% \publishers{\Typesetter}
 
 \RequirePackage{
 	xifthen,
@@ -11,6 +12,7 @@
 	ccicons,
 	auto-pst-pdf,
 	pst-barcode,
+        authoraftertitle,
 }
 
 \newcommand{\choosedefaultlicense}{\SetLICENSE{CreativeCommons/by-nc-sa}{0}}
@@ -70,9 +72,10 @@
 	{\LICENSEname}}%
 }
 
-\newcommand{\SetTITEL}[1]{\newcommand{\TITEL}{#1\xspace}}
+\newcommand{\SetTITEL}[1]{\title{#1\xspace}}
+\newcommand{\TITEL}{\MyTitle}
 \newcommand{\SUBJECT}{}
-\newcommand{\SetSUBJECT}[1]{\renewcommand{\SUBJECT}{#1\xspace}}
+\newcommand{\SetSUBJECT}[1]{\renewcommand{\SUBJECT}{#1\xspace}\subject{\SUBJECT}}
 
 \newcommand{\URL}{}
 \newcommand{\SetURL}[1]{\renewcommand{\URL}{#1}}
@@ -141,40 +144,41 @@
 }
 
 \newcounter{Author@ChosenNumber}	%% Sets the pdfcreator to \Typesetter
-\newcommand{\AUTHOR}{}
+\newcommand{\AUTHOR}{\MyAuthor}
 \newcommand{\SetAUTHOR}[2]{
 	\setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
-	\threeIF{#1}{\renewcommand{\AUTHOR}{\Typesetter}}
-    {\renewcommand{\AUTHOR}{}}
-    {\renewcommand{\AUTHOR}{Name nicht Definiert\xspace}}
-    {\renewcommand{\AUTHOR}{#2\xspace}}	%% if #1 == 4
+	\threeIF{#1}{\author{\Typesetter}}
+    {\author{}}
+    {\author{Name nicht Definiert\xspace}}
+    {\author{#2\xspace}}	%% if #1 == 4
 }
 
+\newcommand{\ABGABEDATUM}{\MyDate}
 \newcommand{\SetABGABEDATUM}[5]{
 \newcounter{ReleaseDate@ChosenNumber}
 \setcounter{ReleaseDate@ChosenNumber}{#1}
 \sixIF{#1}{ %% if #1 == 1
-		\newcommand{\ABGABEDATUM}{\today}
+		\date{\today}
 	}{ %% if #1 == 2
-		\newcommand{\ABGABEDATUM}{vorgelegt am: \printdate{#4.#3.#2}}
+		\date{vorgelegt am: \printdate{#4.#3.#2}}
 		\newcommand{\ABGABETag}{#4}
 		\newcommand{\ABGABEMonat}{#3}
 		\newcommand{\ABGABEJahr}{#2}
 	}{ %% if #1 == 3
 		\newcounter{ReleaseDate@DaysUntilDate}
 		\setcounter{ReleaseDate@DaysUntilDate}{#5}
-		\newcommand{\ABGABEDATUM}{vorgelegt am: \dateNday{#5}}
+		\date{vorgelegt am: \dateNday{#5}}
 	}{ %% if #1 == 4
-		\newcommand{\ABGABEDATUM}{\printdate{#4.#3.#2}}
+		\date{\printdate{#4.#3.#2}}
 		\newcommand{\ABGABETag}{#4}
 		\newcommand{\ABGABEMonat}{#3}
 		\newcommand{\ABGABEJahr}{#2}
 	}{ %% if #1 == 5
 		\newcounter{ReleaseDate@DaysUntilDate}
 		\setcounter{ReleaseDate@DaysUntilDate}{#5}
-		\newcommand{\ABGABEDATUM}{\dateNday{#5}}
+		\date{\dateNday{#5}}
 	}{ %% if #1 == 6
-		\newcommand{\ABGABEDATUM}{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
+		\date{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
 	}{\PackageError{\@currname}{Unknown parameter}}
 }
 
