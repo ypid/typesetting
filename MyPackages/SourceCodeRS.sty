@@ -4,16 +4,17 @@
 
 %% LaTeX Hacks O'Reilly #12
 
-\RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
-\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+% \RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
 %\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
-\lstset{
-	numbers=left,
-	numberstyle=\tiny,
-	frame=single,
-	commentstyle=\color{gray},
-	language=[LaTeX]TeX,
-}
+% \lstset{
+%   numbers=left,
+%   numberstyle=\tiny,
+% %  stepnumber=2,
+% %  frame=single,
+%   frame=trBL
+%   commentstyle=\color{gray},
+%   language=[LaTeX]TeX,
+% }
 
 %\begin{lstlisting}
 %\RequirePackage{%
@@ -22,5 +23,65 @@
 % ,ngerman
 %}
 %\end{lstlisting}
+
+\newcommand{\mintedDefault}{linenos,baselinestretch=0.8}
+\RequirePackage{
+  minted,
+  tcolorbox,
+  etoolbox,
+}
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+\AfterEndEnvironment{minted}{\end{tcolorbox}}%
+%\usemintedstyle{
+%  manni
+%  rrt       % not very readable (uses yellow)
+%  perldoc
+%  colorful
+%  murphy    % light colors
+%  tango
+%  emacs
+%  vim       % not very readable (uses yellow)
+%  fruity    % not usable (uses white text)
+%  friendly
+%  native    % not very readable
+%}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+%\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\renewcommand{\listoflistingscaption}{Quellcodeverzeichnis}
+%\renewcommand{\lstlistingname}{Quellcode}
+\renewcommand{\listingscaption}{Quellcode}
+
+
+\usepackage{xparse}
+\ExplSyntaxOn
+\box_new:N \l_fvrb_box
+\tl_new:N \l_fvrb_tl
+
+\RenewDocumentCommand \FancyVerbFormatLine { m }
+ {
+   \hbox_set:Nn \l_fvrb_box { #1 }
+    \dim_compare:nNnTF { \box_wd:N \l_fvrb_box }>{ \linewidth }
+      {%box to big 
+       \tl_set:Nn \l_fvrb_tl { #1 }
+       \fvrb_use_tl:N \l_fvrb_tl
+      } 
+      {%box fits
+       \box_use:N \l_fvrb_box
+      }
+ }
+
+\cs_new:Npn \fvrb_use_tl:N  #1
+ {
+  \group_begin:
+   \null\hfill\vbox_set:Nn \l_fvrb_box
+     {\hsize=\linewidth
+        \advance\hsize by -2em
+        \hspace*{-2em}\tl_use:N #1
+     }
+   \box_use:N \l_fvrb_box
+  \group_end:
+}
+\ExplSyntaxOff
 
 \endinput

@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use autodie;
+
+$^I = ".bak";
+
+while (<>) {
+	if (m{\A\\pdfbookmark\[1\]\{\\LanguageTitlepageName\}\{titlepage\}\\pagenumbering\{Roman\}\\thispagestyle\{empty\}}ms
+		or m{\A\\setcounter\{sectionsV\}{\\value\{section\}}}) {
+		next;
+	}
+	s{\A\\setcounter{headpages}{\\value{page}}\\newpage\\pagenumbering{arabic}\Z}{\\mainmatter};
+	s{\A\\PrintDefaultTitlepage\Z}{\\MakeTitle};
+	s{\A\\appendix.*}{\\appendix};
+	# if (/\A#!/) {
+	# 	$_ .= "## Copyright (C) 2011 by Yours Truly";
+	# }
+	# print <STDOUT> "$ARGV";
+	print;
+}
