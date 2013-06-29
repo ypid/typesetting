@@ -8,7 +8,6 @@
 \newcommand{\LanguageURLlongExtension}{This PDF file also contains a version history and statistics
 about this document}
 \newcommand{\LanguageTitlepageName}{Front page}
-\newcommand{\LanguageWordSee}{See}
 
 \newcommand{\Language@SignatureTextWithTypesetter}{%
 	Typesetted by \Typesetter with the typesetting program}

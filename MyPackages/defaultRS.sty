@@ -96,9 +96,10 @@
 \renewcommand{\pagenumbering}[1]{%
   \pagenumberingRaw{#1}%
   \ifthenelse{\equal{#1}{Roman}}{%
-    \renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}%
+    %\renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}% not added by \pageref.
+    \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
   }{
-    \renewcommand*{\pagemark}{\thepage}%
+    %*{\pagemark}{\thepage}%
   }
 }
 

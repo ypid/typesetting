@@ -7,6 +7,7 @@
   pdflscape,
   sourcefiletable,
   varioref,
+  mfirstuc,
 }
 
 %\RequirePackage[abspage,user,lastpage,counter,savepos,titleref]{zref}
@@ -87,8 +88,8 @@
 }
 
 \newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
-\newcommand{\Siehe}[1]{\LanguageWordSee{} \docExtensionsRS@see{#1}}
-\newcommand{\siehe}[1]{\MakeLowercase{\LanguageWordSee} \docExtensionsRS@see{#1}}
+\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \docExtensionsRS@see{#1}}
+\newcommand{\siehe}[1]{\seename{} \docExtensionsRS@see{#1}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 
