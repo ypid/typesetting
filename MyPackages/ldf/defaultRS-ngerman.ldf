@@ -8,9 +8,7 @@
 \newcommand{\LanguageURLlongExtension}{In dieser PDF Datei finden sich auch noch Versionshinweise
 und Statistiken über dieses Dokument.}
 \newcommand{\LanguageTitlepageName}{Titelseite}
-\newcommand{\LanguageWordSee}{Siehe}
 \newcommand{\LanguageReleaseDateName}{Abgabedatum} %% Statistiken
-
 
 \newcommand{\Language@SignatureTextWithTypesetter}{Gesetzt von \Typesetter mit dem Textsatzsystem}
 \newcommand{\Language@SignatureText}{Erstellt mit dem Textsatzsystem}

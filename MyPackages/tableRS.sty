@@ -1,24 +1,37 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tableRS}
-          [2011/09/24 v1.00 Standart Pakete und Einstellungen für Tabellen von Robin Schneider]
+  [2013/06/29 v1.01 Default settings for tables by Robin Schneider]
 
-\RequirePackage{ltxtable}			%% longtable und tabularx vereint in einer Tabelle, lädt beide
-	%% Sollte noch hyperref geladen werden um footnote Verlinkung zu ermöglichen
+\RequirePackage{
+  tabu,
+  ltxtable,  %% longtable und tabularx vereint in einer Tabelle, lädt beide
+    %% Sollte nach hyperref geladen werden um footnote Verlinkung zu ermöglichen
+}
+
+\RequirePackage{
+  varioref,
+  mfirstuc,
+}
+\newcommand{\longtableendfoot}{\emph{\xmakefirstuc{\seename} \reftextfaceafter}}
 \newcommand{\longtableheader}{}
-\newcommand{\longtableendfoot}{\emph{Siehe nächste Seite}}
-\RequirePackage{multirow}			%% Erzeugt mehrzeilige Zellen in Tabellen
-\RequirePackage{slashbox}			%% Doppelüberschriften in einer Tabellenzelle
-\RequirePackage{dcolumn}			%% D{,}{,}{Nachkommastellen}
-	%% arbeitet nicht mit den Paketen isonums, icomma und ziffer zusammen
-	%% \ZifferPunktAus\begin{tabular}{D{,}{,}{2}}3,22\\\end{tabular}\ZifferPunktAn
-\newcolumntype{d}[1]{D{,}{,}{#1}}	%% #36
-\RequirePackage{colortbl}			%% Tabellen farbig gestalten
-\RequirePackage{colorrowsRS}		%% Do I use this package?
-%\RequirePackage{booktabs}			%% weitere Linien zur Strukturierung von Tabellen (\toprule, ...)
+
+\RequirePackage{
+  multirow,    %% Erzeugt mehrzeilige Zellen in Tabellen
+  slashbox,    %% Doppelüberschriften in einer Tabellenzelle
+  colortbl,    %% Tabellen farbig gestalten
+  colorrowsRS, %% Alternately-colored rows
+  % booktabs,  %% weitere Linien zur Strukturierung von Tabellen (\toprule, ...)
+}
+
+\RequirePackage{ragged2e}
 \newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+
 %\renewcommand \thetable{\arabic{section}-\@arabic\c@table}
 %% Auszeichnung für Tabellenkopf...
 
-%\RequirePackage{tabu}
+\RequirePackage{dcolumn} %% D{,}{,}{Nachkommastellen}
+%% arbeitet nicht mit den Paketen isonums, icomma und ziffer zusammen
+%% \ZifferPunktAus\begin{tabular}{D{,}{,}{2}}3,22\\\end{tabular}\ZifferPunktAn
+\newcolumntype{d}[1]{D{,}{,}{#1}}	%% #36
 
 \endinput

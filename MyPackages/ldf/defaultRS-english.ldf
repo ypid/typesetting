@@ -8,9 +8,9 @@
 \newcommand{\LanguageURLlongExtension}{This PDF file also contains a version history and statistics
 about this document}
 \newcommand{\LanguageTitlepageName}{Front page}
+\newcommand{\LanguageReleaseDateName}{Release date}
 
-\newcommand{\Language@SignatureTextWithTypesetter}{%
-	Typesetted by \Typesetter with the typesetting program}
+\newcommand{\Language@SignatureTextWithTypesetter}{Typesetted by \Typesetter with the typesetting program}
 \newcommand{\Language@SignatureText}{Created with the typesetting program}
 \newcommand{\Language@SignatureTeX}{\href{http://en.wikipedia.org/wiki/LaTeX}{\LaTeXe} on}
 \newcommand{\Language@SignatureOS}{%
