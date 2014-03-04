@@ -21,6 +21,7 @@
 \newcommand{\EmStrasse}{}
 \newcommand{\EmPLZ}{}
 \newcommand{\EmOrt}{}
+\newcommand{\EmAddress}{}
 \newcommand{\EmKompAddresse}{}
 
 \newcommand{\Anschrift}[7]{
@@ -38,11 +39,18 @@
 \renewcommand{\EmOrt}{#7}
 }
 
-\newcommand{\EmAddress}{\EmStrasse\\ \EmPLZ ~\EmOrt}
+\newcommand{\CheckIfEmAddress}{%
+\ifthenelse{\equal{\EmStrasse}{~}}{%
+	\renewcommand{\EmAddress}{\EmPLZ ~\EmOrt}%
+}{%
+	\renewcommand{\EmAddress}{\EmStrasse\\ \EmPLZ ~\EmOrt}
+}%
+}
 \newcommand{\EmName}{\EmVorname ~\EmNachname}
 
 \newcommand{\AnschriftAuslesen}[1]{%
 \input{/home/rsadmin/Dokumente/LaTeX/input-document/Anschrift/#1.tex}%
+\CheckIfEmAddress%
 \CheckIfEmFirma%
 }
 

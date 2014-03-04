@@ -2,8 +2,7 @@
 This program will output the entire version history as table written in LaTeX
 if it is executed within a git repository.
 
-It is intended that you redirect the standard output of this script to a file
-which can then be included from your main TeX document.
+It is intended that you redirect the standard output of this script to a file which can then be included from your main LaTeX document.
 
 Because the table can be very large you might want to put the thing on a
 landscape page.

@@ -1,0 +1,17 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{legacyRS}
+  [2013/06/29 v1.00 Legacy support for documents by Robin Schneider]
+
+\let\fancynumprintcount\fnumprintc%
+\let\fancynumprintstr\fnumprint%
+
+\newcommand{\RM}[1]{\Romanbar{#1}}
+\newcommand{\Rm}[1]{\romannum{#1}}
+
+\newcommand{\Isourcefile}[2]{%
+  \sourcefile[include]{#1}{#2}%
+}
+
+\newcommand{\Titlepagename}{\LanguageTitlepageName}
+
+\endinput

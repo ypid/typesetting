@@ -1,4 +1,4 @@
-%% <school/Schulischer-Kurztext.tex> template 1.1.2 by Robin `ypid` Schneider <ypid23@aol.de>
+%% <school/Schulischer-Kurztext.tex> template 1.1.3 by Robin `ypid` Schneider <ypid23@aol.de>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Schulischer-Kurztext.tex
 %%% preamble
 %\RequirePackage{snapshot}		%% \jobname.dep
@@ -18,7 +18,6 @@
 	layoutRS,
 	extensionsRS,
 	docExtensionsRS,
-	footingShortRS,
 	schoolRS,
 %	chemistryRS,
 }
@@ -34,6 +33,7 @@
 \SetABGABEDATUM{1}{2011}{05}{23}{1}
 \usepackage{
 	schoolPDFinfoRS,
+	footingShortRS,
 	tableRS,
 }
 \begin{document}
@@ -45,31 +45,15 @@ Dies ist eine \TITEL{} für ein kurzes schulisches Dokument
 %\ifDraft{
 \newpage
 \appendix
-\vfill
-\printlicense
-\printendsignature
-\newpage\Statistiken
-Status:~\progressbar{.00} (eigenes Ermessen)
-%\newpage
-  \begin{sourcefiletable}{1}
-	\sourcefile{Hauptdatei}{\jobname.tex}
-%	\sourcefile{Metainformationen}{files/metainfos.tex}
-%	\sourcefile{Titelseite}{files/titlepage.tex}
-%	\sourcefile{Literatur-Datenbank}{files/header/bibliographie.bib}
-  \end{sourcefiletable}
-%}{}
-%\ifDraft{
-%  \begin{landscape}
-%	\pagestyle{empty}
-%	\pdfbookmark[2]{Versionshinweise}{versionshinweise}
-%	\subsection*{Versionshinweise}
-%	\input{files/git/versions-log}
-%	\printgitstatlandscape{1}
-%  \end{landscape}
-%	\printgitstat{1}
-%	\subsubsection*{Dateien?}
-%	\pdfbookmark[3]{Dateien?}{files_by_date}
-%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
-%	\listoffixmes
-%}{}
+% \vfill
+% \printlicense
+% \printendsignature
+% %\newpage
+%   \begin{sourcefiletable}{1}
+%   \sourcefile{Hauptdatei}{\jobname.tex}
+% %	\sourcefile{Metainformationen}{files/metainfos.tex}
+% %	\sourcefile{Titelseite}{files/titlepage.tex}
+% %	\sourcefile{Literatur-Datenbank}{files/header/bibliographie.bib}
+%   \end{sourcefiletable}
+% %}{}
 \end{document}

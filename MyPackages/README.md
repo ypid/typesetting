@@ -11,5 +11,4 @@ repository:
 https://github.com/ypid/latex-packages
 
 ## Usage
-To use these packages you can make it like I do and create a symbolic link in
-your local TEXMF directory under `tex/latex/`.
+To use these packages you can setup this like I do by creating a symbolic link to this directory in your local TEXMF directory under `tex/latex/`.
