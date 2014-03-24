@@ -14,9 +14,9 @@ und Statistiken über dieses Dokument.}
 \newcommand{\Language@SignatureText}{Erstellt mit dem Textsatzsystem}
 \newcommand{\Language@SignatureTeX}{\href{http://de.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
 \newcommand{\Language@SignatureOS}{%
-\href{http://de.wikipedia.org/wiki/Ubuntu}{Ubuntu}
-%\href{http://de.wikipedia.org/wiki/Debian}{Debian}
-\href{http://de.wikipedia.org/wiki/GNU-Projekt}{GNU}/%
-\href{http://de.wikipedia.org/wiki/Linux}{Linux}%
+% \href{https://de.wikipedia.org/wiki/Ubuntu}{Ubuntu}
+\href{https://de.wikipedia.org/wiki/Debian}{Debian}
+\href{https://de.wikipedia.org/wiki/GNU-Projekt}{GNU}/%
+\href{https://de.wikipedia.org/wiki/Linux}{Linux}%
 }
 \newcommand{\LanguageSignatureShort}{LaTeX auf \Language@SignatureOS}
