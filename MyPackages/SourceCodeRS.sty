@@ -4,17 +4,18 @@
 
 %% LaTeX Hacks O'Reilly #12
 
-% \RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
-%\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
-% \lstset{
-%   numbers=left,
-%   numberstyle=\tiny,
-% %  stepnumber=2,
-% %  frame=single,
-%   frame=trBL
-%   commentstyle=\color{gray},
-%   language=[LaTeX]TeX,
-% }
+\RequirePackage{listings}			%% Quellcodedarstellung für viele verschiedene Sprachen
+% Needed for the TOC.
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,language=C}
+\lstset{
+  numbers=left,
+  numberstyle=\tiny,
+%  stepnumber=2,
+%  frame=single,
+  frame=trBL
+  commentstyle=\color{gray},
+  language=[LaTeX]TeX,
+}
 
 %\begin{lstlisting}
 %\RequirePackage{%
@@ -47,9 +48,9 @@
 %}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
-%\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
 \renewcommand{\listoflistingscaption}{Quellcodeverzeichnis}
-%\renewcommand{\lstlistingname}{Quellcode}
+\renewcommand{\lstlistingname}{Quellcode}
 \renewcommand{\listingscaption}{Quellcode}
 
 
@@ -62,10 +63,10 @@
  {
    \hbox_set:Nn \l_fvrb_box { #1 }
     \dim_compare:nNnTF { \box_wd:N \l_fvrb_box }>{ \linewidth }
-      {%box to big 
+      {%box to big
        \tl_set:Nn \l_fvrb_tl { #1 }
        \fvrb_use_tl:N \l_fvrb_tl
-      } 
+      }
       {%box fits
        \box_use:N \l_fvrb_box
       }

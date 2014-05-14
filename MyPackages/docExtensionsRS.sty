@@ -120,10 +120,9 @@
 %% weil das Label noch auf einer anderen Seite ist.
 %% Die Warnung wird im Paket footmisc weggelassen. \footref
 
+%% Use \addsec
 \newcommand{\sectionStar}[2]{%
-  \phantomsection
-  \pdfbookmark[1]{#1}{#2}%
-  \section*{#1}%
+  \addsec{#1}%
 }
 
 \newboolean{saveprivacy}
