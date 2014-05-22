@@ -7,9 +7,11 @@
 	declareDocumentVariablesRS,
 	readgitRS,
 	xifthen,
-%	footnotebackref,
 %	thumbpdf,					%% PDF Thumbnails erstellen
 }
+
+% \RequirePackage[numberlinked]{footnotebackref}
+% Does not work? Did work before …
 
 \ifthenelse{\boolean{@ifCREATEDATE}}{\pdfinfo{/CreationDate(D:\CREATEDATE)/ModDate(D:\pdfdate)}}{}
 

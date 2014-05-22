@@ -13,6 +13,7 @@
   auto-pst-pdf,
   pst-barcode,
   authoraftertitle,
+  xstring,
 }
 
 \newcommand{\choosedefaultlicense}{\SetLICENSE{CreativeCommons/by-nc-sa}{0}}
@@ -133,6 +134,12 @@
     \newcommand{\CREATEDATE}{\pdfdate}
     \setboolean{@ifCREATEDATE}{false}
   }{
+    \IfInteger{#2}{}{\PackageError{\@currname}{Parameter 2 is not a number parameter.}}
+    \IfInteger{#3}{}{\PackageError{\@currname}{Parameter 3 is not a number parameter.}}
+    \IfInteger{#4}{}{\PackageError{\@currname}{Parameter 4 is not a number parameter.}}
+    \IfInteger{#5}{}{\PackageError{\@currname}{Parameter 5 is not a number parameter.}}
+    \IfInteger{#6}{}{\PackageError{\@currname}{Parameter 6 is not a number parameter.}}
+    \IfInteger{#7}{}{\PackageError{\@currname}{Parameter 7 is not a number parameter.}}
     \newcommand{\CREATEDYEAR}{#2}
     \newcommand{\CREATEDMONTH}{#3}
     \newcommand{\CREATEDDAY}{#4}
@@ -149,6 +156,7 @@
 \newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
 \newcommand{\AUTHOR}{\MyAuthor}
 \newcommand{\SetAUTHOR}[2]{
+  \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
   \setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
   \threeIF{#1}{\author{\Typesetter}}
     {\author{}}
@@ -158,31 +166,36 @@
 
 \newcommand{\ABGABEDATUM}{\MyDate}
 \newcommand{\SetABGABEDATUM}[5]{
-\newcounter{ReleaseDate@ChosenNumber}
-\setcounter{ReleaseDate@ChosenNumber}{#1}
-\sixIF{#1}{ %% if #1 == 1
-    \date{\today}
-  }{ %% if #1 == 2
-    \date{vorgelegt am: \printdate{#4.#3.#2}}
-    \newcommand{\ABGABETag}{#4}
-    \newcommand{\ABGABEMonat}{#3}
-    \newcommand{\ABGABEJahr}{#2}
-  }{ %% if #1 == 3
-    \newcounter{ReleaseDate@DaysUntilDate}
-    \setcounter{ReleaseDate@DaysUntilDate}{#5}
-    \date{vorgelegt am: \dateNday{#5}}
-  }{ %% if #1 == 4
-    \date{\printdate{#4.#3.#2}}
-    \newcommand{\ABGABETag}{#4}
-    \newcommand{\ABGABEMonat}{#3}
-    \newcommand{\ABGABEJahr}{#2}
-  }{ %% if #1 == 5
-    \newcounter{ReleaseDate@DaysUntilDate}
-    \setcounter{ReleaseDate@DaysUntilDate}{#5}
-    \date{\dateNday{#5}}
-  }{ %% if #1 == 6
-    \date{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
-  }{\PackageError{\@currname}{Unknown parameter}}
+  \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
+  \IfInteger{#2}{}{\PackageError{\@currname}{Parameter 2 is not a number parameter.}}
+  \IfInteger{#3}{}{\PackageError{\@currname}{Parameter 3 is not a number parameter.}}
+  \IfInteger{#4}{}{\PackageError{\@currname}{Parameter 4 is not a number parameter.}}
+  \IfInteger{#5}{}{\PackageError{\@currname}{Parameter 5 is not a number parameter.}}
+  \newcounter{ReleaseDate@ChosenNumber}
+  \setcounter{ReleaseDate@ChosenNumber}{#1}
+  \sixIF{#1}{ %% if #1 == 1
+      \date{\today}
+    }{ %% if #1 == 2
+      \date{vorgelegt am: \printdate{#4.#3.#2}}
+      \newcommand{\ABGABETag}{#4}
+      \newcommand{\ABGABEMonat}{#3}
+      \newcommand{\ABGABEJahr}{#2}
+    }{ %% if #1 == 3
+      \newcounter{ReleaseDate@DaysUntilDate}
+      \setcounter{ReleaseDate@DaysUntilDate}{#5}
+      \date{vorgelegt am: \dateNday{#5}}
+    }{ %% if #1 == 4
+      \date{\printdate{#4.#3.#2}}
+      \newcommand{\ABGABETag}{#4}
+      \newcommand{\ABGABEMonat}{#3}
+      \newcommand{\ABGABEJahr}{#2}
+    }{ %% if #1 == 5
+      \newcounter{ReleaseDate@DaysUntilDate}
+      \setcounter{ReleaseDate@DaysUntilDate}{#5}
+      \date{\dateNday{#5}}
+    }{ %% if #1 == 6
+      \date{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
+    }{\PackageError{\@currname}{Unknown parameter}}
 }
 
 \endinput
