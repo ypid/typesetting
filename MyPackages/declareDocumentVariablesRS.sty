@@ -1,10 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{declareDocumentVariablesRS}
-          [2013/06/23 v1.01 packages for declaring document variables by Robin Schneider]
+          [2015/02/05 v1.1 Packages for declaring document variables by Robin Schneider]
+
 \newcommand{\Typesetter}{\href{https://ypid.wordpress.com/}{Robin Schneider}\xspace}
 % \publishers{\Typesetter}
 
-\RequirePackage{
+\RequirePackage{%
   xifthen,
   IfconstructsRS,
   timeRS,
@@ -14,24 +15,26 @@
   pst-barcode,
   authoraftertitle,
   xstring,
+  legacyDeclareDocumentVariablesRS,
 }
 
 \newcommand{\choosedefaultlicense}{\SetLICENSE{CreativeCommons/by-nc-sa}{0}}
 
 \newcommand{\LICENSE}{}    %% The command must exist
 \newcommand{\LICENSEname}{} %% The command must exist
-\newcommand{\SetLICENSE}[3][]{
+\newcommand{\SetLICENSE}[3][]{%
   \newcounter{LICENSEadd}
   \setcounter{LICENSEadd}{#3}
   \renewcommand{\LICENSE}{#2}
-  \ifthenelse{\isempty{#1}}{
+  \ifthenelse{\isempty{#1}}{%
     \ifthenelse{\equal{#2}{CreativeCommons/by-nc-sa}}{
       \renewcommand{\LICENSEname}{Creative Commons BY-NC-SA}
-    }{
-      \PackageError{declareDocumentVariablesRS}{Unknown parameter}%
+    }{%
+      \PackageError{\@currname}{Unknown parameter}%
         {The parameter "#2" is unknown}
     }
-  }{  \renewcommand{\LICENSEname}{#1}
+  }{%
+    \renewcommand{\LICENSEname}{#1}
   }
 }
 \newcommand{\licenseadd}{\IfCounterOne{LICENSEadd}{ größtenteils\xspace}{\xspace}}
@@ -53,9 +56,8 @@
     \ifthenelse{\equal{\LICENSE}{CreativeCommons/by-nc-sa}}{%
       \ccbyncsaeu%
     }{%
-%      \PackageError{docExtensionsRS}{printlicenseicons}%
-%        {something went wrong}%
-% Falls %\choosedefaultlicense
+     \PackageError{\@currname}{printlicenseicons}%
+       {License not found}%
     }%
   }%
 \xspace%
@@ -73,8 +75,6 @@
   {\LICENSEname}}%
 }
 
-\newcommand{\SetTITEL}[1]{\title{#1\xspace}}
-\newcommand{\TITEL}{\MyTitle}
 \newcommand{\SUBJECT}{}
 \newcommand{\SetSUBJECT}[1]{%
   \renewcommand{\SUBJECT}{#1\xspace}%
@@ -153,9 +153,10 @@
   }
 }
 
-\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
+%% Author {{{
 \newcommand{\AUTHOR}{\MyAuthor}
-\newcommand{\SetAUTHOR}[2]{
+\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
+\newcommand{\SetAUTHOR}[2]{%
   \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
   \setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
   \threeIF{#1}{\author{\Typesetter}}
@@ -163,6 +164,7 @@
     {\author{Name nicht Definiert\xspace}}
     {\author{#2\xspace}}  %% if #1 == 4
 }
+%% }}}
 
 \newcommand{\ABGABEDATUM}{\MyDate}
 \newcommand{\SetABGABEDATUM}[5]{

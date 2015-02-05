@@ -1,9 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{PDFinfoRS}
-          [2012/08/24 v1.01 PDF optimization by Robin Schneider]
+          [2015/02/05 v1.1 PDF optimization by Robin Schneider]
 
-\RequirePackage{
-	defaultRS,
+\RequirePackage{%
 	declareDocumentVariablesRS,
 	readgitRS,
 	xifthen,
@@ -15,19 +14,22 @@
 
 \ifthenelse{\boolean{@ifCREATEDATE}}{\pdfinfo{/CreationDate(D:\CREATEDATE)/ModDate(D:\pdfdate)}}{}
 
-\ifgitversion{
-	\newcommand{\PDFinfoRS@version}{\LanguageVersionName: \printversion ~| }
-}{	\newcommand{\PDFinfoRS@version}{}
+\ifgitversion{%
+  \newcommand{\PDFinfoRS@version}{\LanguageVersionName: \printversion ~| }
+}{%
+  \newcommand{\PDFinfoRS@version}{}
 }
 
-\ifthenelse{\equal{\LICENSEname}{}}{
-	\newcommand{\PDFinfoRS@license}{}
-}{	\newcommand{\PDFinfoRS@license}{\LanguageLicenceName: \LICENSEname ~| }
+\ifthenelse{\equal{\LICENSEname}{}}{%
+  \newcommand{\PDFinfoRS@license}{}
+}{%
+  \newcommand{\PDFinfoRS@license}{\LanguageLicenceName: \LICENSEname ~| }
 }
 
-\ifthenelse{\equal{\SUBJECT}{}}{
-	\newcommand{\PDFinfoRS@subject}{}
-}{	\newcommand{\PDFinfoRS@subject}{~-- \SUBJECT}
+\ifthenelse{\equal{\SUBJECT}{}}{%
+  \newcommand{\PDFinfoRS@subject}{}
+}{%
+  \newcommand{\PDFinfoRS@subject}{~-- \SUBJECT}
 }
 
 \RequirePackage{hyperref}
@@ -35,7 +37,7 @@
 \hypersetup{
 %	linktocpage,						%% verlinkt die Seitenzahl und nicht das label
 %	pdfstartpage= {1},					%% Startseite
-	bookmarksnumbered= true,			%% Nummerierung in bookmarks
+	bookmarksnumbered = true,			%% Nummerierung in bookmarks
 %	backref		= true,
 %	unicode		= false,				%% non-Latin characters in Acrobat’s bookmarks
 %	pdftoolbar	= true,					%% show Acrobat’s toolbar?
@@ -44,18 +46,18 @@
 %	pdfstartview= {FitH},				%% fits the width of the page to the window
 %	pdfpagemode	= {FullScreen},			%% wie die Datei in Acrobat geöffnet wird
 	pdflang		= {\LanguagePDFLang},	%% pdflang hat noch keinen Effekt?
-	pdftitle	= {\TITEL},
-	pdfauthor	= {\AUTHOR},
+	pdftitle	= {\MyAuthor},
+	pdfauthor	= {\MyAuthor},
 	pdfsubject	= {\SUBJECT},
-	pdfkeywords	= {\TITEL \PDFinfoRS@subject ~| \PDFinfoRS@license \PDFinfoRS@version \AUTHOR},
+	pdfkeywords	= {\MyTitle \PDFinfoRS@subject ~| \PDFinfoRS@license \PDFinfoRS@version \MyAuthor},
 	pdfcreator	= {\LanguageSignatureShort},	%% Ersteller, creator of the document
 %	pdfproducer	= {},							%% Hersteller, producer of the document
 	baseurl		= {\URL},  %% URL des PDF-Dokuments (oder Hintergrundinformationen)
 %	pdfnewwindow= true,							%% links in new window
 }
 
-\ifthenelse{\equal{\value{Author@ChosenNumber}}{4}}{
-	\hypersetup{pdfcreator={\Typesetter}}
-}{}
+% \ifthenelse{\equal{\value{Author@ChosenNumber}}{4}}{%
+  % \hypersetup{pdfcreator={\Typesetter}}
+% }{}
 
 \endinput

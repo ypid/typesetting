@@ -1,13 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docExtensionsRS}
-  [2012/01/28 v1.00 Erweiterung der Funktionen von Robin Schneider]
+  [2015/02/05 v1.1 document extentions by Robin Schneider]
 
 \RequirePackage{
   declareDocumentVariablesRS,
   pdflscape,
-  sourcefiletable,
+  % sourcefiletable,
   varioref,
-  mfirstuc,
+  % mfirstuc,
 }
 
 %\RequirePackage[abspage,user,lastpage,counter,savepos,titleref]{zref}
@@ -15,12 +15,12 @@
 %\RequirePackage{zref-hyperref}
 %\RequirePackage{titleref}
 
-\attachfilesetup{%
-  author={Robin Schneider},
-  mimetype={application/x-tex},
-  subject={Dies ist eine der Quelldateien aus denen dieses Dokument erzeugt wurde},
-%  description={},
-}
+% \attachfilesetup{%
+  % author={Robin Schneider},
+  % mimetype={application/x-tex},
+  % subject={Dies ist eine der Quelldateien aus denen dieses Dokument erzeugt wurde},
+% %  description={},
+% }
 
 \newcommand{\printendsignature}[1][]{%% Empty line is needed
 
@@ -53,7 +53,7 @@
   \thispagestyle{empty}%
 }
 
-\let\@Appendix\appendix
+\let\@Appendix\appendix\relax
 \renewcommand{\appendix}{%
   \setcounter{sectionsV}{\value{section}}% save section number before \appendix for stats
   \@Appendix%
@@ -65,28 +65,6 @@
 
 
 \RequirePackage{readgitRS}
-\RequirePackage[width=28em,roundnessr=0.5]{progressbar}
-\newcommand{\Statistiken}{%
-  \Calcprogresspromille%
-  \vfill%
-  \ifthenelse{\isundefined\chapter}%
-    {\pdfbookmark[1]{Statistiken}{statistics}\section*{Statistiken}}%
-    {\pdfbookmark[0]{Statistiken}{statistics}\chapter*{Statistiken}}%
-  \ifthenelse{\isundefined\chapter}%
-    {\pdfbookmark[2]{Metainformationen}{metainformationen}\subsection*{Metainformationen}}%
-    {\pdfbookmark[1]{Metainformationen}{metainformationen}\section*{Metainformationen}}%
-  \input{/home/rsadmin/Dokumente/LaTeX/input-document/def-stat-commands}%
-  \fiveIF{\value{ReleaseDate@ChosenNumber}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-1}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-2}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-3}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-2}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-3}}%
-  {}%
-  \ifmyprogressdef{%
-  \hfil Um das Ganze bildlich darzustellen~\dots \\
-  Status:~\progressbar{\myprogresskomma} (verstrichene Zeit) \\}{}
-}
 
 \newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
 \newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \docExtensionsRS@see{#1}}
@@ -124,53 +102,6 @@
 %% Use \addsec
 \newcommand{\sectionStar}[2]{%
   \addsec{#1}%
-}
-
-\newboolean{saveprivacy}
-\setboolean{saveprivacy}{true}
-%% true    not all statistics; is default (privat, privacy)
-%% false  all statistics
-\newcommand{\printgitstatlandscape}[1]{%
-\ifthenelse{\boolean{saveprivacy}}{}{ %% if false
-\oneIF{#1}{\subsubsection*{Produktivste Tageszeit (Tabelle)?}
-  \pdfbookmark[3]{Produktivste Tageszeit (Tabelle)?}{hour_of_day_table}}{}%
-  \hspace{-2cm}%
-  \input{files/git/stats/latex/hour_of_day}%
-%
-\oneIF{#1}{\subsubsection*{Produktivste Tageszeit und Wochentag (Tabelle)?}%
-  \pdfbookmark[3]{Produktivste Tageszeit und Wochentag (Tabelle)?}{hour_of_week_table}}{}%
-  \input{files/git/stats/latex/hour_of_week}%
-}
-%
-\oneIF{#1}{\subsubsection*{Aktivität in den letzten 32 Wochen (Anzahl der commits)?}%
-  \pdfbookmark[3]{Aktivität in den letzten 32 Wochen?}{weekly_activity_dia}}{}%
-  \input{files/git/stats/latex/weekly_activity}%
-}
-
-\newcommand{\printgitstat}[1]{%
-\ifthenelse{\boolean{saveprivacy}}{}{ %% if false
-\oneIF{#1}{\subsubsection*{Produktivste Tageszeit?}%
-  \pdfbookmark[3]{Produktivste Tageszeit?}{hour_of_day}}{}%
-  \includegraphics[width=14cm]{files/git/stats/hour_of_day-crop}%
-%
-\oneIF{#1}{\subsubsection*{Produktivster Wochentag?}
-  \pdfbookmark[3]{Produktivster Wochentag?}{day_of_week}}{}%
-  \includegraphics[width=14cm]{files/git/stats/day_of_week-crop}%
-}
-%
-\oneIF{#1}{\subsubsection*{Produktivster Monat?}%
-  \pdfbookmark[3]{Produktivster Monat?}{month_of_year}}{}%
-  \includegraphics[width=14cm]{files/git/stats/month_of_year-crop}%
-%
-\oneIF{#1}{\subsubsection*{Quellcode Zeilen?}%
-  \pdfbookmark[3]{Quellcode Zeilen?}{lines_of_code}}{}%
-  \includegraphics[width=14cm]{files/git/stats/lines_of_code-crop}%
-%
-\oneIF{#1}{\subsubsection*{Dateitypen?}%
-  \pdfbookmark[3]{Dateitypen?}{dateitypen}}{}%
-  \begin{center}%
-    \input{files/git/stats/latex/files-extensions}%
-  \end{center}%
 }
 
 \newcounter{sectionsV}

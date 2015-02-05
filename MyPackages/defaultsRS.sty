@@ -1,0 +1,57 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{defaultsRS}
+  [2015/02/05 v1.00 Default packages for LuaLaTeX and pdfLaTeX by Robin Schneider]
+
+\RequirePackage[autolanguage]{numprint}
+\npfourdigitnosep%
+
+\RequirePackage{eurosym} %% \EUR{2342,50}
+\let\RawEUR\EUR\relax
+\renewcommand{\EUR}[1]{\RawEUR{\numprint{#1}}}
+
+\RequirePackage{csquotes}
+
+\RequirePackage{romanbar}
+
+\RequirePackage{xcolor}
+%% Farbdefinitionen möglich
+%% Verbraucht Speicher im PDF (211 Byte)
+%\selectcolormodel{cmyk}    %% Aus LaTeX Hacks O'Reilly #16
+%% sorgt dafür, dass alle Farbdefinitionen in der Ausgabedatei dem cmyk-Modell folgen.
+%% Sichtbarer Unterschied …
+
+%% language definition
+\RequirePackage[\languagename]{fnumprint}  %% fnumprint@language
+\RequirePackage{IfconstructsRS}
+\twoIF{\value{fnumprint@language}}{%
+  \input{defaultRS-ngerman.ldf}
+}{%
+  \input{defaultRS-english.ldf}
+}{%
+  \PackageError{docExtensionsRS}{language definition}
+    {I don't know the language you have asked for}
+}
+
+\newcommand{\printlanguage}{%
+\iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{%
+  \iflanguage{english}{Englisch}{%
+  \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
+  }
+}}
+
+%\RequirePackage{linenoWorkaroundRS}
+%% Erzeugt Fehler und wird nur noch temporär eingebunden
+
+
+\let\pagenumberingRaw\pagenumbering\relax%
+\renewcommand{\pagenumbering}[1]{%
+  \pagenumberingRaw{#1}%
+  \ifthenelse{\equal{#1}{Roman}}{%
+    %\renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}% not added by \pageref.
+    \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
+  }{
+    %*{\pagemark}{\thepage}%
+  }
+}
+
+% \RequirePackage{legacyRS}
