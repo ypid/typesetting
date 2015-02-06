@@ -1,13 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docExtensionsRS}
-  [2015/02/05 v1.1 document extentions by Robin Schneider]
+  [2015/02/06 v1.2 document extentions by Robin Schneider]
 
 \RequirePackage{
   declareDocumentVariablesRS,
   pdflscape,
   % sourcefiletable,
   varioref,
-  % mfirstuc,
+  mfirstuc,
+  extensionsRS,
 }
 
 %\RequirePackage[abspage,user,lastpage,counter,savepos,titleref]{zref}
@@ -22,10 +23,16 @@
 % %  description={},
 % }
 
+\newcounter{headpages}
+\newcounter{vorstatpage}
+\newcounter{tablesvorstat}	%% Alternative: \@arabic\c@table
+
 \newcommand{\printendsignature}[1][]{%% Empty line is needed
   \begin{center}
-    \ifthenelse{\( \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4} \) \AND
-    \( \NOT \equal{#1}{without-typesetter} \)}{%
+    \ifthenelse{\(%
+        \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4}
+      \) \AND\( \NOT \equal{#1}{without-typesetter} \)}{%
+
       \Language@SignatureTextWithTypesetter{}
     }{%
       \Language@SignatureText{}
@@ -52,18 +59,9 @@
   \thispagestyle{empty}%
 }
 
-\let\@Appendix\appendix\relax
-\renewcommand{\appendix}{%
-  \setcounter{sectionsV}{\value{section}}% save section number before \appendix for stats
-  \@Appendix%
-}
-
 \providecommand{\mainmatter}{%
   \setcounter{headpages}{\value{page}}\clearpage\pagenumbering{arabic}%
 }
-
-
-\RequirePackage{readgitRS}
 
 \newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
 \newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \docExtensionsRS@see{#1}}
@@ -74,18 +72,17 @@
 \newcommand{\pagediffValue}[2]{%
   \vrefpagenum\firstnum{#1}%
   \vrefpagenum\secondnum{#2}%
-  \ifthenelse{\equal{\secondnum}{}}{
+  \ifthenelse{\equal{\secondnum}{}}{%
     \PackageError{docExtensionsRS}{pagediffValue}
       {something is wrong}
-  }{
+  }{%
     \setcounter{tmp}{\secondnum-\firstnum+1}
   }
 }
 
+%% \footnoteremember {{{
 \RequirePackage{refcount}
-\newcommand{\footnoteremember}[2]{%
-  \footnote{#1\label{foot:#2}}%
-}
+\newcommand{\footnoteremember}[2]{\footnote{#1\label{foot:#2}}}
 \newcommand{\footnoterecall}[1]{%
   \ifthenelse{\equal{\value{page}}{\getpagerefnumber{foot:#1}}}{%
     \hyperref[foot:#1]{\footnotemark[\getrefnumber{foot:#1}]}%
@@ -98,11 +95,11 @@
 %% weil das Label noch auf einer anderen Seite ist.
 %% Die Warnung wird im Paket footmisc weggelassen. \footref
 
+%% }}}
+
 %% Use \addsec
 \newcommand{\sectionStar}[2]{%
   \addsec{#1}%
 }
-
-\newcounter{sectionsV}
 
 \endinput

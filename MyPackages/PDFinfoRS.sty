@@ -4,57 +4,50 @@
 
 \RequirePackage{%
 	declareDocumentVariablesRS,
-	readgitRS,
 	xifthen,
 %	thumbpdf,					%% PDF Thumbnails erstellen
 }
 
-% \RequirePackage[numberlinked]{footnotebackref}
-% Does not work? Did work before …
-
-\ifthenelse{\boolean{@ifCREATEDATE}}{\pdfinfo{/CreationDate(D:\CREATEDATE)/ModDate(D:\pdfdate)}}{}
-
-\ifgitversion{%
-  \newcommand{\PDFinfoRS@version}{\LanguageVersionName: \printversion ~| }
+\@ifpackageloaded{gitinfo2}{%
+  \newcommand{\PDFinfoRS@version}{\LanguageVersionName: \gitAbbrevHash~| }
 }{%
   \newcommand{\PDFinfoRS@version}{}
 }
 
-\ifthenelse{\equal{\LICENSEname}{}}{%
-  \newcommand{\PDFinfoRS@license}{}
+\@ifpackageloaded{doclicense}{%
+  \newcommand{\PDFinfoRS@license}{\doclicense@lang@word@license: \doclicenseName~| }
 }{%
-  \newcommand{\PDFinfoRS@license}{\LanguageLicenceName: \LICENSEname ~| }
+  \newcommand{\PDFinfoRS@license}{}
 }
 
 \ifthenelse{\equal{\SUBJECT}{}}{%
   \newcommand{\PDFinfoRS@subject}{}
+  \newcommand{\PDFinfoRS@title}{\MyTitle}
 }{%
   \newcommand{\PDFinfoRS@subject}{~-- \SUBJECT}
+  \newcommand{\PDFinfoRS@title}{\MyTitle~\PDFinfoRS@subject}
 }
 
+
 \RequirePackage{hyperref}
-\pdfstringdefDisableCommands{\let\Roman@bar\relax}
 \hypersetup{
-%	linktocpage,						%% verlinkt die Seitenzahl und nicht das label
-%	pdfstartpage= {1},					%% Startseite
-	bookmarksnumbered = true,			%% Nummerierung in bookmarks
-%	backref		= true,
-%	unicode		= false,				%% non-Latin characters in Acrobat’s bookmarks
-%	pdftoolbar	= true,					%% show Acrobat’s toolbar?
-%	pdfmenubar	= true,					%% show Acrobat’s menu?
-%	pdffitwindow= false,				%% window fit to page when opened
-%	pdfstartview= {FitH},				%% fits the width of the page to the window
-%	pdfpagemode	= {FullScreen},			%% wie die Datei in Acrobat geöffnet wird
-	pdflang		= {\LanguagePDFLang},	%% pdflang hat noch keinen Effekt?
-	pdftitle	= {\MyAuthor},
-	pdfauthor	= {\MyAuthor},
-	pdfsubject	= {\SUBJECT},
-	pdfkeywords	= {\MyTitle \PDFinfoRS@subject ~| \PDFinfoRS@license \PDFinfoRS@version \MyAuthor},
-	pdfcreator	= {\LanguageSignatureShort},	%% Ersteller, creator of the document
-%	pdfproducer	= {},							%% Hersteller, producer of the document
-	baseurl		= {\URL},  %% URL des PDF-Dokuments (oder Hintergrundinformationen)
-%	pdfnewwindow= true,							%% links in new window
+	bookmarksnumbered = true, %% Nummerierung in bookmarks
+%	pdfstartpage    = {1}, %% Startseite
+%	backref         = true,
+%	unicode         = false, %% non-Latin characters in Acrobat’s bookmarks
+	baseurl         = {\URL},
+	pdflang         = {\LanguagePDFLang},	%% pdflang hat noch keinen Effekt?
+	pdftitle        = {\PDFinfoRS@title},
+	pdfauthor       = {\MyAuthor},
+	pdfsubject      = {\SUBJECT},
+  pdfkeywords     = {\PDFinfoRS@title~| \PDFinfoRS@license \PDFinfoRS@version \MyAuthor},
+	pdfcreator      = {\LanguageSignatureShort},	%% Ersteller, creator of the document
+  pdfcreationdate = {\CREATEDATE},
+  % pdfproducer   = {},
 }
+
+% \RequirePackage{footnotebackref}
+% Does not work? Did work before …
 
 % \ifthenelse{\equal{\value{Author@ChosenNumber}}{4}}{%
   % \hypersetup{pdfcreator={\Typesetter}}

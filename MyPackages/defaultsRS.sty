@@ -19,9 +19,23 @@
 
 \RequirePackage{csquotes}
 
-\RequirePackage{romanbar}
-
-\RequirePackage{metalogo}
+\RequirePackage{
+  romanbar,
+  romanbarpagenumber,
+  metalogo,
+  multicol,    %% \begin{multicols}{2}
+  paralist,    %% besseres enumerate und itemize und neue compactenum/compactitem
+  eqlist,      %% Beschreibungslisten mit gleicher Einrückung
+    %% Es kann auch die labeling Umgebung aus (scrextend) der KOMA-Script Klasse benutzt werden
+    %% Hier muss aber die Breite manuell definiert werden: {\textbf{1990--2000}}
+    %\begin{labeling}[]{\textbf{1990--2000}}
+    %\item[\textbf{1994--2002}] Gymnasium Leipzig
+    %\end{labeling}
+    % USE THIS instead:
+    %\begin{eqlist}
+    %\item[1994--2002]
+    %\end{eqlist}
+}
 
 \RequirePackage{xcolor}
 %% Farbdefinitionen möglich
@@ -51,18 +65,5 @@
 
 %\RequirePackage{linenoWorkaroundRS}
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
-
-
-\let\pagenumberingRaw\pagenumbering\relax%
-\renewcommand{\pagenumbering}[1]{%
-  \pagenumberingRaw{#1}%
-  \ifthenelse{\equal{#1}{Roman}}{%
-    %\renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}% not added by \pageref.
-    % \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
-    %% https://tex.stackexchange.com/questions/120066/pagenumbering-with-romanbar-compatible-to-hyperref
-  }{
-    %*{\pagemark}{\thepage}%
-  }
-}
 
 % \RequirePackage{legacyRS}

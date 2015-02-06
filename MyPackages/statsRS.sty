@@ -4,6 +4,13 @@
 
 %% Mainly some fun stuff and not really useful …
 
+\newcounter{statsRS@sectionNumberBeforeAppendix}
+\let\statsRS@Appendix\appendix\relax
+\renewcommand{\appendix}{%
+  \setcounter{statsRS@sectionNumberBeforeAppendix}{\value{section}}% save section number before \appendix for stats
+  \statsRS@Appendix%
+}
+
 \RequirePackage[width=28em,roundnessr=0.5]{progressbar}
 \newcommand{\Statistiken}{%
   \Calcprogresspromille%

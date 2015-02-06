@@ -4,6 +4,12 @@
 \newcommand{\LanguageClassName}{Klasse}
 \newcommand{\LanguageLicenceName}{Lizenz}
 \newcommand{\LanguageVersionName}{Version}
+\newcommand{\printVersionNote}{%
+  \begin{center}
+    Die Basis für dieses Dokuement stellt die Version \gitAbbrevHash{} vom \gitAuthorDate{} dar.
+  \end{center}
+}
+
 \newcommand{\LanguageGitURLlong}{Der Quellcode für dieses Dokument ist auf GitHub: }
 \newcommand{\LanguageURLlongExtension}{In dieser PDF Datei finden sich auch noch Versionshinweise
 und Statistiken über dieses Dokument.}

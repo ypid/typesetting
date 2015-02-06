@@ -1,85 +1,69 @@
-%% <school/Epochenheft.tex> template 1.4 by Robin `ypid` Schneider <ypid@riseup.net>
+%% <school/Epochenheft.tex> template 1.5 by Robin `ypid` Schneider <ypid@riseup.net>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
-%%% preamble
+%%% preamble {{{
 % \RequirePackage{RequirePackageRS}
 \documentclass[fontsize=12pt]{scrartcl}	%% ,draft,pointednumbers,
+%% Package list {{{
 \usepackage{%
-%	physicsRS,
+    % physicsRS,
     defaultsRS,
     scrartclRS,
-%	literatureRS,
+    % literatureRS,
     % debugRS,
     timeRS,
     graphicRS,
     % mathematicsRS,
-%	SourceCodeRS,
-%	gamesRS,
+    % SourceCodeRS,
+    % gamesRS,
     % layoutRS,
-%	footingRS,
+    % footingRS,
     extensionsRS,
     docExtensionsRS,
     schoolRS,
-%	chemistryRS,
+    % chemistryRS,
 }
+%% }}}
 %% meta information {{{
 \usepackage[grumpy,markifdirty]{gitinfo2}
 \title{Vorlage}
 \author{Robin Schneider}
 \SetCLASS{12}
-% \SetSUBJECT{Epochenheft}
+\SetSUBJECT{Test}
 % %\SetURL{}
-% \choosedefaultlicense%
 \usepackage[
   type={CC},
   modifier={by-nc-sa},
   version={3.0},
 ]{doclicense}
-\SetCREATEDATE{2010}{07}{06}{13}{07}{23}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetCREATEDATE{2010}{07}{06}{13}{07}{23} %% {YYYY}{MM}{DD}{HH}{MM}{SS}
 \SetABGABEDATUM{2}{2011}{05}{23}{1}
 %% }}}
 \usepackage{%
-    schoolPDFinfoRS,
-	% tableRS,
+  schoolPDFinfoRS,
+  % tableRS,
 }
+%% }}}
 \begin{document}
 \frontmatter%
-% \input{titelpages-EpochenheftRS.tex}
-\maketitle
+\input{titelpages-EpochenheftRS.tex}
+% \maketitle
 % % \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
 \tableofcontents
 % %\listoffigures		%% Abbildungsverzeichnis
 % %\listoftables		%% Tabellenverzeichnis
 % %\listoflistings	%% Quellcodeverzeichnis
 
-% \mainmatter%
+\mainmatter%
 %%%%%%%%%%%
 \section{Einführung}
-
-\section{Einführung}
-\subsection{Einführung}
-\subsubsection{Einführung}
-Dies ist eine test für\footnote{test}
-
-\languagename
-
-\printlanguage
-
-\newpage
+\label{sec:einleitung}
+Dies ist eine \MyTitle{} für \SUBJECT{}.\footnote{test}
 
 \appendix
 
 \vfill
 % \printURLlong%
-% \printlicense%
 \doclicenseLicense%
+\printVersionNote%
 \printendsignature%
-% %\ifDraft{
-  % \newpage
-  % \begin{sourcefiletable}{1}
-	% \sourcefile{Hauptdatei}{\jobname.tex}
-% %	\sourcefile{Metainformationen}{files/metainfos.tex}
-% %	\sourcefile{Titelseite}{files/titlepage.tex}
-% %	\sourcefile{Literatur-Datenbank}{files/header/bibliographie.bib}
-  % \end{sourcefiletable}
-% %}{}
 \end{document}
