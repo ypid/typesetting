@@ -23,21 +23,20 @@
 % }
 
 \newcommand{\printendsignature}[1][]{%% Empty line is needed
-
-{ \Centering%
-  \ifthenelse{\( \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4} \) \AND
-  \( \NOT \equal{#1}{without-typesetter} \)}{%
-    \Language@SignatureTextWithTypesetter{}
-  }{%
-    \Language@SignatureText{}
-  }%
-  \Language@SignatureTeX{}
-  \Language@SignatureOS%
-  \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
-    \setcounter{vorstatpage}{\value{page}}%
-    \setcounter{tablesvorstat}{\value{table}}%
-  }.\\
-}%
+  \begin{center}
+    \ifthenelse{\( \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4} \) \AND
+    \( \NOT \equal{#1}{without-typesetter} \)}{%
+      \Language@SignatureTextWithTypesetter{}
+    }{%
+      \Language@SignatureText{}
+    }%
+    \Language@SignatureTeX{}
+    \Language@SignatureOS%
+    \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
+      \setcounter{vorstatpage}{\value{page}}%
+      \setcounter{tablesvorstat}{\value{table}}%
+    }.\\
+  \end{center}
 }
 
 \newcommand{\PrintDefaultTitlepage}{\input{/home/rsadmin/Dokumente/LaTeX/input-document/titelpages/maketitle}}
