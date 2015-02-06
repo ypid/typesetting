@@ -12,11 +12,17 @@ about this document}
 
 \newcommand{\Language@SignatureTextWithTypesetter}{Typesetted by \Typesetter with the typesetting program}
 \newcommand{\Language@SignatureText}{Created with the typesetting program}
-\newcommand{\Language@SignatureTeX}{\href{http://en.wikipedia.org/wiki/LaTeX}{\LaTeXe} on}
 \newcommand{\Language@SignatureOS}{%
 % \href{https://en.wikipedia.org/wiki/Ubuntu_(operating_system)}{Ubuntu}
 \href{https://en.wikipedia.org/wiki/Debian}{Debian}
 \href{https://en.wikipedia.org/wiki/GNU_Project}{GNU}/%
 \href{https://en.wikipedia.org/wiki/Linux}{Linux}%
 }
-\newcommand{\LanguageSignatureShort}{LaTeX on \Language@SignatureOS}
+\ifPDFTeX%
+  \newcommand{\LanguageSignatureShort}{LaTeX on \Language@SignatureOS}
+  \newcommand{\Language@SignatureTeX}{\href{https://en.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
+\fi
+\ifLuaTeX%
+  \newcommand{\LanguageSignatureShort}{LuaLaTeX on \Language@SignatureOS}
+  \newcommand{\Language@SignatureTeX}{\href{https://en.wikipedia.org/wiki/LuaTeX}{\LuaLaTeX} auf}
+\fi

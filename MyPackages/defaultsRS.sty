@@ -2,6 +2,14 @@
 \ProvidesPackage{defaultsRS}
   [2015/02/05 v1.00 Default packages for LuaLaTeX and pdfLaTeX by Robin Schneider]
 
+\RequirePackage{iftex}
+\ifPDFTeX%
+  \RequirePackage{pdflatexDefaultsRS}
+\fi
+\ifLuaTeX%
+  \RequirePackage{lualatexDefaultsRS}
+\fi
+
 \RequirePackage[autolanguage]{numprint}
 \npfourdigitnosep%
 
@@ -12,6 +20,8 @@
 \RequirePackage{csquotes}
 
 \RequirePackage{romanbar}
+
+\RequirePackage{metalogo}
 
 \RequirePackage{xcolor}
 %% Farbdefinitionen möglich
@@ -48,7 +58,8 @@
   \pagenumberingRaw{#1}%
   \ifthenelse{\equal{#1}{Roman}}{%
     %\renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}% not added by \pageref.
-    \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
+    % \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
+    %% https://tex.stackexchange.com/questions/120066/pagenumbering-with-romanbar-compatible-to-hyperref
   }{
     %*{\pagemark}{\thepage}%
   }
