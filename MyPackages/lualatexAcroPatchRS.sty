@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lualatexAcroPatchRS}
+          [2015/02/07 v0.6 acro patch for LuaLaTeX by Robin Schneider]
+
+%% https://bitbucket.org/cgnieder/acro/issue/23/printacronyms-broken-with-current-lualatex
+
+\RequirePackage{iftex}
+\ifLuaTeX%
+  \ExplSyntaxOn%
+    \luatex_if_engine:T{
+        \cs_new_eq:NN
+          \pdftex_strcmp:D
+          \__str_if_eq_x:nn
+      }
+  \ExplSyntaxOff%
+\fi
+
+\endinput
