@@ -6,7 +6,7 @@
 \newcommand{\LanguageVersionName}{Version}
 \newcommand{\printVersionNote}{%
   \begin{center}
-    Die Basis für dieses Dokuement stellt die Version \gitAbbrevHash{} vom \gitAuthorDate{} dar.
+    Die Basis für dieses Dokuement stellt die Version \gitAbbrevHash\gitDirty{} vom \gitAuthorDate{} dar.
   \end{center}
 }
 

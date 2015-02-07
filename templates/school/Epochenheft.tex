@@ -1,8 +1,8 @@
 %% <school/Epochenheft.tex> template 1.5 by Robin `ypid` Schneider <ypid@riseup.net>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
 %%% preamble {{{
-% \RequirePackage{RequirePackageRS}
-\documentclass[fontsize=12pt]{scrartcl}	%% ,draft,pointednumbers,
+\RequirePackage{RequirePackageRS}
+\documentclass[draft]{scrartcl}
 %% Package list {{{
 \usepackage{%
     % physicsRS,
@@ -16,17 +16,20 @@
     % SourceCodeRS,
     % gamesRS,
     % layoutRS,
+    lualatexlayoutRS,
     % footingRS,
     extensionsRS,
     docExtensionsRS,
     schoolRS,
+    authorRS,
     % chemistryRS,
 }
 %% }}}
-%% meta information {{{
+%% Meta information {{{
 \usepackage[grumpy,markifdirty]{gitinfo2}
 \title{Vorlage}
-\author{Robin Schneider}
+\author[*]{Robin Schneider}
+% \affil[*]{\href{}{}}
 \SetCLASS{12}
 \SetSUBJECT{Test}
 % %\SetURL{}

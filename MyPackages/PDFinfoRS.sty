@@ -31,14 +31,17 @@
 
 \RequirePackage{hyperref}
 \hypersetup{
+  final,
 	bookmarksnumbered = true, %% Nummerierung in bookmarks
+  linkbordercolor = LightBlue,
+  % menubordercolor = AliceBlue,
 %	pdfstartpage    = {1}, %% Startseite
 %	backref         = true,
 %	unicode         = false, %% non-Latin characters in Acrobat’s bookmarks
 	baseurl         = {\URL},
 	pdflang         = {\LanguagePDFLang},	%% pdflang hat noch keinen Effekt?
 	pdftitle        = {\PDFinfoRS@title},
-	pdfauthor       = {\MyAuthor},
+  pdfauthor       = {\MyAuthor},
 	pdfsubject      = {\SUBJECT},
   pdfkeywords     = {\PDFinfoRS@title~| \PDFinfoRS@license \PDFinfoRS@version \MyAuthor},
 	pdfcreator      = {\LanguageSignatureShort},	%% Ersteller, creator of the document

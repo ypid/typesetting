@@ -1,14 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{RequirePackageRS}
-          [2012/01/28 v1.00 Pakete die vor der Dokumentklasse geladen werden müssen von Robin Schneider]
+          [2015/02/07 v1.1 Set options are require packages before a documentclass ist set by Robin Schneider]
 
-\RequirePackage[l2tabu,orthodox]{nag}  %% nag überprüft den Text auf veraltete
-                   %% Befehle oder solche, die man nicht in LaTeX verwenden
-                   %% soll -- l2tabu-Checker in LaTeX
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}  %% einbinden der neuen
-                   %% Trennmuster, diese korrigieren einige Fehler der alten
-                   %% und bieten mehr Trennstellen
+% \RequirePackage[l2tabu,orthodox]{nag}  %% nag überprüft den Text auf veraltete
+                   % %% Befehle oder solche, die man nicht in LaTeX verwenden
+                   % %% soll -- l2tabu-Checker in LaTeX
+% \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}  %% einbinden der neuen
+                   % %% Trennmuster, diese korrigieren einige Fehler der alten
+                   % %% und bieten mehr Trennstellen
 
-\RequirePackage{classlist}	%% \MainClassName
+% \RequirePackage{classlist}	%% \MainClassName
+
+\PassOptionsToPackage{svgnames}{xcolor}
+\PassOptionsToPackage{final}{graphicx}
 
 \endinput

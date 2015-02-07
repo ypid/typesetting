@@ -36,6 +36,13 @@
     %\item[1994--2002]
     %\end{eqlist}
 }
+% \let\eqlistinit\relax
+\renewenvironment{description}{%
+  \begin{eqlist}[\def\makelabel##1{\bfseries##1:}\itemsep0em]
+}{%
+  \end{eqlist}
+}
+
 
 \RequirePackage{xcolor}
 %% Farbdefinitionen möglich

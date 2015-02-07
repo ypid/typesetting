@@ -1,0 +1,30 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{authorRS}
+          [2015/02/07 v0.8 Package for dealing with author definition in documents by Robin Schneider]
+
+\RequirePackage{
+  hyperref, %% For \affil[**]{\href{}{}}
+  regexpatch,
+  authblk,
+}
+\renewcommand{\Authand}{ und }
+
+\newcommand{\authorRS@authlist}{new}
+\renewcommand{\MyAuthor}{\authorRS@authlist}%
+
+% Patching \author {{{
+\xapptocmd{\author}{%
+  \ifnum\value{authors}>1
+    \@temptokena=\expandafter{\authorRS@authlist}%
+    \xdef\authorRS@authlist{\the\@temptokena, #2}
+  \else
+    \xdef\authorRS@authlist{#2}
+  \fi
+}
+%% }}}
+
+% \renewcommand{\MyAuthor}{s}%
+%% WTF?? When I uncomment this I get an "LaTeX Error: Missing \begin{document}."
+%% It works above …
+
+\endinput
