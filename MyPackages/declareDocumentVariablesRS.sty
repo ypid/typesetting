@@ -14,14 +14,11 @@
   % auto-pst-pdf,
   % pst-barcode,
   authoraftertitle,
+  regexpatch,
   xstring,
+  authorRS,
+  subjectRS,
   legacyDeclareDocumentVariablesRS,
-}
-
-\newcommand{\SUBJECT}{}
-\newcommand{\SetSUBJECT}[1]{%
-  \renewcommand{\SUBJECT}{#1\xspace}%
-  \ifthenelse{\isnamedefined{subject}}{\subject{\SUBJECT}}{}%
 }
 
 \newcommand{\URL}{}

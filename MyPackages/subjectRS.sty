@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{subjectRS}
+          [2015/02/07 v0.8 Package for dealing with subject definition in documents by Robin Schneider]
+
+\RequirePackage{
+  regexpatch,
+}
+
+\newcommand{\SUBJECT}{}
+\newcommand{\SetSUBJECT}[1]{%
+  \renewcommand{\SUBJECT}{#1\xspace}%
+  \ifthenelse{\isnamedefined{subject}}{\subject{\SUBJECT}}{}%
+}
+
+% Patching \subject {{{
+\xapptocmd{\subject}{%
+  \renewcommand{\SUBJECT}{#1\xspace}
+}
+%% }}}
+
+\endinput
