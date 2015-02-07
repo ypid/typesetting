@@ -2,6 +2,8 @@
 \ProvidesPackage{docExtensionsRS}
   [2015/02/06 v1.2 document extentions by Robin Schneider]
 
+\PassOptionsToPackage{\languagename}{varioref}
+\PassOptionsToPackage{\languagename}{fixme}
 \RequirePackage{
   declareDocumentVariablesRS,
   pdflscape,
@@ -9,7 +11,12 @@
   varioref,
   mfirstuc,
   extensionsRS,
+  fixme,
+  % romanbarpagenumber,
 }
+
+\fxusetheme{colorsig}
+\renewcommand{\germanlistfixmename}{Verzeichnis der Anmerkungen}
 
 %\RequirePackage[abspage,user,lastpage,counter,savepos,titleref]{zref}
 %% Arbeitet leider noch nicht mit hyperref zusammen (Stand 2011-04-10)

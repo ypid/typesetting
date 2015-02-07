@@ -20,8 +20,10 @@
 \RequirePackage{csquotes}
 
 \RequirePackage{
+  amsthm,
+  amssymb,     %% Zusatzsymbole z.B. Square Vartriangle etc
+  textcomp,    %% Symbol z. B. \textdiscount
   romanbar,
-  romanbarpagenumber,
   metalogo,
   multicol,    %% \begin{multicols}{2}
   paralist,    %% besseres enumerate und itemize und neue compactenum/compactitem
@@ -35,6 +37,13 @@
     %\begin{eqlist}
     %\item[1994--2002]
     %\end{eqlist}
+  pdfpages,      %% Einbinden von PDF Seiten aus PDF Dokument
+  ziffer,
+    %% Sorgt dafür das ein Komma in $ ... $ keinen Leerraum mehr erzeugt
+    %% $3,14$ = $3{,}14$
+    %% isonums hat noch Probleme
+    %% icomma bietet auch eine Lösung, genannt in LaTeX Hacks #18
+  cancel,
 }
 % \let\eqlistinit\relax
 \renewenvironment{description}{%

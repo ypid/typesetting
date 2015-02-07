@@ -2,9 +2,12 @@
 \ProvidesPackage{acroUsedShort}
   [2015/02/07 v1.0 Set short version with ac by Robin Schneider]
 
-\AtBeginDocument{%
-  \let\ac\acs%
-  \let\acp\acsp%
-}
+%% https://bitbucket.org/cgnieder/acro/issue/25/always-typeset-the-short-version-only
+\acsetup{first-style=empty}
+
+% \AtBeginDocument{%
+  % \let\ac\acs%
+  % \let\acp\acsp%
+% }
 
 \endinput

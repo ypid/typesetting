@@ -2,7 +2,9 @@
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
 %%% preamble {{{
 \RequirePackage{RequirePackageRS}
-\documentclass[draft]{scrartcl}
+\documentclass[
+  % draft,
+]{scrartcl}
 %% Package list {{{
 \usepackage{%
     % physicsRS,
@@ -50,11 +52,11 @@
 \frontmatter%
 \input{titelpages-EpochenheftRS.tex}
 % \maketitle
-% % \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
+% \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
 \tableofcontents
-% %\listoffigures		%% Abbildungsverzeichnis
-% %\listoftables		%% Tabellenverzeichnis
-% %\listoflistings	%% Quellcodeverzeichnis
+% \listoffigures
+% \listoftables
+% \listoflistings
 
 \mainmatter%
 %%%%%%%%%%%
@@ -66,7 +68,7 @@ Dies ist eine \MyTitle{} für \SUBJECT{}.\footnote{test}
 
 \vfill
 % \printURLlong%
-\doclicenseLicense%
+\doclicenseThis%
 \printVersionNote%
 \printendsignature%
 \end{document}

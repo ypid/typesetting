@@ -48,8 +48,9 @@
 %\RequirePackage{soul}
 %\urlstyle{same}
 
-\ifthenelse{\isundefined\captionsetup}{}
-{\captionsetup{margin=10pt,font=small,labelfont=bf}}
+\ifthenelse{\isundefined\captionsetup}{}{
+  \captionsetup{margin=10pt,font=small,labelfont=bf}
+}
 
 \RequirePackage[left=2cm, right=2cm, top=3cm, bottom=3.5cm]{geometry}
 %% Verschiebt Randnotizen aus der Seite
