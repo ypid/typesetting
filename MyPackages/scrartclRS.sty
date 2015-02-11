@@ -13,4 +13,11 @@
 \RequirePackage[hyphens,obeyspaces,spaces]{url}
 %% hyphens,obeyspaces,spaces geht nicht in scrlttr2
 
+\BeforeTOCHead{%
+  % \cleardoublepage%
+  \edef\@tempa{%
+    \noexpand\pdfbookmark[1]{\list@fname}{\@currext}%
+  }\@tempa
+}
+
 \endinput

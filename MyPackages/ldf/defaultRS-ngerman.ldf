@@ -6,7 +6,14 @@
 \newcommand{\LanguageVersionName}{Version}
 \newcommand{\printVersionNote}{%
   \begin{center}
-    Die Basis für dieses Dokuement stellt die Version \gitAbbrevHash\gitDirty{} vom
+    Die Basis für dieses Dokuement stellt die Version
+    \ifthenelse{\equal{\gitTags}{}}{%
+      \gitAbbrevHash\gitDirty{}
+    }{%
+      \gitTags{}
+      (\gitAbbrevHash\gitDirty)%
+    }
+    vom
     % \displaydate{gitdate}
     \gitAuthorDate{}
     dar.
