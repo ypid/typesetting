@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{statsRS}
+  [2015/02/05 v1.0 More stats by Robin Schneider]
+
+%% Mainly some fun stuff and not really useful …
+
+\newcounter{statsRS@sectionNumberBeforeAppendix}
+\let\statsRS@Appendix\appendix\relax
+\renewcommand{\appendix}{%
+  \setcounter{statsRS@sectionNumberBeforeAppendix}{\value{section}}% save section number before \appendix for stats
+  \statsRS@Appendix%
+}
+
+\RequirePackage[width=28em,roundnessr=0.5]{progressbar}
+\newcommand{\Statistiken}{%
+  \Calcprogresspromille%
+  \vfill%
+  \ifthenelse{\isundefined\chapter}%
+    {\pdfbookmark[1]{Statistiken}{statistics}\section*{Statistiken}}%
+    {\pdfbookmark[0]{Statistiken}{statistics}\chapter*{Statistiken}}%
+  \ifthenelse{\isundefined\chapter}%
+    {\pdfbookmark[2]{Metainformationen}{metainformationen}\subsection*{Metainformationen}}%
+    {\pdfbookmark[1]{Metainformationen}{metainformationen}\section*{Metainformationen}}%
+  \input{/home/rsadmin/Dokumente/LaTeX/input-document/def-stat-commands}%
+  \fiveIF{\value{ReleaseDate@ChosenNumber}}%
+  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-1}}%
+  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-2}}%
+  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-3}}%
+  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-2}}%
+  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/Statistiken-3}}%
+  {}%
+  \ifmyprogressdef{%
+  \hfil Um das Ganze bildlich darzustellen~\dots \\
+  Status:~\progressbar{\myprogresskomma} (verstrichene Zeit) \\}{}
+}
+
+\newboolean{saveprivacy}
+\setboolean{saveprivacy}{true}
+%% true    not all statistics; is default (privat, privacy)
+%% false  all statistics
+\newcommand{\printgitstatlandscape}[1]{%
+\ifthenelse{\boolean{saveprivacy}}{}{ %% if false
+\oneIF{#1}{\subsubsection*{Produktivste Tageszeit (Tabelle)?}
+  \pdfbookmark[3]{Produktivste Tageszeit (Tabelle)?}{hour_of_day_table}}{}%
+  \hspace{-2cm}%
+  \input{files/git/stats/latex/hour_of_day}%
+%
+\oneIF{#1}{\subsubsection*{Produktivste Tageszeit und Wochentag (Tabelle)?}%
+  \pdfbookmark[3]{Produktivste Tageszeit und Wochentag (Tabelle)?}{hour_of_week_table}}{}%
+  \input{files/git/stats/latex/hour_of_week}%
+}
+%
+\oneIF{#1}{\subsubsection*{Aktivität in den letzten 32 Wochen (Anzahl der commits)?}%
+  \pdfbookmark[3]{Aktivität in den letzten 32 Wochen?}{weekly_activity_dia}}{}%
+  \input{files/git/stats/latex/weekly_activity}%
+}
+
+\newcommand{\printgitstat}[1]{%
+\ifthenelse{\boolean{saveprivacy}}{}{%  if false
+\oneIF{#1}{\subsubsection*{Produktivste Tageszeit?}%
+  \pdfbookmark[3]{Produktivste Tageszeit?}{hour_of_day}}{}%
+  \includegraphics[width=14cm]{files/git/stats/hour_of_day-crop}%
+%
+\oneIF{#1}{\subsubsection*{Produktivster Wochentag?}
+  \pdfbookmark[3]{Produktivster Wochentag?}{day_of_week}}{}%
+  \includegraphics[width=14cm]{files/git/stats/day_of_week-crop}%
+}
+%
+\oneIF{#1}{\subsubsection*{Produktivster Monat?}%
+  \pdfbookmark[3]{Produktivster Monat?}{month_of_year}}{}%
+  \includegraphics[width=14cm]{files/git/stats/month_of_year-crop}%
+%
+\oneIF{#1}{\subsubsection*{Quellcode Zeilen?}%
+  \pdfbookmark[3]{Quellcode Zeilen?}{lines_of_code}}{}%
+  \includegraphics[width=14cm]{files/git/stats/lines_of_code-crop}%
+%
+\oneIF{#1}{\subsubsection*{Dateitypen?}%
+  \pdfbookmark[3]{Dateitypen?}{dateitypen}}{}%
+  \begin{center}%
+    \input{files/git/stats/latex/files-extensions}%
+  \end{center}%
+}

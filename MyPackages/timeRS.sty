@@ -1,25 +1,28 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{timeRS}
-  [2011/09/24 v1.00 Pakete um Uhrzeit und Datum anzuzeigen und zu berechnen von Robin Schneider]
+  [2015/02/05 v1.1 Bundle of packages for working with dates and times by Robin Schneider]
 
 %\RequirePackage{scrtime}
-\RequirePackage{isodate}			%% Basics z.B. \today \printdate{...}
-\RequirePackage[nodate]{datetime}	%% only \pdfdate and \currenttime or \the\currentsecond
-\RequirePackage{datenumber}
+% \RequirePackage[\languagename]{isodate}			%% Basics z.B. \today \printdate{...}
+% \newcommand{\printdate}{}
+\RequirePackage{datetime}	%% only \pdfdate and \currenttime or \the\currentsecond
+% \renewcommand{\dateseparator}{-}
+\RequirePackage[\languagename]{datenumber}
 \RequirePackage{calcage}
-\let\CalcAge\calcage
+\let\CalcAge\calcage%
 \RequirePackage{calctime}
 
-\RequirePackage{clock}		% \clocktime \clock{14}{00}
-\ClockStyle=1
-\ClockFramefalse
+% \RequirePackage{clock}		% \clocktime \clock{14}{00}
+% \ClockStyle=1
+% \ClockFramefalse%
 %\bigclockfont			%% Führt zu endlos Schleife
 %% besser \fontsize{60pt}{30pt}\selectfont verwenden
 %% \scalebox{78}{} ...
 
 %% Datum
 \newcommand{\printDate}[3]{%% {jahr}{monat}{tag}
-	\setdatenumber{#1}{#2}{#3}\datedayname , \printdate{#3.#2.#1}%
+	% \setdatenumber{#1}{#2}{#3}\datedayname, \printdate{#3.#2.#1}%
+  \formatdate{#3}{#2}{#1}
 }
 
 \newcommand{\toDay}{\printDate{\the\year}{\the\month}{\the\day}}

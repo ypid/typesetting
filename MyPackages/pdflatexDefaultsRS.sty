@@ -1,0 +1,44 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pdflatexDefaultsRS}
+  [2015/02/05 v1.1 Default packages and configuration by Robin Schneider]
+
+\RequirePackage[utf8]{inputenc}	%% Schriftkodierung
+% If your LaTeX compiler complains about utf8, try utf8x instead.
+
+\RequirePackage[ngerman]{babel} %% \showhyphens{Trennungen} %% sprach Unterstützung
+\RequirePackage{
+  cmap,
+}
+
+\RequirePackage{
+  amsthm,
+  calc,
+%  comment,
+%  soulpos,    %% Unterstreichungen aller Art,
+    %% auch Linien mit zufälligem Zittern
+%  lcd,        %% Setzt Text im Still von LCD Displays
+%  keystroke,  %% Setzt Computer Tasten von Tastaturen \Esc
+  rotating,    %% Text drehen
+  moreverb,      %% erweiterte verbatim Umgebung
+  nicefrac,      %% Darstellung eines Bruchs im Fließtext; Aussehen zB 1/4
+  gensymb,       %% celsius, micro, ohm, perthousand, degree in Mathe und Textmodus
+  %
+%  lastpage,      %% durch totpages ersetzt %% \pageref{LastPage}
+  % fink,          %% The LaTeX2e File Name Keeper \finkpath
+  %
+  stringstrings, %% String manipulation
+    %% \wordcount fail with \section
+}
+
+
+\RequirePackage[normalem]{ulem}  %% Unterstreichungen
+
+\RequirePackage{enumerate}    %% \begin{enumerate}[{Teil }I] oder i,a,A,1
+\newenvironment{itemizewrapper}{\begin{compactitem}}{\end{compactitem}}
+
+\clubpenalty=10000    %% Unendlich
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+
+\endinput

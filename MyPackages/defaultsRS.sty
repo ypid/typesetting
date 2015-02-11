@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{defaultsRS}
+  [2015/02/05 v1.00 Default packages for LuaLaTeX and pdfLaTeX by Robin Schneider]
+
+\RequirePackage{iftex}
+\ifPDFTeX%
+  \RequirePackage{pdflatexDefaultsRS}
+\fi
+\ifLuaTeX%
+  \RequirePackage{lualatexDefaultsRS}
+\fi
+
+\RequirePackage[autolanguage]{numprint}
+\npfourdigitnosep%
+
+\RequirePackage{eurosym} %% \EUR{2342,50}
+\let\RawEUR\EUR\relax
+\renewcommand{\EUR}[1]{\RawEUR{\numprint{#1}}}
+
+\RequirePackage{csquotes}
+
+\RequirePackage{
+  amssymb,     %% Zusatzsymbole z.B. Square Vartriangle etc
+  textcomp,    %% Symbol z. B. \textdiscount
+  fancyvrb,    %% Verbatim environment: http://tex.stackexchange.com/a/14343/32320
+  % verbatim,
+  % spverbatim,
+  romanbar,
+  metalogo,
+  multicol,    %% \begin{multicols}{2}
+  paralist,    %% besseres enumerate und itemize und neue compactenum/compactitem
+  eqlist,      %% Beschreibungslisten mit gleicher Einrückung
+    %% Es kann auch die labeling Umgebung aus (scrextend) der KOMA-Script Klasse benutzt werden
+    %% Hier muss aber die Breite manuell definiert werden: {\textbf{1990--2000}}
+    %\begin{labeling}[]{\textbf{1990--2000}}
+    %\item[\textbf{1994--2002}] Gymnasium Leipzig
+    %\end{labeling}
+    % USE THIS instead:
+    %\begin{eqlist}
+    %\item[1994--2002]
+    %\end{eqlist}
+  pdfpages,      %% Einbinden von PDF Seiten aus PDF Dokument
+  ziffer,
+    %% Sorgt dafür das ein Komma in $ ... $ keinen Leerraum mehr erzeugt
+    %% $3,14$ = $3{,}14$
+    %% isonums hat noch Probleme
+    %% icomma bietet auch eine Lösung, genannt in LaTeX Hacks #18
+  cancel,
+}
+% \let\eqlistinit\relax
+\renewenvironment{description}{%
+  \begin{eqlist}[\def\makelabel##1{\bfseries##1:}\itemsep0em]
+}{%
+  \end{eqlist}
+}
+
+
+\RequirePackage{xcolor}
+%% Farbdefinitionen möglich
+%% Verbraucht Speicher im PDF (211 Byte)
+%\selectcolormodel{cmyk}    %% Aus LaTeX Hacks O'Reilly #16
+%% sorgt dafür, dass alle Farbdefinitionen in der Ausgabedatei dem cmyk-Modell folgen.
+%% Sichtbarer Unterschied …
+
+%% language definition
+\RequirePackage[\languagename]{fnumprint}  %% fnumprint@language
+\RequirePackage{IfconstructsRS}
+\twoIF{\value{fnumprint@language}}{%
+  \input{defaultRS-ngerman.ldf}
+}{%
+  \input{defaultRS-english.ldf}
+}{%
+  \PackageError{docExtensionsRS}{language definition}
+    {I don't know the language you have asked for}
+}
+
+\newcommand{\printlanguage}{%
+\iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{%
+  \iflanguage{english}{Englisch}{%
+  \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
+  }
+}}
+
+%\RequirePackage{linenoWorkaroundRS}
+%% Erzeugt Fehler und wird nur noch temporär eingebunden
+
+% \RequirePackage{legacyRS}

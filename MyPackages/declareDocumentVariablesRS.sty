@@ -1,84 +1,24 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{declareDocumentVariablesRS}
-          [2013/06/23 v1.01 packages for declaring document variables by Robin Schneider]
+          [2015/02/05 v1.1 Packages for declaring document variables by Robin Schneider]
+
 \newcommand{\Typesetter}{\href{https://ypid.wordpress.com/}{Robin Schneider}\xspace}
 % \publishers{\Typesetter}
 
-\RequirePackage{
+\RequirePackage{%
   xifthen,
   IfconstructsRS,
   timeRS,
   xspace,
   ccicons,
-  auto-pst-pdf,
-  pst-barcode,
+  % auto-pst-pdf,
+  % pst-barcode,
   authoraftertitle,
+  regexpatch,
   xstring,
-}
-
-\newcommand{\choosedefaultlicense}{\SetLICENSE{CreativeCommons/by-nc-sa}{0}}
-
-\newcommand{\LICENSE}{}    %% The command must exist
-\newcommand{\LICENSEname}{} %% The command must exist
-\newcommand{\SetLICENSE}[3][]{
-  \newcounter{LICENSEadd}
-  \setcounter{LICENSEadd}{#3}
-  \renewcommand{\LICENSE}{#2}
-  \ifthenelse{\isempty{#1}}{
-    \ifthenelse{\equal{#2}{CreativeCommons/by-nc-sa}}{
-      \renewcommand{\LICENSEname}{Creative Commons BY-NC-SA}
-    }{
-      \PackageError{declareDocumentVariablesRS}{Unknown parameter}%
-        {The parameter "#2" is unknown}
-    }
-  }{  \renewcommand{\LICENSEname}{#1}
-  }
-}
-\newcommand{\licenseadd}{\IfCounterOne{LICENSEadd}{ größtenteils\xspace}{\xspace}}
-
-%\newboolean{licensetext}
-%\setboolean{licensetext}{true}
-\newboolean{licenseNameDate}
-\setboolean{licenseNameDate}{true}
-
-\newcommand{\printlicense}{%
-  \ifthenelse{\equal{\LICENSE}{}}{}%
-    {\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE}}%
-}
-
-\newcommand{\printlicenseicons}{%
-  \ifthenelse{\equal{\LICENSE}{CreativeCommons/by-nc-nd}}{%
-    \ccbyncndeu%
-  }{%
-    \ifthenelse{\equal{\LICENSE}{CreativeCommons/by-nc-sa}}{%
-      \ccbyncsaeu%
-    }{%
-%      \PackageError{docExtensionsRS}{printlicenseicons}%
-%        {something went wrong}%
-% Falls %\choosedefaultlicense
-    }%
-  }%
-\xspace%
-}
-
-\newcommand{\printshortlicense}{%
-  \ifthenelse{\equal{\LICENSE}{}}{\textdiscount}%
-    {\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE-url}}%
-}
-
-\newcommand{\printshortlicensename}{%
-  \ifthenelse{\equal{\LICENSE}{}}{Keine}%
-  {\ifthenelse{\equal{\LICENSEname}{}}%
-  {\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\LICENSE-name}}%
-  {\LICENSEname}}%
-}
-
-\newcommand{\SetTITEL}[1]{\title{#1\xspace}}
-\newcommand{\TITEL}{\MyTitle}
-\newcommand{\SUBJECT}{}
-\newcommand{\SetSUBJECT}[1]{%
-  \renewcommand{\SUBJECT}{#1\xspace}%
-  \ifthenelse{\isnamedefined{subject}}{\subject{\SUBJECT}}{}%
+  authorRS,
+  subjectRS,
+  legacyDeclareDocumentVariablesRS,
 }
 
 \newcommand{\URL}{}
@@ -122,6 +62,7 @@
   }%
 }
 
+%% Create date {{{
 \newboolean{@ifCREATEDATE}
 \newcommand{\SetCREATEDATE}[7][]{
   \ifthenelse{\equal{#1}{usecurrent}}{
@@ -152,10 +93,12 @@
     \setboolean{@ifCREATEDATE}{true}
   }
 }
+%% }}}
 
-\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
+%% Author {{{
 \newcommand{\AUTHOR}{\MyAuthor}
-\newcommand{\SetAUTHOR}[2]{
+\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
+\newcommand{\SetAUTHOR}[2]{%
   \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
   \setcounter{Author@ChosenNumber}{#1}%% if #1 == 4
   \threeIF{#1}{\author{\Typesetter}}
@@ -163,7 +106,9 @@
     {\author{Name nicht Definiert\xspace}}
     {\author{#2\xspace}}  %% if #1 == 4
 }
+%% }}}
 
+%% Release date {{{
 \newcommand{\ABGABEDATUM}{\MyDate}
 \newcommand{\SetABGABEDATUM}[5]{
   \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
@@ -176,16 +121,18 @@
   \sixIF{#1}{ %% if #1 == 1
       \date{\today}
     }{ %% if #1 == 2
-      \date{vorgelegt am: \printdate{#4.#3.#2}}
+      % \date{vorgelegt am: \printdate{#4.#3.#2}}
+      \date{vorgelegt am: \formatdate{#4}{#3}{#2}}
       \newcommand{\ABGABETag}{#4}
       \newcommand{\ABGABEMonat}{#3}
       \newcommand{\ABGABEJahr}{#2}
     }{ %% if #1 == 3
       \newcounter{ReleaseDate@DaysUntilDate}
       \setcounter{ReleaseDate@DaysUntilDate}{#5}
-      \date{vorgelegt am: \dateNday{#5}}
+      % \date{vorgelegt am: \dateNday{#5}}
     }{ %% if #1 == 4
-      \date{\printdate{#4.#3.#2}}
+      % \date{\printdate{#4.#3.#2}}
+      \date{vorgelegt am: \formatdate{#4}{#3}{#2}}
       \newcommand{\ABGABETag}{#4}
       \newcommand{\ABGABEMonat}{#3}
       \newcommand{\ABGABEJahr}{#2}
@@ -197,5 +144,6 @@
       \date{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
     }{\PackageError{\@currname}{Unknown parameter}}
 }
+%% }}}
 
 \endinput

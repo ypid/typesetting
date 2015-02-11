@@ -1,11 +1,24 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tableRS}
-  [2013/06/29 v1.01 Default settings for tables by Robin Schneider]
+  [2015/02/07 v1.2 Default settings for tables by Robin Schneider]
 
 \RequirePackage{
   tabu,
+  csvsimple,
+  % datatool,
+  % pgfplotstable,
   ltxtable,  %% longtable und tabularx vereint in einer Tabelle, lädt beide
     %% Sollte nach hyperref geladen werden um footnote Verlinkung zu ermöglichen
+  booktabs,
+  array, %% https://tex.stackexchange.com/questions/64815/longtable-in-latex-too-wide
+}
+
+\@ifpackageloaded{datatool}{%
+  \renewcommand{\dtldisplaystarttab}{\toprule}
+
+  % likewise for \midrule and \bottomrule from booktabs
+  \renewcommand{\dtldisplayafterhead}{\midrule}
+  \renewcommand{\dtldisplayendtab}{\\\bottomrule}
 }
 
 \RequirePackage{

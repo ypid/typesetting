@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# @author Robin Schneider <ypid23@aol.de>
+# @author Robin Schneider <ypid@riseup.net>
 # @licence GPLv3+ <http://www.gnu.org/licenses/gpl.html>
 
 # Modules and pragmas {{{
@@ -321,7 +321,7 @@ landscape page.
 
 =head1 Author
 
-Robin Schneider <ypid23@aol.de>
+Robin Schneider <ypid@riseup.net>
 
 =head1 Development
 

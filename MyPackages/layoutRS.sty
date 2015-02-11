@@ -29,7 +29,7 @@
 %\RequirePackage{courier}
 
 %\RequirePackage[osf]{libertine}
-\RequirePackage{lmodern}			%% skalierbare Schriftfamilie "Latin Modern"
+% \RequirePackage{lmodern}			%% skalierbare Schriftfamilie "Latin Modern"
 %\RequirePackage{charter}
 
 \usepackage[varumlaut]{yfonts}		%% LaTeX Hacks O'Reilly #68
@@ -48,8 +48,9 @@
 %\RequirePackage{soul}
 %\urlstyle{same}
 
-\ifthenelse{\isundefined\captionsetup}{}
-{\captionsetup{margin=10pt,font=small,labelfont=bf}}
+\ifthenelse{\isundefined\captionsetup}{}{
+  \captionsetup{margin=10pt,font=small,labelfont=bf}
+}
 
 \RequirePackage[left=2cm, right=2cm, top=3cm, bottom=3.5cm]{geometry}
 %% Verschiebt Randnotizen aus der Seite

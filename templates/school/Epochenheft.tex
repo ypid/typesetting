@@ -1,86 +1,74 @@
-%% <school/Epochenheft.tex> template 1.3.1 by Robin `ypid` Schneider <ypid23@aol.de>
+%% <school/Epochenheft.tex> template 1.5 by Robin `ypid` Schneider <ypid@riseup.net>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
-%%% preamble
-%\RequirePackage{snapshot}		%% \jobname.dep
-%\listfiles %% listfiles to logfile
+%%% preamble {{{
 \RequirePackage{RequirePackageRS}
-\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft,pointednumbers,
-\usepackage{
-%	physicsRS,
-	scrartclRS,
-	defaultRS,
-%	literatureRS,
-%	debugRS,
-	timeRS,
-	graphicRS,
-%	mathematicsRS,
-%	SourceCodeRS,
-%	gamesRS,
-	layoutRS,
-%	footingRS,
-	extensionsRS,
-	docExtensionsRS,
-	schoolRS,
-%	chemistryRS,
+\documentclass[
+  % draft,
+]{scrartcl}
+%% Package list {{{
+\usepackage{%
+    % physicsRS,
+    defaultsRS,
+    scrartclRS,
+    % literatureRS,
+    % debugRS,
+    timeRS,
+    graphicRS,
+    % mathematicsRS,
+    % SourceCodeRS,
+    % gamesRS,
+    % layoutRS,
+    lualatexlayoutRS,
+    % footingRS,
+    extensionsRS,
+    docExtensionsRS,
+    schoolRS,
+    % chemistryRS,
 }
-%% specific indications
-\readgitstat{2}
-%\readgitstat{7}
-\SetTITEL{Vorlage}
-\SetAUTHOR{1}{}
+%% }}}
+%% Meta information {{{
+\usepackage[grumpy,markifdirty]{gitinfo2}
+\title{Vorlage}
+\subject{Test}
+% \subtitle{}
+\author[*]{Robin Schneider}
+% \affil[*]{\href{}{}}
 \SetCLASS{12}
-\SetSUBJECT{Epochenheft}
-%\SetURL{}
-\choosedefaultlicense
-\SetCREATEDATE{2010}{07}{06}{13}{07}{23}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+% %\SetURL{}
+\usepackage[
+  type={CC},
+  modifier={by-nc-sa},
+  version={3.0},
+]{doclicense}
+\SetCREATEDATE{2010}{07}{06}{13}{07}{23} %% {YYYY}{MM}{DD}{HH}{MM}{SS}
 \SetABGABEDATUM{2}{2011}{05}{23}{1}
-\usepackage{
-	schoolPDFinfoRS,
-	tableRS,
+%% }}}
+\usepackage{%
+  schoolPDFinfoRS,
+  % tableRS,
 }
-\SetDraft{on}
+%% }}}
 \begin{document}
-\frontmatter
+\frontmatter%
 \input{titelpages-EpochenheftRS.tex}
-\newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
-\tableofcontents	%% Inhaltsverzeichnis
-%\listoffigures		%% Abbildungsverzeichnis
-%\listoftables		%% Tabellenverzeichnis
-%\listoflistings	%% Quellcodeverzeichnis
+% \maketitle
+% \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
+\tableofcontents
+% \listoffigures
+% \listoftables
+% \listoflistings
 
-\mainmatter
+\mainmatter%
 %%%%%%%%%%%
 \section{Einführung}
 \label{sec:einleitung}
-Dies ist eine \TITEL für \SUBJECT{}
+Dies ist eine \MyTitle{} für \SUBJECT{}.\footnote{test}
 
 \appendix
 
 \vfill
-\printURLlong
-\printlicense
-\printendsignature
-%\ifDraft{
-  \newpage\Statistiken
-  Status:~\progressbar{.00} (eigenes Ermessen)
-  \newpage
-  \begin{sourcefiletable}{1}
-	\sourcefile{Hauptdatei}{\jobname.tex}
-%	\sourcefile{Metainformationen}{files/metainfos.tex}
-%	\sourcefile{Titelseite}{files/titlepage.tex}
-%	\sourcefile{Literatur-Datenbank}{files/header/bibliographie.bib}
-  \end{sourcefiletable}
-%}{}
-%\ifDraft{
-%  \begin{landscape}
-%	\pagestyle{empty}
-%	\printVersionNotes
-%	\printgitstatlandscape{1}
-%  \end{landscape}
-%	\printgitstat{1}
-%	\subsubsection*{Dateien?}
-%	\pdfbookmark[3]{Dateien?}{files_by_date}
-%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
-%	\listoffixmes
-%}{}
+% \printURLlong%
+\doclicenseThis%
+\printVersionNote%
+\printendsignature%
 \end{document}

@@ -4,6 +4,22 @@
 \newcommand{\LanguageClassName}{Klasse}
 \newcommand{\LanguageLicenceName}{Lizenz}
 \newcommand{\LanguageVersionName}{Version}
+\newcommand{\printVersionNote}{%
+  \begin{center}
+    Die Basis für dieses Dokuement stellt die Version
+    \ifthenelse{\equal{\gitTags}{}}{%
+      \gitAbbrevHash\gitDirty{}
+    }{%
+      \gitTags{}
+      (\gitAbbrevHash\gitDirty)%
+    }
+    vom
+    % \displaydate{gitdate}
+    \gitAuthorDate{}
+    dar.
+  \end{center}
+}
+
 \newcommand{\LanguageGitURLlong}{Der Quellcode für dieses Dokument ist auf GitHub: }
 \newcommand{\LanguageURLlongExtension}{In dieser PDF Datei finden sich auch noch Versionshinweise
 und Statistiken über dieses Dokument.}
@@ -12,11 +28,17 @@ und Statistiken über dieses Dokument.}
 
 \newcommand{\Language@SignatureTextWithTypesetter}{Gesetzt von \Typesetter mit dem Textsatzsystem}
 \newcommand{\Language@SignatureText}{Erstellt mit dem Textsatzsystem}
-\newcommand{\Language@SignatureTeX}{\href{http://de.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
 \newcommand{\Language@SignatureOS}{%
 % \href{https://de.wikipedia.org/wiki/Ubuntu}{Ubuntu}
 \href{https://de.wikipedia.org/wiki/Debian}{Debian}
 \href{https://de.wikipedia.org/wiki/GNU-Projekt}{GNU}/%
 \href{https://de.wikipedia.org/wiki/Linux}{Linux}%
 }
-\newcommand{\LanguageSignatureShort}{LaTeX auf \Language@SignatureOS}
+\ifPDFTeX%
+  \newcommand{\LanguageSignatureShort}{LaTeX auf \Language@SignatureOS}
+  \newcommand{\Language@SignatureTeX}{\href{https://de.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
+\fi
+\ifLuaTeX%
+  \newcommand{\LanguageSignatureShort}{LuaLaTeX auf \Language@SignatureOS}
+  \newcommand{\Language@SignatureTeX}{\href{https://de.wikipedia.org/wiki/LuaTeX}{\LuaLaTeX} auf}
+\fi
