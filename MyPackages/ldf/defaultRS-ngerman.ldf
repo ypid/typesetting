@@ -4,11 +4,13 @@
 \newcommand{\LanguageClassName}{Klasse}
 \newcommand{\LanguageLicenceName}{Lizenz}
 \newcommand{\LanguageVersionName}{Version}
+
+% I know about notags={},
 \newcommand{\printVersionNote}{%
   \begin{center}
     Die Basis für dieses Dokuement stellt die Version
-    \ifthenelse{\equal{\gitTags}{}}{%
-      \gitAbbrevHash\gitDirty{}
+    \ifthenelse{\equal{\gitTags}{(None)}}{%
+      \gitAbbrevHash\gitDirty\xspace
     }{%
       \gitTags{}
       (\gitAbbrevHash\gitDirty)%

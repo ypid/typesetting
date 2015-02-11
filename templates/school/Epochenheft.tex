@@ -17,8 +17,7 @@
     % mathematicsRS,
     % SourceCodeRS,
     % gamesRS,
-    % layoutRS,
-    lualatexlayoutRS,
+    layoutRS,
     % footingRS,
     extensionsRS,
     docExtensionsRS,
@@ -27,7 +26,12 @@
 }
 %% }}}
 %% Meta information {{{
-\usepackage[grumpy,markifdirty]{gitinfo2}
+\usepackage[
+  grumpy,
+  dirty={* },
+  % markifdirty,
+]{gitinfo2}
+
 \title{Vorlage}
 \subject{Test}
 % \subtitle{}
@@ -49,17 +53,18 @@
 }
 %% }}}
 \begin{document}
-\frontmatter%
-\input{titelpages-EpochenheftRS.tex}
-% \maketitle
-% \newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
-\tableofcontents
-% \listoffigures
-% \listoftables
-% \listoflistings
+%% Front matter {{{
+\maketitle
+\tableofcontents%
+% \newpage
+% \listoffigures%
+% \listoftables%
+% \listoflistings%
+
+% \listoffixmes%
 
 \mainmatter%
-%%%%%%%%%%%
+%%%%%%%%%%% }}}
 \section{Einführung}
 \label{sec:einleitung}
 Dies ist eine \MyTitle{} für \SUBJECT{}.\footnote{test}

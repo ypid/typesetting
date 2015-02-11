@@ -11,6 +11,7 @@
   varioref,
   mfirstuc,
   extensionsRS,
+  maketitleRS,
   fixme,
   % romanbarpagenumber,
 }
@@ -56,8 +57,7 @@
 \newcommand{\PrintDefaultTitlepage}{\input{/home/rsadmin/Dokumente/LaTeX/input-document/titelpages/maketitle}}
 
 \providecommand{\frontmatter}{%
-  \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\pagenumbering{Roman}%
-  \thispagestyle{empty}%
+  % see maketitleRS
 }
 
 \newcommand{\MakeTitle}{%
@@ -67,7 +67,9 @@
 }
 
 \providecommand{\mainmatter}{%
-  \setcounter{headpages}{\value{page}}\clearpage\pagenumbering{arabic}%
+  \setcounter{headpages}{\value{page}}%
+  \clearpage%
+  \pagenumbering{arabic}%
 }
 
 \newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}

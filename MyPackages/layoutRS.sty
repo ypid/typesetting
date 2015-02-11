@@ -1,58 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{layoutRS}
-          [2011/09/24 v1.00 Pakete und Einstellungen die sich auf das Aussehen auswirken von Robin Schneider]
+          [2015/02/11 v0.8 Settings for layout by Robin Schneider]
 
-%% Dieses Paket kann auch durch wordlike ersetzt werden ...
-%% Fragt sich nur wer das will
-
-%\stepcounter{secnumdepth}{5}
-%\stepcounter{tocdepth}
-
-%\KOMAoptions{parskip=half}
-\setlength{\parindent}{0pt}		%% Absatzeinzug
-\setlength{\parskip}{1ex}		%% Durchschuss	%% Sollte nicht manuell geändert werden
-\RequirePackage[onehalfspacing]{setspace}	%% Zeilenabstand festlegen
-%\RequirePackage{titlesec}
-%\titlespacing{name=\section,numberless}{\parindent}{1.3em}{0.5em}
-%\titlespacing{name=\subsection,numberless}{\parindent}{1.1em}{0.3em}
-
-%\renewcommand{\l@subsection}{\@dottedtocline{2}{1.5em}{2.8em}}
-%\renewcommand{\l@subsubsection}{\@dottedtocline{3}{4.3em}{3.6em}}
-%% http://lyx.475766.n2.nabble.com/spacing-for-list-of-tables-td476773.html
-
-%% Verhindert Einrückung bei subsubsection????
-
-\hyphenpenalty=1000
-%%
-%\RequirePackage{mathptmx}
-%\RequirePackage[scaled=.92]{helvet}
-%\RequirePackage{courier}
-
-%\RequirePackage[osf]{libertine}
-% \RequirePackage{lmodern}			%% skalierbare Schriftfamilie "Latin Modern"
-%\RequirePackage{charter}
-
-\usepackage[varumlaut]{yfonts}		%% LaTeX Hacks O'Reilly #68
-
-%%
-\RequirePackage{ellipsis}			%% Korrigiert den Weißraum um Auslassungspunkte
-\RequirePackage{ragged2e}			%% Ermöglicht Flattersatz mit Silbentrennung
-\RequirePackage{marginnote}			%% Für bessere Randnotizen mit \marginnote statt \marginline
-\RequirePackage{fixltx2e}			%% Verbessert einige Kernkompetenzen von LaTeX2e
-\RequirePackage[tracking=true]{microtype}			%% Verbessert Textsatz
-\DeclareMicrotypeSet*[tracking]{my}{font=*/*/*/sc/*}
-\SetTracking{encoding=*,shape=sc}{45}% Hier wird festgelegt,
-            % dass alle Passagen in Kapitälchen automatisch leicht
-            % gesperrt werden. Das Paket soul, das ich früher empfohlen
-            % habe ist damit für diese Zwecke nicht mehr nötig.
-%\RequirePackage{soul}
-%\urlstyle{same}
-
-\ifthenelse{\isundefined\captionsetup}{}{
-  \captionsetup{margin=10pt,font=small,labelfont=bf}
+\KOMAoptions{
+  fontsize = 12pt,
+  parskip  = half,
+  DIV      = 15,
+  % DIV      = default,
 }
 
-\RequirePackage[left=2cm, right=2cm, top=3cm, bottom=3.5cm]{geometry}
-%% Verschiebt Randnotizen aus der Seite
+\RequirePackage[
+  tracking=true,
+]{microtype}
 
 \endinput
