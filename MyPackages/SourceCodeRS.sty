@@ -25,12 +25,25 @@
 %}
 %\end{lstlisting}
 
-\newcommand{\mintedDefault}{linenos,baselinestretch=0.8}
 \RequirePackage{
   minted,
+  listings,
   tcolorbox,
   etoolbox,
 }
+
+%% Set default for minted. Does not work
+\newcommand{\mintedDefault}{linenos,baselinestretch=0.8}
+
+\newcommand{\mintedDefaultRS}[3][]{%
+  \inputminted[
+    baselinestretch=0.7,
+    linenos,
+    firstnumber=auto,
+    #1
+  ]{#2}{#3}
+}
+
 \BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
 \AfterEndEnvironment{minted}{\end{tcolorbox}}%
 %\usemintedstyle{
@@ -51,8 +64,8 @@
 % \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
 % \renewcommand{\lstlistingname}{Quellcode}
 % \renewcommand{\listoflistingscaption}{Verzeichnis der Konfigurations- und Quellcodeauszüge}
-\renewcommand{\listoflistingscaption}{Quellcodeverzeichnis}
 % \renewcommand{\listingscaption}{Konfigurations- und Quellcodeauszug}
+\renewcommand{\listoflistingscaption}{Quellcodeverzeichnis}
 \renewcommand{\listingscaption}{Quellcode}
 
 
