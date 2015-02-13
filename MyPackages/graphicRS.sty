@@ -2,8 +2,14 @@
 \ProvidesPackage{graphicRS}
           [2011/09/24 v1.00 Pakete um Grafiken erstellen und einbinden zu können von Robin Schneider]
 
+\RequirePackage{
+  etoolbox,
+}
+
 \setlength{\unitlength}{1mm}	%% Definiert die in der picture-Umgebung verwendete Masseinheit
+
 \RequirePackage{graphicx}
+
 %% trim=l b r t 	This option will crop the imported image by l from the left, b from the bottom, r from the right, and t
 %% from the top. Where l, b, r and t are lengths.
 %% width=0.7\hsize
@@ -17,12 +23,19 @@
 \definecolor{niceblue}{HTML}{92dcec}			%% Benutzt für Kuchendiagramm
 %\RequirePackage{overpic}       %% Annotieren von Bildern
 
-%\RequirePackage{subcaption}		%% Unterbilder
-%\RequirePackage{subfigure}
-\RequirePackage{tikz}			%% Verbraucht Speicher im PDF (211 Byte)
-%\usetikzlibrary{shadows}	%% Verbraucht Speicher im PDF (331 Byte)
+\RequirePackage{
+  scalebar, %% Erzeugt Maßstäbe für Karten, Diagramme oder Fotos
+  % progressbar,
+  % picinpar,
+  % subfigure,
+  % subcaption, %% Unterbilder
+}
 
-%\RequirePackage{scalebar}		%% Erzeugt Maßstäbe für Karten, Diagramme oder Fotos
+% \AtEndPreamble{
+  % \RequirePackage{
+    % hypcap,
+  % }
+% }
 
 \RequirePackage[
   % skip=-0.1ex,
@@ -31,26 +44,32 @@
 	\renewcommand{\figurename}{Abb.}%
 	\renewcommand{\tablename}{Tab.}%
 }
-%\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
-%\@addtoreset{figure}{section}
-\RequirePackage{float}			%%
-%\floatstyle{boxed}			%% Erzeugt eine Box um das Bild
-%\floatstyle{ruled}			%% Erzeugt eine Box Horizontale Linien und caption vor dem Bild
-%\floatstyle{plaintop}		%% Caption vor dem Bild
-%\restylefloat{figure}		%% Notwendig um \floatstyle für das gesamte Dokument anzuwenden
-\newenvironment{figurewrapper}{\begin{figure}[hbt]\centering}{\end{figure}%
-%\stepcounter{figure}		%% ging Führer ohne einen extra stepcounter...
-}
+
+%% tikz {{{
+\RequirePackage{tikz} %% Verbraucht Speicher im PDF (211 Byte)%
+%\usetikzlibrary{shadows}	%% Verbraucht Speicher im PDF (331 Byte)
 
 \usetikzlibrary{fadings}		%% for: fading=south
 \newcommand{\spiegelschrift}[2]{
-\node[at={(0,0)},text=bleu]{\bfseries #1};
-\node[at={(0,#2)},above,yscale=-1,scope fading=south,
-opacity=0.5,text=bleu]{\bfseries #1};
+  \node[at={(0,0)},text=bleu]{\bfseries #1};
+  \node[at={(0,#2)},above,yscale=-1,scope fading=south,
+    opacity=0.5,text=bleu]{\bfseries #1};
 }
+%% }}}
 
-%\RequirePackage{progressbar}
+%\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+%\@addtoreset{figure}{section}
+% \RequirePackage{float}			%%
+% \floatstyle{boxed}			%% Erzeugt eine Box um das Bild
+% \floatstyle{ruled}			%% Erzeugt eine Box Horizontale Linien und caption vor dem Bild
+%\floatstyle{plaintop}		%% Caption vor dem Bild
+% \restylefloat{figure}		%% Notwendig um \floatstyle für das gesamte Dokument anzuwenden
 
-%\RequirePackage{picinpar}
+\newenvironment{figurewrapper}{%
+  \begin{figure}[hbt]
+    \centering%
+}{%
+  \end{figure}%
+}
 
 \endinput

@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{PDFinfoRS}
-          [2015/02/05 v1.1 PDF optimization by Robin Schneider]
+          [2015/02/13 v1.2 PDF optimization by Robin Schneider]
 
 \RequirePackage{%
 	declareDocumentVariablesRS,
@@ -29,7 +29,10 @@
 }
 
 
-\RequirePackage{hyperref}
+\RequirePackage{
+  hyperxmp,
+  hyperref,
+}
 \hypersetup{
   final,
 	bookmarksnumbered = true, %% Nummerierung in bookmarks

@@ -6,6 +6,10 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage[babelshorthands=true]{german}
 
-\PackageWarning{lualatexDefaultsRS}{Don't use LuaLaTeX for production yet. It had some problems with Unicode in PDF bookmarks.}
+\AtEndDocument{%
+  \PackageWarning{lualatexDefaultsRS}{%
+    Don't use LuaLaTeX for production yet. It had some problems with Unicode in PDF bookmarks.
+  }
+}
 
 \endinput

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{docExtensionsRS}
+\ProvidesPackage{maketitleRS}
   [2015/02/11 v1.0 maketitle modifications by Robin Schneider]
 
 \RequirePackage{
@@ -7,7 +7,7 @@
 }
 
 % Patching \maketitle {{{
-\xpretocmd{\maketitle}{%
+\xapptocmd{\maketitle}{%
   \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}%
   \label{sec:titlepage}%
   \pagenumbering{Roman}%
