@@ -10,8 +10,21 @@
   \RequirePackage{lualatexDefaultsRS}
 \fi
 
+\RequirePackage{xcolor}
+%% Farbdefinitionen möglich
+%% Verbraucht Speicher im PDF (211 Byte)
+%\selectcolormodel{cmyk}    %% Aus LaTeX Hacks O'Reilly #16
+%% sorgt dafür, dass alle Farbdefinitionen in der Ausgabedatei dem cmyk-Modell folgen.
+%% Sichtbarer Unterschied …
+
+\RequirePackage[
+  prefix={sol-}
+]{xcolor-solarized}
+
 \RequirePackage[autolanguage]{numprint}
-\npfourdigitnosep%
+% \npfourdigitnosep% %% If set in a table it looks ugly when you have numbers with 4 digits and more than 4 digits following each other.
+
+\RequirePackage{mathPatchesRS}
 
 \RequirePackage{eurosym} %% \EUR{2342,50}
 \let\RawEUR\EUR\relax
@@ -55,13 +68,6 @@
 }
 
 
-\RequirePackage{xcolor}
-%% Farbdefinitionen möglich
-%% Verbraucht Speicher im PDF (211 Byte)
-%\selectcolormodel{cmyk}    %% Aus LaTeX Hacks O'Reilly #16
-%% sorgt dafür, dass alle Farbdefinitionen in der Ausgabedatei dem cmyk-Modell folgen.
-%% Sichtbarer Unterschied …
-
 %% language definition
 \RequirePackage[\languagename]{fnumprint}  %% fnumprint@language
 \RequirePackage{IfconstructsRS}
@@ -85,3 +91,5 @@
 %% Erzeugt Fehler und wird nur noch temporär eingebunden
 
 % \RequirePackage{legacyRS}
+
+\endinput

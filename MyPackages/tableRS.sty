@@ -15,6 +15,7 @@
   % footnote,
 }
 % \makesavenoteenv{table}
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
 
 \@ifpackageloaded{datatool}{%
   \renewcommand{\dtldisplaystarttab}{\toprule}
@@ -30,6 +31,10 @@
 }
 \newcommand{\longtableendfoot}{\emph{\xmakefirstuc{\seename} \reftextfaceafter}}
 \newcommand{\longtableheader}{}
+\newcommand{\LongTableEndFoot}[1]{%
+  \rowcolor{white}%
+  \multicolumn{#1}{r}{\longtableendfoot}%
+}
 
 \RequirePackage{
   multirow,    %% Erzeugt mehrzeilige Zellen in Tabellen
@@ -41,6 +46,8 @@
 
 \RequirePackage{ragged2e}
 \newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+\newcolumntype{Y}{>{\small\raggedright\arraybackslash}X}
+\newcolumntype{Z}{>{\small\raggedleft\arraybackslash}X}
 
 %\renewcommand \thetable{\arabic{section}-\@arabic\c@table}
 %% Auszeichnung für Tabellenkopf...
@@ -49,5 +56,29 @@
 %% arbeitet nicht mit den Paketen isonums, icomma und ziffer zusammen
 %% \ZifferPunktAus\begin{tabular}{D{,}{,}{2}}3,22\\\end{tabular}\ZifferPunktAn
 \newcolumntype{d}[1]{D{.}{,}{#1}}	%% #36
+
+\newcommand{\DefaultRowColors}[1]{%
+  \rowcolors{#1}{%
+    black!02
+  }{
+    black!05
+  }
+}
+\DefaultRowColors{2}
+
+\newcommand{\DefaultHeadingColor}{%
+  \rowcolor{black!15}
+}
+
+% \rowcolors{1}{AliceBlue}{Lavender}
+
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{%
+  \DefaultRowColors{2}%
+  \oldlongtable%
+}{%
+  \endoldlongtable%
+}
 
 \endinput

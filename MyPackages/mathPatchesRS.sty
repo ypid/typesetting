@@ -1,0 +1,12 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathPatchesRS}
+  [2015/02/19 v0.1 Patches for math mode by Robin Schneider]
+
+\RequirePackage{
+  numprint,
+}
+
+\let\mathPatchesRS@frac\frac\relax
+\renewcommand{\frac}[2]{\mathPatchesRS@frac{\numprint{#1}}{\numprint{#2}}}
+
+\endinput

@@ -2,11 +2,32 @@
 \ProvidesPackage{layoutRS}
           [2015/02/11 v0.8 Settings for layout by Robin Schneider]
 
+%% Fonts {{{
+\RequirePackage{lmodern}          %% skalierbare Schriftfamilie "Latin Modern"
+
+% \RequirePackage[osf]{libertine} %% Nice font. Could be used.
+% \RequirePackage{chancery}       %% Like handwriting :)
+%% }}}
+
+\RequirePackage{iftex}
+\ifLuaTeX%
+  % Ligatures
+  % http://tex.stackexchange.com/a/145498
+  \RequirePackage{selnolig}
+\fi
+
 \KOMAoptions{
   fontsize = 12pt,
+  captions = tableheading,
+  %
+  %% I like this more and I am more used to this. I guess my paragraphs are just to small and in this case without the parskip it looks ugly.
   parskip  = half,
-  DIV      = 15,
+  %
   % DIV      = default,
+  % DIV      = 11,
+  DIV      = 14,
+  % DIV      = 15,
+  %% Typographically not so nice but it saves space and I personally don’t think that it is ugly.
 }
 
 \RequirePackage[

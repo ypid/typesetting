@@ -5,13 +5,23 @@
 % \RequirePackage[l2tabu,orthodox]{nag}  %% nag überprüft den Text auf veraltete
                    % %% Befehle oder solche, die man nicht in LaTeX verwenden
                    % %% soll -- l2tabu-Checker in LaTeX
-% \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}  %% einbinden der neuen
-                   % %% Trennmuster, diese korrigieren einige Fehler der alten
-                   % %% und bieten mehr Trennstellen
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}  %% einbinden der neuen
+                   %% Trennmuster, diese korrigieren einige Fehler der alten
+                   %% und bieten mehr Trennstellen
 
 % \RequirePackage{classlist}	%% \MainClassName
 
-\PassOptionsToPackage{svgnames}{xcolor}
+% \RequirePackage{iftex}
+% \ifPDFTeX%
+  % \RequirePackage{fix-cm}
+% \fi
+%% Not using Computer modern
+
+\PassOptionsToPackage{
+  table,
+  svgnames,
+  % x11names,
+}{xcolor}
 \PassOptionsToPackage{final}{graphicx}
 \PassOptionsToPackage{final}{pdfpages}
 
