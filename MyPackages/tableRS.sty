@@ -17,6 +17,12 @@
 % \makesavenoteenv{table}
 \renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
 
+
+\captionsetup[table]{%
+  belowskip = -4pt,
+  % aboveskip = 4pt
+}
+
 \@ifpackageloaded{datatool}{%
   \renewcommand{\dtldisplaystarttab}{\toprule}
 
@@ -29,7 +35,8 @@
   varioref,
   mfirstuc,
 }
-\newcommand{\longtableendfoot}{\emph{\xmakefirstuc{\seename} \reftextfaceafter}}
+%% See ldf files.
+% \newcommand{\longtableendfoot}{\emph{\xmakefirstuc{\seename} \reftextfaceafter}}
 \newcommand{\longtableheader}{}
 \newcommand{\LongTableEndFoot}[1]{%
   \rowcolor{white}%
@@ -40,7 +47,7 @@
   multirow,    %% Erzeugt mehrzeilige Zellen in Tabellen
   slashbox,    %% Doppelüberschriften in einer Tabellenzelle
   colortbl,    %% Tabellen farbig gestalten
-  colorrowsRS, %% Alternately-colored rows
+  % colorrowsRS, %% Alternately-colored rows
   % booktabs,  %% weitere Linien zur Strukturierung von Tabellen (\toprule, ...)
 }
 

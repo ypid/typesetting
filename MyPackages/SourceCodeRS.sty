@@ -30,6 +30,12 @@
   listings,
   tcolorbox,
   etoolbox,
+  regexpatch,
+}
+
+\captionsetup[listing]{%
+  belowskip = -5pt,
+  % aboveskip = 4pt
 }
 
 %% Set default for minted. Does not work
@@ -69,15 +75,15 @@
 \renewcommand{\listingscaption}{Quellcode}
 
 
-\usepackage{xparse}
-\ExplSyntaxOn
+\RequirePackage{xparse}
+\ExplSyntaxOn%
 \box_new:N \l_fvrb_box
 \tl_new:N \l_fvrb_tl
 
-\RenewDocumentCommand \FancyVerbFormatLine { m }
+\RenewDocumentCommand\FancyVerbFormatLine{m}
  {
    \hbox_set:Nn \l_fvrb_box { #1 }
-    \dim_compare:nNnTF { \box_wd:N \l_fvrb_box }>{ \linewidth }
+    \dim_compare:nNnTF { \box_wd:N \l_fvrb_box }>{\linewidth}
       {%box to big
        \tl_set:Nn \l_fvrb_tl { #1 }
        \fvrb_use_tl:N \l_fvrb_tl
@@ -91,13 +97,20 @@
  {
   \group_begin:
    \null\hfill\vbox_set:Nn \l_fvrb_box
-     {\hsize=\linewidth
+     {\hsize=\linewidth%
         \advance\hsize by -2em
         \hspace*{-2em}\tl_use:N #1
      }
    \box_use:N \l_fvrb_box
   \group_end:
 }
-\ExplSyntaxOff
+\ExplSyntaxOff%
+
+% Patching \listoflistings {{{
+\pretocmd{\listoflistings}{%
+  \phantomsection%
+  \pdfbookmark[1]{\listoflistingscaption}{listoflistings}%
+}
+%% }}}
 
 \endinput

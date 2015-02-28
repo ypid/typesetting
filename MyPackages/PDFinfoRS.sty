@@ -36,7 +36,10 @@
 \hypersetup{
   final,
   unicode,
-	bookmarksnumbered = true, %% Nummerierung in bookmarks
+  % hyperfootnotes, %% Default
+	bookmarksnumbered  = true, %% Nummerierung in bookmarks
+  bookmarksopen      = true,
+  bookmarksopenlevel = 1,
   linkbordercolor = LightBlue,
   % menubordercolor = AliceBlue,
 %	pdfstartpage    = {1}, %% Startseite
@@ -53,8 +56,11 @@
   % pdfproducer   = {},
 }
 
-% \RequirePackage{footnotebackref}
-% Does not work? Did work before …
+% \RequirePackage{etoolbox} %% \ifcsdef, \AtEndPreamble
+% \AtEndPreamble{%
+  % \RequirePackage{footnotebackref}
+  % % Does not work? Did work before …
+% }
 
 % \ifthenelse{\equal{\value{Author@ChosenNumber}}{4}}{%
   % \hypersetup{pdfcreator={\Typesetter}}

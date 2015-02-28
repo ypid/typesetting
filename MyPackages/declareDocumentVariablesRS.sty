@@ -13,6 +13,7 @@
   ccicons,
   % auto-pst-pdf,
   % pst-barcode,
+  qrcode,
   authoraftertitle,
   regexpatch,
   xstring,
@@ -24,41 +25,40 @@
 \newcommand{\URL}{}
 \newcommand{\SetURL}[1]{\renewcommand{\URL}{#1}}
 \newcommand{\printURLshort}{\ifthenelse{\equal{\URL}{}}{}{\url{\URL}\xspace}}
+\newlength{\hURLlongtextsize}%
 \newcommand{\printURLlong}[1][3cm]{%
-  \ifthenelse{\equal{\URL}{}}{}{%
-    \newlength{\hURLlongtextsize}%
-    \iflandscape%
-    {\setlength{\hURLlongtextsize}{21.5cm}}%  %% landscape
-    {\setlength{\hURLlongtextsize}{12.5cm}}%  %% no landscape
+  \ifthenelse{\equal{\URL}{}}{%
+    \printGitURLlong%
+  }{%
+    \setlength{\hURLlongtextsize}{\textwidth -#1 -2em}
+    \ifthenelse{\isnamedefined{iflandscape}}{
+      \iflandscape{
+        \setlength{\hURLlongtextsize}{\hURLlongtextsize-10em}
+      }{}
+    }{}
     \ifthenelse{\isnamedefined{setkomavar}}{% scrlttr2
       \addtolength{\hURLlongtextsize}{-1cm}%
     }{}%
     \begin{center}%
-    \ifthenelse{\lengthtest{\textwidth > 815pt}}    %% für lernator.de-Statistiken
-      {\hspace{1.5cm}}{}
       \begin{minipage}{#1}%
-        \begin{pspicture}(1in,1in)%
-          \psbarcode{\URL}{eclevel=M width=1.3 height=1.3}{qrcode}%
-        \end{pspicture}%
+        \href{\URL}{\qrcode[height=#1]{\URL}}
       \end{minipage}%
       \hfill
       \begin{minipage}{\hURLlongtextsize}%
-        Dieses Dokument \ifgitversion{liegt in Version \printversion{} vor.\\
-        Die aktuelle Version }{}ist als PDF Datei unter \printURLshort abrufbar.
+        Dieses Dokument ist als PDF Datei unter \printURLshort{} abrufbar.
         \LanguageURLlongExtension%
+        \@printVersionNote
+        \printGitURLlong%
       \end{minipage}%
-    \ifthenelse{\lengthtest{\textwidth > 815pt}}%    %% für lernator.de-Statistiken
-      {\hspace{1.5cm}~}{}%
     \end{center}%
   }%
-  \printGitURLlong%
 }
 
 \newcommand{\GitURL}{}
 \newcommand{\SetGitURL}[1]{\renewcommand{\GitURL}{#1}}
 \newcommand{\printGitURLlong}{%
   \ifthenelse{\equal{\GitURL}{}}{}{%
-    \LanguageGitURLlong \url{\GitURL}
+    \LanguageGitURLlong{} \url{\GitURL}
   }%
 }
 

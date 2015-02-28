@@ -2,13 +2,40 @@
 \ProvidesPackage{defaultsRS}
   [2015/02/05 v1.00 Default packages for LuaLaTeX and pdfLaTeX by Robin Schneider]
 
-\RequirePackage{iftex}
+\RequirePackage{
+  iftex,
+}
 \ifPDFTeX%
   \RequirePackage{pdflatexDefaultsRS}
 \fi
 \ifLuaTeX%
   \RequirePackage{lualatexDefaultsRS}
 \fi
+\newcommand{\printVersionNote}{%
+  \ifthenelse{\equal{\URL}{}}{%
+    \begin{center}
+      \@printVersionNote
+    \end{center}
+  }{}
+}
+\newcommand{\printVersionNumberRaw}[1]{%
+  \ifthenelse{\equal{\gitTags}{(None)}}{%
+    \gitAbbrevHash\gitDirty%
+  }{%
+    \gitTags{}
+    (\gitAbbrevHash\gitDirty)%
+  }
+  #1
+  % \displaydate{gitdate}
+  \gitAuthorDate%
+}
+\newcommand{\printVersionNumber}[1]{%
+  \ifthenelse{\equal{\GitURL}{}}{%
+    \printVersionNumberRaw{#1}%
+  }{%
+    \href{\GitURL/commit/\gitHash}{\printVersionNumberRaw{#1}}%
+  }%
+}
 
 \RequirePackage{xcolor}
 %% Farbdefinitionen möglich
@@ -26,7 +53,14 @@
 
 \RequirePackage{mathPatchesRS}
 
-\RequirePackage{eurosym} %% \EUR{2342,50}
+%% \iflanguage{ngerman} seems to not work correctly with my LuaLaTeX setup.
+% \iflanguage{ngerman}{
+  \RequirePackage[
+    right,
+  ]{eurosym}
+% }{
+  % \RequirePackage{eurosym}
+% }
 \let\RawEUR\EUR\relax
 \renewcommand{\EUR}[1]{\RawEUR{\numprint{#1}}}
 

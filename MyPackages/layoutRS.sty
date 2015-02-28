@@ -2,14 +2,17 @@
 \ProvidesPackage{layoutRS}
           [2015/02/11 v0.8 Settings for layout by Robin Schneider]
 
-%% Fonts {{{
-\RequirePackage{lmodern}          %% skalierbare Schriftfamilie "Latin Modern"
+\RequirePackage{iftex}
 
-% \RequirePackage[osf]{libertine} %% Nice font. Could be used.
-% \RequirePackage{chancery}       %% Like handwriting :)
+%% Fonts {{{
+\ifPDFTeX%
+  \RequirePackage{lmodern}          %% skalierbare Schriftfamilie "Latin Modern"
+
+  % \RequirePackage[osf]{libertine} %% Nice font. Could be used.
+  % \RequirePackage{chancery}       %% Like handwriting :)
+\fi
 %% }}}
 
-\RequirePackage{iftex}
 \ifLuaTeX%
   % Ligatures
   % http://tex.stackexchange.com/a/145498
@@ -21,7 +24,11 @@
   captions = tableheading,
   %
   %% I like this more and I am more used to this. I guess my paragraphs are just to small and in this case without the parskip it looks ugly.
+  %% Also I don‘t quite get the normal behavior. Some paragraphs are indented, some others are not?
   parskip  = half,
+  % parskip  = half*, %% half a line vertical space between paragraphs; there must be at least a quarter of a line free space at the end of a paragraph
+  % parskip  = full,
+  % parskip  = full+,
   %
   % DIV      = default,
   % DIV      = 11,
@@ -33,5 +40,22 @@
 \RequirePackage[
   tracking=true,
 ]{microtype}
+
+% \tolerance=1414
+%% Default is 200.
+
+\hbadness=1414
+\emergencystretch=1.5em
+
+% \hfuzz=0.3pt
+%% Use the default.
+
+% \widowpenalty=10000
+\widowpenalty=1000
+%% Default is 150.
+
+\vfuzz%
+\hfuzz%
+\raggedbottom%
 
 \endinput

@@ -6,25 +6,16 @@
 \newcommand{\LanguageVersionName}{Version}
 
 % I know about notags={},
-\newcommand{\printVersionNote}{%
-  \begin{center}
+\newcommand{\@printVersionNote}{%
     Die Basis für dieses Dokuement stellt die Version
-    \ifthenelse{\equal{\gitTags}{(None)}}{%
-      \gitAbbrevHash\gitDirty\xspace
-    }{%
-      \gitTags{}
-      (\gitAbbrevHash\gitDirty)%
-    }
-    vom
-    % \displaydate{gitdate}
-    \gitAuthorDate{}
+    \printVersionNumber{vom}
     dar.
-  \end{center}
 }
 
-\newcommand{\LanguageGitURLlong}{Der Quellcode für dieses Dokument ist auf GitHub: }
-\newcommand{\LanguageURLlongExtension}{In dieser PDF Datei finden sich auch noch Versionshinweise
-und Statistiken über dieses Dokument.}
+\newcommand{\LanguageGitURLlong}{Der Quellcode steht auf GitHub zur Verfügung:}
+\newcommand{\LanguageURLlongExtension}%
+  {}
+  % {In dieser PDF Datei finden sich auch noch Versionshinweise und Statistiken über dieses Dokument.}
 \newcommand{\LanguageTitlepageName}{Titelseite}
 \newcommand{\LanguageReleaseDateName}{Abgabedatum} %% Statistiken
 
@@ -44,3 +35,5 @@ und Statistiken über dieses Dokument.}
   \newcommand{\LanguageSignatureShort}{LuaLaTeX auf \Language@SignatureOS}
   \newcommand{\Language@SignatureTeX}{\href{https://de.wikipedia.org/wiki/LuaTeX}{\LuaLaTeX} auf}
 \fi
+
+\newcommand{\longtableendfoot}{\emph{Fortgesetzt \reftextfaceafter}}

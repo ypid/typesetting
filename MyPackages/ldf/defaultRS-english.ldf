@@ -5,8 +5,9 @@
 \newcommand{\LanguageLicenceName}{licence}
 \newcommand{\LanguageVersionName}{version}
 \newcommand{\LanguageGitURLlong}{The source code for this document can be found on GitHub: }
-\newcommand{\LanguageURLlongExtension}{This PDF file also contains a version history and statistics
-about this document}
+\newcommand{\LanguageURLlongExtension}%
+  {}
+  % {This PDF file also contains a version history and statistics about this document}
 \newcommand{\LanguageTitlepageName}{Front page}
 \newcommand{\LanguageReleaseDateName}{Release date}
 
@@ -26,3 +27,5 @@ about this document}
   \newcommand{\LanguageSignatureShort}{LuaLaTeX on \Language@SignatureOS}
   \newcommand{\Language@SignatureTeX}{\href{https://en.wikipedia.org/wiki/LuaTeX}{\LuaLaTeX} auf}
 \fi
+
+\newcommand{\longtableendfoot}{\emph{Continued \reftextfaceafter}}

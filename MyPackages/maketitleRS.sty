@@ -3,16 +3,18 @@
   [2015/02/11 v1.0 maketitle modifications by Robin Schneider]
 
 \RequirePackage{
-  regexpatch,
+  etoolbox,
+  % regexpatch,
 }
 
 % Patching \maketitle {{{
-\xapptocmd{\maketitle}{%
+\pretocmd{\maketitle}{%
+  \phantomsection%
   \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}%
   \label{sec:titlepage}%
   \pagenumbering{Roman}%
   \thispagestyle{empty}%
-}
+}{}{}
 %% }}}
 
 \endinput
