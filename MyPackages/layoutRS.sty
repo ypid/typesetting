@@ -19,9 +19,14 @@
   \RequirePackage{selnolig}
 \fi
 
+\ifthenelse{\isnamedefined{opening}}{%% Letter
+}{%
+  \KOMAoptions{
+    % captions = tableheading,
+  }
+}
 \KOMAoptions{
   fontsize = 12pt,
-  captions = tableheading,
   %
   %% I like this more and I am more used to this. I guess my paragraphs are just to small and in this case without the parskip it looks ugly.
   %% Also I don‘t quite get the normal behavior. Some paragraphs are indented, some others are not?

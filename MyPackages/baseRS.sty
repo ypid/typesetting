@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{baseRS}
+  [2015/02/28 v1.0 Absolut base packages for LuaLaTeX and pdfLaTeX by Robin Schneider]
+
+\RequirePackage{
+  iftex,
+}
+
+\ifPDFTeX%
+  \RequirePackage[utf8]{inputenc}	%% Schriftkodierung
+  % If your LaTeX compiler complains about utf8, try utf8x instead.
+
+  \RequirePackage[T1]{fontenc}
+
+  \RequirePackage{babel} %% \showhyphens{Trennungen} %% sprach Unterstützung
+\fi
+\ifLuaTeX%
+  \RequirePackage{
+    fontspec,
+    polyglossia,
+  }
+  \setdefaultlanguage[babelshorthands=true]{german}
+\fi
+
+\endinput
