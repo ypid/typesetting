@@ -13,8 +13,10 @@
   \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}%
   \label{sec:titlepage}%
   \pagenumbering{Roman}%
-  \thispagestyle{empty}%
 }{}{}
+\apptocmd{\maketitle}{%
+  \thispagestyle{empty}%
+}
 %% }}}
 
 \endinput

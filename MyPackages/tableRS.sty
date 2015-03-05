@@ -19,7 +19,7 @@
 
 
 \captionsetup[table]{%
-  belowskip = -4pt,
+  belowskip = 2pt,
   % aboveskip = 4pt
 }
 
@@ -74,13 +74,13 @@
 \DefaultRowColors{2}
 
 \newcommand{\DefaultHeadingColor}{%
-  \rowcolor{black!15}
+  \rowcolor{black!15}%
 }
 
 % \rowcolors{1}{AliceBlue}{Lavender}
 
-\let\oldlongtable\longtable
-\let\endoldlongtable\endlongtable
+\let\oldlongtable\longtable%
+\let\endoldlongtable\endlongtable%
 \renewenvironment{longtable}{%
   \DefaultRowColors{2}%
   \oldlongtable%
