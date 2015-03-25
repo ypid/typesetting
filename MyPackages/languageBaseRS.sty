@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{languageBaseRS}
+  [2015/03/24 v1.0 Language depended settings by Robin Schneider]
+
+%% language definition
+\RequirePackage{fnumprint}  %% fnumprint@language
+\RequirePackage{IfconstructsRS}
+\twoIF{\value{fnumprint@language}}{%
+  \input{defaultRS-ngerman.ldf}
+}{%
+  \input{defaultRS-english.ldf}
+}{%
+  \PackageError{docExtensionsRS}{language definition}
+    {I don't know the language you have asked for}
+}
+
+\newcommand{\printlanguage}{%
+\iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{%
+  \iflanguage{english}{Englisch}{%
+  \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
+  }
+}}
+
+\endinput

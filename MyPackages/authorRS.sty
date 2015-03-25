@@ -1,10 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{authorRS}
-          [2015/02/07 v0.8 Package for dealing with author definition in documents by Robin Schneider]
+  [2015/02/07 v0.8 Package for dealing with author definition in documents by Robin Schneider]
 
+
+\@ifclassloaded{moderncv}{%
+}{%
+  \RequirePackage{
+    hyperref, %% For \affil[**]{\href{}{}}
+  }
+}
 \RequirePackage{
-  hyperref, %% For \affil[**]{\href{}{}}
   regexpatch,
+  authoraftertitle,
 }
 \RequirePackage[
   % blocks,

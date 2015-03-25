@@ -34,11 +34,11 @@
   % subcaption, %% Unterbilder
 }
 
-% \AtEndPreamble{
-  % \RequirePackage{
-    % hypcap,
-  % }
-% }
+\AtEndPreamble{
+  \@ifpackageloaded{hyperref}{
+    \RequirePackage{hypcap}
+  }{}
+}
 
 \RequirePackage{caption}		%% Fortsetzung von Überschriften und Legenden für Floats
 % \addto\captionsngerman{%	%% oder \iflanguage{ngerman}{}{}

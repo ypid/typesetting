@@ -72,23 +72,33 @@
 }
 
 \newcommand{\Osehrgeehrte}[2]{
-\ifthenelse{\equal{#1}{m}}{\opening{Sehr geehrter Herr #2,}}{}
-\ifthenelse{\equal{#1}{w}}{\opening{Sehr geehrte Frau #2,}}{}
-\ifthenelse{\equal{#1}{f}}{\opening{Sehr geehrte Familie #2,}}{}
-\ifthenelse{\equal{#1}{dh}}{\opening{Sehr geehrte Damen und Herren,}}{}
+  \opening{\letterRS@letterOpeningLine{#1}{#2}}
+}
+
+\newcommand{\letterRS@letterOpeningLine}[2]{%
+  \iflanguage{ngerman}{
+    \ifthenelse{\equal{#1}{m}}{Sehr geehrter Herr #2,}{}
+    \ifthenelse{\equal{#1}{w}}{Sehr geehrte Frau #2,}{}
+    \ifthenelse{\equal{#1}{f}}{Sehr geehrte Familie #2,}{}
+    \ifthenelse{\equal{#1}{dh}}{Sehr geehrte Damen und Herren,}{}
+  }{%
+    \iflanguage{english}{
+      %% https://www.linkedin.com/groups/Writing-in-letter-in-English-4319755.S.121829504
+      \ifthenelse{\equal{#1}{m}}{Dear Mr.~#2,}{}
+      \ifthenelse{\equal{#1}{w}}{Dear Ms.~#2,}{}
+      \ifthenelse{\equal{#1}{f}}{Dear Family #2,}{}
+      \ifthenelse{\equal{#1}{dh}}{Dear Sir or Madam,}{}
+    }{
+      \PackageError{\@currname}{Opening line for used language is not defined.}
+    }
+  }
 }
 
 \newcommand{\Oliebe}[2]{
-\ifthenelse{\equal{#1}{m}}{\opening{Lieber #2,}}{}
-\ifthenelse{\equal{#1}{w}}{\opening{Liebe #2,}}{}
-\ifthenelse{\equal{#1}{f}}{\opening{Sehr geehrte Familie #2,}}{}
-\ifthenelse{\equal{#1}{dh}}{\opening{Sehr geehrte Damen und Herren,}}{}
+  \ifthenelse{\equal{#1}{m}}{Lieber #2,}{}
+  \ifthenelse{\equal{#1}{w}}{Liebe #2,}{}
+  \ifthenelse{\equal{#1}{f}}{Sehr geehrte Familie #2,}{}
+  \ifthenelse{\equal{#1}{dh}}{Sehr geehrte Damen und Herren,}{}
 }
-
-\newcommand{\Gsehrgeehrte}[2]{\ifthenelse{\equal{#1}{m}}
-{\Anrede{Sehr geehrter Herr #2,}}{\ifthenelse{\equal{#1}{w}}
-{\Anrede{Sehr geehrte Frau #2,}}{\ifthenelse{\equal{#1}{f}}
-{\Anrede{Sehr geehrte Familie #2,}}
-{\Anrede{Sehr geehrte(r) Frau/Mann #2,}}}}}
 
 \endinput

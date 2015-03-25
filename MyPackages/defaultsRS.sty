@@ -5,6 +5,7 @@
 \RequirePackage{
   iftex,
   baseRS,
+  languageBaseRS,
 }
 \ifPDFTeX%
   \RequirePackage{pdflatexDefaultsRS}
@@ -95,32 +96,15 @@
     %% icomma bietet auch eine Lösung, genannt in LaTeX Hacks #18
   cancel,
 }
+
 % \let\eqlistinit\relax
-\renewenvironment{description}{%
-  \begin{eqlist}[\def\makelabel##1{\bfseries##1:}\itemsep0em]
-}{%
-  \end{eqlist}
-}
+% There are cases where description looks better.
+% \renewenvironment{description}{%
+  % \begin{eqlist}[\def\makelabel##1{\bfseries##1:}\itemsep0em]
+% }{%
+  % \end{eqlist}
+% }
 
-
-%% language definition
-\RequirePackage[\languagename]{fnumprint}  %% fnumprint@language
-\RequirePackage{IfconstructsRS}
-\twoIF{\value{fnumprint@language}}{%
-  \input{defaultRS-ngerman.ldf}
-}{%
-  \input{defaultRS-english.ldf}
-}{%
-  \PackageError{docExtensionsRS}{language definition}
-    {I don't know the language you have asked for}
-}
-
-\newcommand{\printlanguage}{%
-\iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{%
-  \iflanguage{english}{Englisch}{%
-  \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
-  }
-}}
 
 %\RequirePackage{linenoWorkaroundRS}
 %% Erzeugt Fehler und wird nur noch temporär eingebunden

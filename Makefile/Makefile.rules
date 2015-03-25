@@ -5,6 +5,7 @@ AUTHOR		= Robin Scheider
 # == Basic Shell Utilities ==
 ECHO		?= echo
 CP		?= cp
+CD		?= cd
 TAIL		?= tail
 TPUT		?= tput
 # == LaTeX ==
@@ -23,4 +24,3 @@ UPLOADCOM	?= ncftpput -m -f $(UPLOADCONF)
 
 TPUTDONE	?= $(TPUT) setaf 2
 TPUTRESET	?= $(TPUT) sgr0
-
