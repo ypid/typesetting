@@ -1,6 +1,6 @@
 \ProvidesFile{defaultRS-english.ldf}
 
-\newcommand{\LanguagePDFLang}{en-VG}
+\newcommand{\LanguagePDFLang}{en-US}
 \newcommand{\LanguageClassName}{class}
 \newcommand{\LanguageLicenceName}{licence}
 \newcommand{\LanguageVersionName}{version}
