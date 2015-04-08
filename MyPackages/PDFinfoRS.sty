@@ -2,6 +2,8 @@
 \ProvidesPackage{PDFinfoRS}
   [2015/02/13 v1.2 PDF optimization by Robin Schneider]
 
+%% Should be loaded after most packages: http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
+
 \RequirePackage{%
   declareDocumentVariablesRS,
   languageBaseRS,
@@ -32,8 +34,8 @@
 \@ifclassloaded{moderncv}{%
 }{%
   \RequirePackage{
-    hyperxmp,
     hyperref,
+    hyperxmp,
   }
 }
 
