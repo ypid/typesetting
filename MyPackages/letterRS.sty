@@ -95,6 +95,10 @@
 }
 
 \newcommand{\Oliebe}[2]{
+  \opening{\letterRS@letterOpeningLineClose{#1}{#2}}
+}
+
+\newcommand{\letterRS@letterOpeningLineClose}[2]{
   \ifthenelse{\equal{#1}{m}}{Lieber #2,}{}
   \ifthenelse{\equal{#1}{w}}{Liebe #2,}{}
   \ifthenelse{\equal{#1}{f}}{Sehr geehrte Familie #2,}{}
