@@ -55,6 +55,8 @@
 
 \RequirePackage{mathPatchesRS}
 
+\RequirePackage{physicsRS}
+
 %% \iflanguage{ngerman} seems to not work correctly with my LuaLaTeX setup.
 % \iflanguage{ngerman}{
   \RequirePackage[
@@ -64,7 +66,7 @@
   % \RequirePackage{eurosym}
 % }
 \let\RawEUR\EUR\relax
-\renewcommand{\EUR}[1]{\RawEUR{\numprint{#1}}}
+\renewcommand{\EUR}[1]{\mbox{\num[round-mode=places,round-precision=2]{#1}\,\euro}}
 
 \RequirePackage{csquotes}
 

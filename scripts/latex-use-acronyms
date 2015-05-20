@@ -1,0 +1,70 @@
+#!/bin/bash
+## @licence AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>
+## @author Copyright (C) 2015 Robin Schneider <ypid@riseup.net>
+##
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU Affero General Public License as
+## published by the Free Software Foundation, version 3 of the
+## License.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU Affero General Public License for more details.
+##
+## You should have received a copy of the GNU Affero General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+get_files() {
+    git ls-files | egrep '\.tex$' | egrep --invert-match '(titlepage)'
+}
+
+echo '
+SNMP
+IHK
+KVM
+VMDK
+FQDN
+SMS
+GSM
+WLAN
+AP
+PSK
+CA
+SSID
+WPA
+VLAN
+NAT
+DNS
+DHCP
+DHCPv6
+IEEE
+RADIUS
+VTP
+TFTP
+HTTP
+HTTPS
+IP
+IPv4
+IPv6
+UDP
+VM
+SSH
+IT
+' | while read word; do
+    if [ -z "$word" ]; then
+        continue
+    fi
+    get_files | xargs sed -i "s/\([^{]\)\<$word\>/\1\\\\ac{$word}/g;s/^\<$word\>/\\\\ac{$word}/g" *.tex
+done
+
+echo '
+AP
+VMs
+VLAN
+' | while read word; do
+    if [ -z "$word" ]; then
+        continue
+    fi
+    get_files | xargs sed -i "s/\([^{]\)\<${word}s\>/\1\\\\acp{$word}/g;s/^\<${word}s\>/\\\\acp{$word}/g" *.tex
+done

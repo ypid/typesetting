@@ -1,90 +1,93 @@
-%% <Document.tex> template 1.3.1 by Robin `ypid` Schneider <ypid@riseup.net>
+%% <Document.tex> template 1.5 by Robin `ypid` Schneider <ypid@riseup.net>
 %% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/Document.tex
-%%% preamble
-%\RequirePackage{snapshot}		%% \jobname.dep
-%\listfiles %% listfiles to logfile
+%%% preamble (((
 \RequirePackage{RequirePackageRS}
-\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft
-\usepackage{
-%	physicsRS,
-	scrartclRS,
-	defaultRS,
-%	literatureRS,
-%	debugRS,
-	timeRS,
-%	graphicRS,
-%	mathematicsRS,
-	layoutRS,
-	% footingRS,
-	extensionsRS,
-	docExtensionsRS,
-%	chemistryRS,
+\documentclass[
+  ngerman,
+  % draft,
+  % BCOR=6mm,
+]{scrartcl}
+%% Package list (((
+\usepackage{%
+  % physicsRS,
+  defaultsRS,
+  scrartclRS,
+  % literatureRS,
+  % debugRS,
+  timeRS,
+  graphicRS,
+  % mathematicsRS,
+  % SourceCodeRS,
+  % gamesRS,
+  layoutRS,
+  % footingRS,
+  extensionsRS,
+  docExtensionsRS,
+  authorRobinRS,
+  % chemistryRS,
 }
-%% specific indications
-\readgitstat{2}
-\SetTITEL{Vorlage}
-\SetAUTHOR{1}{}
-\SetSUBJECT{\jobname}
-%\SetURL{}
+%% )))
+%% Meta information (((
+\usepackage[
+  grumpy,
+  dirty={* },
+  % markifdirty,
+]{gitinfo2}
 
-% \pdfstringdefDisableCommands{\let\Roman@bar\@firstofone}
-\choosedefaultlicense
-\SetCREATEDATE{2010}{07}{06}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\title{Vorlage}
+\subject{Test}
+% \subtitle{}
+\author[*]{Robin Schneider}
+% \affil[*]{\href{}{}}
+% \authorRobinRSaffil[**]
+\affil[*]{%
+  % \href{}{}\\
+  \href{mailto:ypid@riseup.net}{ypid@riseup.net}\\
+  {%
+    \small%
+    % \tiny
+    EDE1 371D 1B87 D28D A5E8 0515 86FD 980B \textit{BF1A 40F8}
+  }
+}
+\SetURL{https://ypid.wordpress.com/}
+\SetGitURL{https://github.com/ypid/typesetting}
+\usepackage[
+  type     = {CC},
+  modifier = {by-nc-sa},
+  version  = {3.0},
+]{doclicense}
+\SetCREATEDATE{2010}{07}{06}{13}{07}{23}
 \SetABGABEDATUM{2}{2011}{05}{23}{1}
+%% )))
 \usepackage{
-	PDFinfoRS,
-	tableRS,
+  PDFinfoRS,
+  tableRS,
 }
-\SetDraft{on}
-
+%% )))
 \begin{document}
-\MakeTitle
-\newpage\pdfbookmark[1]{\contentsname}{tableofcontents}
-\tableofcontents	%% Inhaltsverzeichnis
-%\listoffigures		%% Abbildungsverzeichnis
-%\listoftables		%% Tabellenverzeichnis
-%\listoflistings	%% Quellcodeverzeichnis
+%% Front matter (((
+\maketitle
+\newpage
+\tableofcontents%
+% \newpage
+% \listoffigures%
+% \listoftables%
+% \listoflistings%
 
-\mainmatter
-%%%%%%%%%%%
+% \listoffixmes%
+
+\mainmatter%
+%%%%%%%%%%% )))
 \section{Einführung}
 \label{sec:einleitung}
-Dies ist eine \TITEL ~für ein \SUBJECT
+Dies ist eine \MyTitle{} für \SUBJECT{}.\footnote{test}
 
-\section{Überschrift \newline mit Umbruch}
 
 \appendix
 
-%\newpage\printbibliography[heading=bibnumbered]
-
 \vfill
-\printURLlong
-\printlicense
-\printendsignature
-%\ifDraft{
-\newpage\Statistiken
-	Status:~\progressbar{.00} (eigenes Ermessen)\newpage
-	\begin{sourcefiletable}{1}
-		\PrintSourceFile
-		\sourcefile{Hauptdatei}{\jobname.tex}
-		%\Isourcefile{\LaTeX-Hacks}{files/header/hacks.tex}
-%		\sourcefile{Metainformationen}{files/metainfos.tex}
-%		\sourcefile{Titelseite}{files/titlepage.tex}
-%		\sourcefile{Literatur-Datenbank}{files/bibliographie.bib}
-	\end{sourcefiletable}
-%}{}
-%\ifDraft{
-%  \begin{landscape}
-%	\pagestyle{empty}
-%	\pdfbookmark[2]{Versionshinweise}{versionshinweise}
-%	\subsection*{Versionshinweise}
-%	\input{files/git/versions-log}
-%	\printgitstatlandscape{1}
-%  \end{landscape}
-%	\printgitstat{1}
-%	\subsubsection*{Dateien?}
-%	\pdfbookmark[3]{Dateien?}{files_by_date}
-%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
-%	\listoffixmes
-%}{}
+\printURLlong%
+\doclicenseThis%
+\printVersionNote%
+\printendsignature%
 \end{document}

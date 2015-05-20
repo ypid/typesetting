@@ -1,0 +1,247 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{acronymRS}
+          [2015/05/19 v1.0 Packages for acronyms by Robin Schneider]
+
+\RequirePackage[
+  % page-ref    = plain,
+  page-ref    = comma,
+  % page-ref    = paren,
+  hyperref    = true,
+  % first-style = empty,
+  % list-type   = table,
+  % list-style  = longtable,
+]{acro}
+\RequirePackage{
+  lualatexAcroPatchRS,
+  UrlDefinitionsRS,
+}
+
+\DeclareAcronym{CTAN}{
+  short = {CTAN},
+  long  = {\href{https://de.wikipedia.org/wiki/Comprehensive_TeX_Archive_Network}{Comprehensive \TeX{} Archive Network}},
+  class = {IT},
+}
+\DeclareAcronym{TK}{
+  short = {TK},
+  long  = {\href{https://de.wikipedia.org/wiki/Telekommunikation}{Telekommunikation}},
+  class = {IT},
+}
+\DeclareAcronym{SQL}{
+  short = {SQL},
+  long  = {\urlSQL},
+  class = {IT},
+}
+\DeclareAcronym{SSID}{
+  short = {SSID},
+  long  = {\href{https://de.wikipedia.org/wiki/Service_Set\#Service_Set_Identifier}{Service Set Identifier}},
+  class = {IT},
+}
+\DeclareAcronym{CA}{
+  short     = {CA},
+  long      = {\href{https://de.wikipedia.org/wiki/Zertifizierungsstelle}{Zertifizierungsstelle}},
+  % foreign = {certificate authority},
+  class     = {IT},
+}
+\DeclareAcronym{WLAN}{
+  short = {WLAN},
+  long  = {\href{https://de.wikipedia.org/wiki/Wireless_Local_Area_Network}{Wireless Local Area Network}},
+  class = {IT},
+}
+\DeclareAcronym{AP}{
+  short = {AP},
+  long  = {\href{https://de.wikipedia.org/wiki/Wireless_Access_Point}{Wireless Access Point}},
+  class = {IT},
+}
+\DeclareAcronym{PSK}{
+  short = {PSK},
+  long  = {\href{https://de.wikipedia.org/wiki/Pre-shared_key}{Pre-shared key}},
+  class = {IT},
+}
+\DeclareAcronym{WPA}{
+  short = {WPA},
+  long  = {\href{https://de.wikipedia.org/wiki/Wi-Fi_Protected_Access}{Wi-Fi Protected Access}},
+  class = {IT},
+}
+\DeclareAcronym{VLAN}{
+  short = {VLAN},
+  long  = {\href{https://de.wikipedia.org/wiki/Virtual_Local_Area_Network}{Virtual Local Area Network}},
+  class = {IT},
+}
+\DeclareAcronym{VTP}{
+  short = {VTP},
+  long  = {\href{https://de.wikipedia.org/wiki/VLAN_Trunking_Protocol}{VLAN Trunking Protocol}},
+  class = {IT},
+}
+\DeclareAcronym{TFTP}{
+  short = {TFTP},
+  long  = {\href{https://de.wikipedia.org/wiki/Trivial_File_Transfer_Protocol}{Trivial File Transfer Protocol}},
+  class = {IT},
+}
+\DeclareAcronym{HTTP}{
+  short = {HTTP},
+  long  = {\href{https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol}{Hypertext Transfer Protocol}},
+  class = {IT},
+}
+\DeclareAcronym{HTTPS}{
+  short = {HTTPS},
+  long  = {\href{https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol_Secure}{Hypertext Transfer Protocol Secure}},
+  class = {IT},
+}
+\DeclareAcronym{SSH}{
+  short = {SSH},
+  long  = {\href{https://de.wikipedia.org/wiki/Secure_Shell}{Secure Shell}},
+  class = {IT},
+}
+\DeclareAcronym{IP}{
+  short     = {IP},
+  long      = {\href{https://de.wikipedia.org/wiki/Internet_Protocol}{Internet Protokoll}},
+  % foreign = {Internet Protocol},
+  class     = {IT},
+}
+\DeclareAcronym{IPv4}{
+  short = {IPv4},
+  long  = {\href{https://de.wikipedia.org/wiki/IPv4}{Internet Protokoll Version 4}},
+  class = {IT},
+}
+\DeclareAcronym{IPv6}{
+  short = {IPv6},
+  long  = {\href{https://de.wikipedia.org/wiki/IPv6}{Internet Protokoll Version 6}},
+  class = {IT},
+}
+\DeclareAcronym{UDP}{
+  short = {UDP},
+  long  = {\href{https://de.wikipedia.org/wiki/User_Datagram_Protocol}{User Datagram Protocol}},
+  class = {IT},
+}
+\DeclareAcronym{VM}{
+  short = {VM},
+  long  = {\href{https://de.wikipedia.org/wiki/Virtuelle_Maschine}{Virtuelle Maschine}},
+  class = {IT},
+}
+\DeclareAcronym{FQDN}{
+  short = {FQDN},
+  long  = {\href{https://de.wikipedia.org/wiki/Domain_(Internet)}{Fully Qualified Domain Name}},
+  class = {IT},
+}
+\DeclareAcronym{KVM}{
+  short = {KVM},
+  long  = {\urlKVM},
+  class = {IT},
+}
+\DeclareAcronym{VMDK}{
+  short = {VMDK},
+  long  = {\href{https://en.wikipedia.org/wiki/VMDK}{Virtual Machine Disk}},
+  class = {IT},
+}
+\DeclareAcronym{SNMP}{
+  short = {SNMP},
+  long  = {\href{https://de.wikipedia.org/wiki/Network_Address_Translation}{Network Address Translation}},
+  class = IT,
+}
+\DeclareAcronym{NAT}{
+  short = {NAT},
+  long  = {\href{https://de.wikipedia.org/wiki/Network_Address_Translation}{Network Address Translation}},
+  class = {IT},
+}
+\DeclareAcronym{IEEE}{
+  short = {IEEE},
+  long  = {\href{https://de.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers}{Institute of Electrical and Electronics Engineers}},
+  class = {IT},
+}
+\DeclareAcronym{RADIUS}{
+  short = {RADIUS},
+  long  = {\href{https://de.wikipedia.org/wiki/Remote_Authentication_Dial-In_User_Service}{Remote Authentication Dial-In User Service}},
+  class = {IT},
+}
+% \acro{}{\href{https://de.wikipedia.org/wiki/Domain_Name_System}{Domain Name System}}%
+\DeclareAcronym{DNS}{
+  short = {DNS},
+  long  = {\href{https://de.wikipedia.org/wiki/Domain_Name_System}{Domain Name System}},
+  class = {IT},
+}
+\DeclareAcronym{DHCP}{
+  short = {DHCP},
+  long  = {\href{https://de.wikipedia.org/wiki/DHCP}{Dynamic Host Configuration Protocol}},
+  class = {IT},
+}
+\DeclareAcronym{DHCPv6}{
+  short = {DHCPv6},
+  long  = {\href{https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol\#DHCPv6}{Dynamic Host Configuration Protocol version 6}},
+  class = {IT},
+}
+\DeclareAcronym{CD}{
+  short = {CD},
+  long  = {\href{https://de.wikipedia.org/wiki/Compact_Disc}{Compact Disc}},
+  class = {IT},
+}
+\DeclareAcronym{IT}{
+  short = {IT},
+  long  = {\href{https://de.wikipedia.org/wiki/Informationstechnik}{Informationstechnik}},
+  class = {IT},
+}
+\DeclareAcronym{SMS}{
+  short   = {SMS},
+  long    = {\href{https://de.wikipedia.org/wiki/Short_Message_Service}{Kurznachrichtendienst}},
+  foreign = {Short Message Service},
+  class   = {IT},
+}
+\DeclareAcronym{GSM}{
+  short = {GSM},
+  long  = {\href{https://de.wikipedia.org/wiki/Global_System_for_Mobile_Communications}{Global System for Mobile Communications}},
+  class = {IT},
+}
+\DeclareAcronym{EST}{
+  short = {EST},
+  long  = {\href{https://www.elektronikschule.de/}{Elektronikschule Tettnang}},
+  class = {default},
+}
+\newcommand{\acsOpa}{p.\,a.}
+\DeclareAcronym{pa}{
+  short   = {\acsOpa},
+  foreign = {pro anno},
+  long    = {Pro Jahr},
+  class   = {default},
+}
+\newcommand{\acsOMwSt}{MwSt.}
+\DeclareAcronym{MwSt}{
+  short = {\acsOMwSt},
+  long  = {\href{https://de.wikipedia.org/wiki/Mehrwertsteuer}{Mehrwertsteuer}},
+  class = {default},
+}
+\DeclareAcronym{ERP}{
+  short = {ERP},
+  long  = {\href{https://de.wikipedia.org/wiki/Enterprise-Resource-Planning}{Enterprise-Resource-Planning}},
+  class = {default},
+}
+\DeclareAcronym{IHK}{
+  short = {IHK},
+  long  = {\href{https://de.wikipedia.org/wiki/Industrie-_und_Handelskammer}{Industrie- und Handelskammer}},
+  class = {default},
+}
+% \acuse{
+  % WLAN,
+  % VLAN,
+  % EST,
+% }
+% \acuseall%
+% \acro{AD}{\href{https://de.wikipedia.org/wiki/Active_Directory}{Active Directory}}%
+% \acro{BWL}{\href{https://de.wikipedia.org/wiki/Bwl}{Betriebswirtschaftslehre}}%
+% \acro{CA}{\href{https://de.wikipedia.org/wiki/Zertifizierungsstelle}{Certificate Authority}}%
+% \acro{CSS}{\href{https://de.wikipedia.org/wiki/Cascading_Style_Sheets}{Cascading Style Sheets}}%
+% \acro{EPK}{\href{https://de.wikipedia.org/wiki/Ereignisgesteuerte_Prozesskette}{Ereignisgesteuerte Prozesskette}}%
+% \acro{EST}{\href{https://www.elektronikschule.de/}{Elektronikschule Tettnang}}%
+% \acro{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekt}}%
+% \acrodefplural{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekte}}%
+% \acro{HTML}{\href{https://de.wikipedia.org/wiki/HTML}{Hypertext Markup Language}}%
+% \acro{ISP}{\href{https://de.wikipedia.org/wiki/Internetdienstanbieter}{Internetdienstanbieter}}%
+% \acro{OU}{\href{https://en.wikipedia.org/wiki/Organizational_unit_(computing)}{Organizational unit}}%
+% \acro{PHP}{\href{https://de.wikipedia.org/wiki/PHP}{\enquote{PHP: Hypertext Preprocessor}}}%
+% \acro{RDP}{\href{https://de.wikipedia.org/wiki/Remote_Desktop_Protocol}{Remote Desktop Protocol}}%
+% \acro{SLAAC}{\href{http://www.ietf.org/rfc/rfc4862.txt}{Stateless Address Autoconfiguration}}%
+% \acro{TCP}{\href{https://de.wikipedia.org/wiki/Transmission_Control_Protocol}{Transmission Control Protocol}}%
+% \acro{TWZ}{\enquote{Tettnanger Wellness-Zentrum}}%
+% \acro{ULA}{\href{https://tools.ietf.org/html/rfc4193}{Unique Local Address}}%
+% \acro{VPN}{\href{https://de.wikipedia.org/wiki/Virtual_Private_Network}{Virtual Private Network}}%
+
+
+\endinput

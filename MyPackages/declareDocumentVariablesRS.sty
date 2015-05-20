@@ -112,6 +112,7 @@
 %% Release date {{{
 \newcommand{\ABGABEDATUM}{\MyDate}
 \newcommand{\SetABGABEDATUM}[5]{
+  %% legacy
   \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
   \IfInteger{#2}{}{\PackageError{\@currname}{Parameter 2 is not a number parameter.}}
   \IfInteger{#3}{}{\PackageError{\@currname}{Parameter 3 is not a number parameter.}}
@@ -144,6 +145,12 @@
     }{ %% if #1 == 6
       \date{\dateN{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{#5}}
     }{\PackageError{\@currname}{Unknown parameter}}
+}
+\newcommand{\SetReleaseDate}[3]{
+  \date{\formatdate{#3}{#2}{#1}}
+  \newcommand{\ABGABETag}{#3}
+  \newcommand{\ABGABEMonat}{#2}
+  \newcommand{\ABGABEJahr}{#1}
 }
 %% }}}
 

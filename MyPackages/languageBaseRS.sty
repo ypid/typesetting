@@ -2,13 +2,29 @@
 \ProvidesPackage{languageBaseRS}
   [2015/03/24 v1.0 Language depended settings by Robin Schneider]
 
+\RequirePackage{
+  iftex,
+  UrlDefinitionsRS,
+}
+
 %% language definition
 \RequirePackage{fnumprint}  %% fnumprint@language
 \RequirePackage{IfconstructsRS}
 \twoIF{\value{fnumprint@language}}{%
   \input{defaultRS-ngerman.ldf}
+  %% Workaround for:
+  % ? ^C^C! Undefined control sequence.
+  % \csq@main@language \-\xpg@main@language
+
+  % l.90 \begin{document}
+  \ifLuaTeX%
+    \setdefaultlanguage[babelshorthands=true]{german}
+  \fi
 }{%
   \input{defaultRS-english.ldf}
+  \ifLuaTeX%
+    \setdefaultlanguage{english}
+  \fi
 }{%
   \PackageError{docExtensionsRS}{language definition}
     {I don't know the language you have asked for}
