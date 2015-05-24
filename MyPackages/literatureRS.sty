@@ -3,27 +3,34 @@
           [2015/05/20 v1.00 Default packages and options for managing literature by Robin Schneider]
 
 \RequirePackage[
-    % style=numeric,
-    style=din,
-    %% https://github.com/domhardt/BibLaTeX-DIN1505
-    % style=alphabetic,sorting=anyt,
-    % style=authoryear,
-    % style=authortitle,
-    % style=authortitle-comp,
-    % style=verbose,
-    % style=verbose-note,
-    % style=verbose-trad1,
-    % style=verbose-trad2,
-    % style=reading,
-    % style=draft,
-    % sorting=none,			%% In zitierter Reihenfolge in Literaturverzeichnis
-    autocite=footnote,
-	natbib=true,
-	backend=biber,
-%	url=false				%% default: true
+  % style=numeric,
+  style=din,
+  %% https://github.com/domhardt/BibLaTeX-DIN1505
+  % style=alphabetic,sorting=anyt,
+  % style=authoryear,
+  % style=authortitle,
+  % style=authortitle-comp,
+  % style=verbose,
+  % style=verbose-note,
+  % style=verbose-trad1,
+  % style=verbose-trad2,
+  % style=reading,
+  % style=draft,
+  % sorting=none,			%% In zitierter Reihenfolge in Literaturverzeichnis
+  autocite=footnote,
+  natbib=true,
+  backend=biber,
+  % url=false				%% default: true
 ]{biblatex}
 %\bibliography{}
 \DeclareFieldFormat{urldate}{\mkbibparens{abgerufen am\space#1}}
+
+\DefineBibliographyStrings{german}{%
+  references = {Literaturverzeichnis},
+}
+
 \defbibheading{quell}{\section{Quellenverzeichnis}}
+\defbibheading{litdictionary}{\section{Literaturverzeichnis}}
+\renewcommand{\refname}{Literaturverzeichnis}
 
 \endinput

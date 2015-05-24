@@ -20,13 +20,23 @@ get_files() {
 }
 
 echo '
+GPO
+HE
+LED
+URL
 SNMP
+MIB
+WATO
+CSV
 IHK
 KVM
 VMDK
 FQDN
+API
 SMS
+RDP
 GSM
+LAN
 WLAN
 AP
 PSK
@@ -59,8 +69,10 @@ IT
 done
 
 echo '
+LED
+GPO
 AP
-VMs
+VM
 VLAN
 ' | while read word; do
     if [ -z "$word" ]; then

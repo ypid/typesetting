@@ -14,6 +14,10 @@
   maketitleRS,
   fixme,
   romanbarpagenumber,
+  %% Still buggy?
+  %% Does only in 30 % percent of compilations, once it is there, only a `make clean` helps.
+  %% ! Undefined control sequence.
+  %% \Roman@bar  #1->\@bsphack \edef \romanbartmp
 }
 
 \fxusetheme{colorsig}
@@ -30,6 +34,13 @@
   % subject={Dies ist eine der Quelldateien aus denen dieses Dokument erzeugt wurde},
 % %  description={},
 % }
+
+%% http://de.comp.text.tex.narkive.com/1cUUcQqa/bcor-wert-abfragen
+\let\BCOR=\ta@bcor
+
+%% \captionof{listing}{
+%% \Url Error ->\url used in a moving argument.
+\newcommand{\pathRaw}[1]{\texttt{#1}}
 
 \newcommand{\email}[1]{%
   \href{mailto:#1}{#1}%
@@ -76,9 +87,10 @@
   \pagenumbering{arabic}%
 }
 
-\newcommand{\docExtensionsRS@see}[1]{\autoref{#1} \enquote{\nameref{#1}} \vpageref{#1}\xspace}
-\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \docExtensionsRS@see{#1}}
-\newcommand{\siehe}[1]{\seename{} \docExtensionsRS@see{#1}}
+\newcommand{\ReferToLabelSimple}[1]{\enquote{\nameref{#1}} \vpageref{#1}\xspace}
+\newcommand{\ReferToLabel}[1]{\autoref{#1} \ReferToLabelSimple{#1}\xspace}
+\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \ReferToLabel{#1}}
+\newcommand{\siehe}[1]{\seename{} \ReferToLabel{#1}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 

@@ -42,7 +42,17 @@
   % DIV      = 14,
   % DIV      = 15,
   %% Typographically not so nice but it saves space and I personally don’t think that it is ugly.
+  %
+  % toc=listof, % Abbildungsverzeichnis sowie Tabellenverzeichnis in das Inhaltsverzeichnis aufnehmen
+  % toc=bibliography, % Literaturverzeichnis in das Inhaltsverzeichnis aufnehmen
+  % bibliography=totoc,
+  %% https://www.wissenschaftliches-arbeiten.org/hausarbeit/aufbau/das-abbildungsverzeichnis.html
+  %
+  % footnotes=multiple, % Trennen von direkt aufeinander folgenden Fußnoten
+  numbers=noendperiod, % Den letzten Punkt nach einer Nummerierung entfernen (nach DIN 5008)
+  %% https://www.wissenschaftliches-arbeiten.org/hausarbeit/aufbau/das-inhaltsverzeichnis.html
 }
+% \KOMAoption{toc}{listof}
 
 \RequirePackage[
   tracking=true,

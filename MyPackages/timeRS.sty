@@ -3,9 +3,14 @@
   [2015/02/05 v1.1 Bundle of packages for working with dates and times by Robin Schneider]
 
 %\RequirePackage{scrtime}
-% \RequirePackage{isodate}			%% Basics z.B. \today \printdate{...}
+\RequirePackage{isodate}			%% Basics z.B. \today \printdate{...}
+%% Use:
+%% \printdate{2015-05-13}
+%% \daterange{2015-05-18}{2015-05-22}
+
 % \newcommand{\printdate}{}
 \RequirePackage{datetime}	%% only \pdfdate and \currenttime or \the\currentsecond
+%% May switch to datetime2, some features provided by isodate are not (yet) covered in datetime2.
 % \renewcommand{\dateseparator}{-}
 \RequirePackage{datenumber}
 \RequirePackage{calcage}

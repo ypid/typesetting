@@ -21,8 +21,12 @@
 %\SI{180.3}{\kilo\metre\per\hour}
 %\textbf{\SI{+- 30}{cm}}
 
-\DeclareSIUnit\EuroUnit{\euro}
+%% Legacy
+\DeclareSIUnit\EuroUnit{\text{\euro}}
 \DeclareSIUnit\EuroCentUnit{Cent}
+
+\DeclareSIUnit\EUR{\text{\euro}}
+\DeclareSIUnit\EURcent{Cent}
 \AtBeginDocument{\DeclareSIUnit\kWh{\null\kilo\watt\hour}}
 
 \endinput

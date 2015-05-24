@@ -1,0 +1,75 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TeXinfoRS}
+  [2015/05/23 v1.0 Defines a macro to print the LaTeX compiler version by Heiko Oberdiek]
+
+%% http://tex.stackexchange.com/a/78342/32320
+%% Slightly modified by Robin Schneider
+
+\RequirePackage{
+  hologo,
+  ifluatex,
+  ifxetex,
+  ifvtex,
+}
+
+\newcommand*{\InfoLaTeX}{%
+  \hologo{\fmtname} \textless\fmtversion\textgreater%
+}
+\newcommand*{\InfoTeX}{%
+  \ifxetex%
+    \hologo{XeTeX}
+    %-%
+    \the\XeTeXversion\XeTeXrevision%
+  \else
+    \ifluatex%
+      \hologo{LuaTeX}
+      %-%
+      \begingroup
+       \count@=\luatexversion%
+        \divide\count@ by 100 %
+        \edef\x{\the\count@}%
+        \count@=-\x\relax
+        \multiply\count@ by 100 %
+        \advance\count@ by \luatexversion%
+        \x.\the\count@.\luatexrevision%
+      \endgroup
+    \else
+      \@ifundefined{pdftexversion}{%
+        \ifvtex%
+          \hologo{VTeX}%
+          \@ifundefined{VTeXversion}{%
+          }{%
+            \begingroup
+              \count@\VTeXversion%
+              \divide\count@ 100 %
+              \space v\the\count@
+              \multiply\count@ -100 %
+              \advance\count@\VTeXversion.%
+              \two@digits\count@%
+            \endgroup
+          }%
+        \else
+          \hologo{TeX}%
+        \fi
+      }{%
+        \hologo{pdfTeX}
+        %-%
+        \ifnum\pdftexversion<100 %
+          \the\pdftexversion.\pdftexrevision%
+        \else
+          \ifnum\pdftexversion<130 %
+            \expandafter\@car\the\pdftexversion\@empty\@nil.%
+            \expandafter\@cdr\the\pdftexversion\@empty\@nil
+            \pdftexrevision%
+          \else
+            \expandafter\@car\the\pdftexversion\@empty\@nil.%
+            \expandafter\@cdr\the\pdftexversion\@empty\@nil.%
+            \pdftexrevision%
+          \fi
+        \fi
+      }%
+    \fi
+  \fi
+}
+
+\endinput

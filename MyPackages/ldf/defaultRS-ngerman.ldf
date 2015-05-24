@@ -26,7 +26,7 @@
 }
 \ifPDFTeX%
   \newcommand{\LanguageSignatureShort}{LaTeX auf \Language@SignatureOS}
-  \newcommand{\Language@SignatureTeX}{\href{https://de.wikipedia.org/wiki/LaTeX}{\LaTeXe} auf}
+  \newcommand{\Language@SignatureTeX}{\urlLaTeXe{} auf}
 \fi
 \ifLuaTeX%
   \newcommand{\LanguageSignatureShort}{LuaLaTeX auf \Language@SignatureOS}

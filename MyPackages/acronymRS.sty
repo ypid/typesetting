@@ -2,18 +2,60 @@
 \ProvidesPackage{acronymRS}
           [2015/05/19 v1.0 Packages for acronyms by Robin Schneider]
 
+\RequirePackage{
+  UrlDefinitionsRS,
+  enumitem,
+}
+
 \RequirePackage[
-  % page-ref    = plain,
-  page-ref    = comma,
-  % page-ref    = paren,
-  hyperref    = true,
-  % first-style = empty,
-  % list-type   = table,
-  % list-style  = longtable,
+  % page-ref   = plain,
+  page-ref     = comma,
+  % page-ref   = paren,
+  hyperref     = true,
+  first-style  = empty,
+  % list-type  = table,
+  % list-style = ,
 ]{acro}
+\DeclareTranslation{German}{acronym-list-name}{Abkürzungsverzeichnis}
+
+% \newlist{acronyms}{description}{1}
+% \newcommand*\addcolon[1]{#1:}
+% \setlist[acronyms]{
+  % labelwidth=5em,
+  % leftmargin=5.5em,
+  % noitemsep,
+  % itemindent=0pt,
+  % font=\addcolon,
+% }
+%% To enable, remove % sign on the next line.
+% \acsetup{list-type=acronyms}
+
+%% https://tex.stackexchange.com/questions/160219/acro-package-customise-the-printacronyms-style-with-hyphen-or-other
+\newenvironment{acronymsLabel}{%
+  % \labeling[~\dots]{RADIUS XX}%
+  \labeling[--]{RADIUS XX}%
+}{%
+  \endlabeling%
+}
+%% To enable, remove % sign on the next line.
+\acsetup{list-type=acronymsLabel}
+
+%% https://tex.stackexchange.com/questions/236860/acronyms-with-same-style-as-lot-acro-package
+% \DeclareInstance{acro-page-number}{dotfill}{default}{
+  % punct        = true,
+  % punct-symbol = \dotfill,
+% }
+% \acsetup{
+ % list-type  = table,
+ % list-style = longtable,
+ % pages      = first,
+ % page-name  = {},
+ % pages-name = {},
+ % page-ref   = dotfill,
+% }
+
 \RequirePackage{
   lualatexAcroPatchRS,
-  UrlDefinitionsRS,
 }
 
 \DeclareAcronym{CTAN}{
@@ -41,6 +83,12 @@
   long      = {\href{https://de.wikipedia.org/wiki/Zertifizierungsstelle}{Zertifizierungsstelle}},
   % foreign = {certificate authority},
   class     = {IT},
+}
+\DeclareAcronym{LAN}{
+  short   = {LAN},
+  long    = {\href{https://de.wikipedia.org/wiki/Local_Area_Network}{lokales Netzwerk}},
+  foreign = {Local Area Network},
+  class   = {IT},
 }
 \DeclareAcronym{WLAN}{
   short = {WLAN},
@@ -133,10 +181,33 @@
   long  = {\href{https://en.wikipedia.org/wiki/VMDK}{Virtual Machine Disk}},
   class = {IT},
 }
+\DeclareAcronym{API}{
+  short   = {API},
+  long    = {\href{https://de.wikipedia.org/wiki/Programmierschnittstelle}{Anwendungsprogrammierschnittstelle}},
+  foreign = {application programming interface},
+  class   = {IT},
+}
 \DeclareAcronym{SNMP}{
-  short = {SNMP},
-  long  = {\href{https://de.wikipedia.org/wiki/Network_Address_Translation}{Network Address Translation}},
-  class = IT,
+  short   = {SNMP},
+  long    = {\href{https://de.wikipedia.org/wiki/Simple_Network_Management_Protocol}{Einfaches Netzwerkverwaltungsprotokoll}},
+  foreign = {Simple Network Management Protocol},
+  class   = {IT:protocol:network},
+}
+\DeclareAcronym{MIB}{
+  short   = {MIB},
+  long    = {\href{https://de.wikipedia.org/wiki/Management_Information_Base}{Management Information Base}},
+  class   = {IT:protocol:network},
+}
+\DeclareAcronym{WATO}{
+  short   = {WATO},
+  long    = {\href{https://mathias-kettner.de/checkmk_wato.html}{Check\_MK‘s Web Administration Tool}},
+  % class   = {IT:monitoring:checkmk},
+  class = {IT},
+}
+\DeclareAcronym{CSV}{
+  short   = {CSV},
+  long    = {\href{https://de.wikipedia.org/wiki/CSV_(Dateiformat)}{Comma-separated values}},
+  class = {IT},
 }
 \DeclareAcronym{NAT}{
   short = {NAT},
@@ -185,10 +256,40 @@
   foreign = {Short Message Service},
   class   = {IT},
 }
+\DeclareAcronym{GPO}{
+  short   = {GPO},
+  long    = {\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekt}},
+  foreign = {Group Policy Object},
+  class   = {IT},
+}
+% \acro{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekt}}%
+% \acrodefplural{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekte}}%
+\DeclareAcronym{RDP}{
+  short   = {RDP},
+  long    = {\href{https://de.wikipedia.org/wiki/Remote_Desktop_Protocol}{Remote Desktop Protocol}},
+  class   = {IT:protocol:network},
+}
 \DeclareAcronym{GSM}{
   short = {GSM},
   long  = {\href{https://de.wikipedia.org/wiki/Global_System_for_Mobile_Communications}{Global System for Mobile Communications}},
   class = {IT},
+}
+\DeclareAcronym{URL}{
+  short   = {URL},
+  long    = {\href{https://de.wikipedia.org/wiki/Uniform_Resource_Locator}{Einheitlicher Ressourcenanzeiger}},
+  foreign = {Uniform Resource Locator},
+  class   = {IT},
+}
+\DeclareAcronym{HE}{
+  short   = {HE},
+  long    = {\href{https://de.wikipedia.org/wiki/Höheneinheit}{Höheneinheit}},
+  foreign = {Rack Unit},
+  class   = {IT},
+}
+\DeclareAcronym{LED}{
+  short = {LED},
+  long  = {\href{https://de.wikipedia.org/wiki/Leuchtdiode}{Leuchtdiode}},
+  class = {electronic},
 }
 \DeclareAcronym{EST}{
   short = {EST},
@@ -230,13 +331,10 @@
 % \acro{CSS}{\href{https://de.wikipedia.org/wiki/Cascading_Style_Sheets}{Cascading Style Sheets}}%
 % \acro{EPK}{\href{https://de.wikipedia.org/wiki/Ereignisgesteuerte_Prozesskette}{Ereignisgesteuerte Prozesskette}}%
 % \acro{EST}{\href{https://www.elektronikschule.de/}{Elektronikschule Tettnang}}%
-% \acro{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekt}}%
-% \acrodefplural{GPO}{\href{https://de.wikipedia.org/wiki/Group_Policy_Object}{Gruppenrichtlinienobjekte}}%
 % \acro{HTML}{\href{https://de.wikipedia.org/wiki/HTML}{Hypertext Markup Language}}%
 % \acro{ISP}{\href{https://de.wikipedia.org/wiki/Internetdienstanbieter}{Internetdienstanbieter}}%
 % \acro{OU}{\href{https://en.wikipedia.org/wiki/Organizational_unit_(computing)}{Organizational unit}}%
 % \acro{PHP}{\href{https://de.wikipedia.org/wiki/PHP}{\enquote{PHP: Hypertext Preprocessor}}}%
-% \acro{RDP}{\href{https://de.wikipedia.org/wiki/Remote_Desktop_Protocol}{Remote Desktop Protocol}}%
 % \acro{SLAAC}{\href{http://www.ietf.org/rfc/rfc4862.txt}{Stateless Address Autoconfiguration}}%
 % \acro{TCP}{\href{https://de.wikipedia.org/wiki/Transmission_Control_Protocol}{Transmission Control Protocol}}%
 % \acro{TWZ}{\enquote{Tettnanger Wellness-Zentrum}}%
