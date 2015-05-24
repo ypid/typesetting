@@ -33,12 +33,16 @@
 %% https://tex.stackexchange.com/questions/160219/acro-package-customise-the-printacronyms-style-with-hyphen-or-other
 \newenvironment{acronymsLabel}{%
   % \labeling[~\dots]{RADIUS XX}%
-  \labeling[--]{RADIUS XX}%
+  % \labeling[--]{RADIUS XX}%
+  \labeling{RADIUS XX}%
 }{%
   \endlabeling%
 }
 %% To enable, remove % sign on the next line.
-\acsetup{list-type=acronymsLabel}
+\acsetup{
+  list-type=acronymsLabel,
+  list-short-format = {\bfseries}, % Abkürzungen in fetter Serifenschrift im Verzeichnis
+}
 
 %% https://tex.stackexchange.com/questions/236860/acronyms-with-same-style-as-lot-acro-package
 % \DeclareInstance{acro-page-number}{dotfill}{default}{

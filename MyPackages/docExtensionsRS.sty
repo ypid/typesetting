@@ -9,6 +9,7 @@
   pdflscape,
   % sourcefiletable,
   varioref,
+  % cleveref,
   mfirstuc,
   extensionsRS,
   maketitleRS,
@@ -87,10 +88,22 @@
   \pagenumbering{arabic}%
 }
 
-\newcommand{\ReferToLabelSimple}[1]{\enquote{\nameref{#1}} \vpageref{#1}\xspace}
-\newcommand{\ReferToLabel}[1]{\autoref{#1} \ReferToLabelSimple{#1}\xspace}
-\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \ReferToLabel{#1}}
-\newcommand{\siehe}[1]{\seename{} \ReferToLabel{#1}}
+\addto\extrasngerman{%
+  \renewcommand{\reftextcurrent}{\unskip}
+}
+
+\newcommand{\SimpleReferTo}[1]{\autoref{#1} \vpageref{#1}\xspace}
+\newcommand{\ReferTo}[1]{\autoref{#1}: \textit{\nameref{#1}} \vpageref{#1}\xspace}
+% \newcommand{\ReferTo}[1]{\autoref{#1} (\nameref{#1}) \vpageref{#1}\xspace}
+
+\newcommand{\ReferToAppendix}[1]{%
+  \appendixname{} als
+  \ReferTo{#1}%
+  % \autoref{#1} \vpageref{#1}\xspace%
+}
+
+\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \ReferTo{#1}}
+\newcommand{\siehe}[1]{\seename{} \ReferTo{#1}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 
