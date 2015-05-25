@@ -2,8 +2,30 @@
 \ProvidesPackage{timeRS}
   [2015/02/05 v1.1 Bundle of packages for working with dates and times by Robin Schneider]
 
+\RequirePackage{
+  iftex,
+  fnumprint,
+  IfconstructsRS,
+}
+
 %\RequirePackage{scrtime}
-\RequirePackage{isodate}			%% Basics z.B. \today \printdate{...}
+
+%% Does not help much because isodate detects the currently active language which is good.
+%% Patching is not really required.
+%% Package isodate Warning: Language german unknown to isodate.
+%% (isodate)                Using default format on input line 85.
+% \ifLuaTeX%
+%   \twoIF{\value{fnumprint@language}}{%
+%     \RequirePackage[ngerman]{isodate}
+%   }{%
+%     \RequirePackage{isodate}
+%   }{%
+%   }
+% \else
+%   \RequirePackage{isodate}
+% \fi
+\RequirePackage{isodate}
+
 %% Use:
 %% \printdate{2015-05-13}
 %% \daterange{2015-05-18}{2015-05-22}

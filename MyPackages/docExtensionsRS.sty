@@ -51,7 +51,7 @@
 \newcounter{vorstatpage}
 \newcounter{tablesvorstat}	%% Alternative: \@arabic\c@table
 
-\newcommand{\printendsignature}[1][]{%% Empty line is needed
+\newcommand{\printendsignature}[1][]{%
   \begin{center}
     \ifthenelse{\(%
         \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4}
@@ -97,7 +97,7 @@
     \vpageref{#2}%
   }{%
     #1~\pageref{#2}%
-  }\xspace
+  }\xspace%
 }
 
 \newcommand{\SimpleReferTo}[2][\empty]{\autoref{#2} \Myvpageref[#1]{#2}\xspace}
@@ -110,8 +110,8 @@
   % % \autoref{#2} \vpageref{#2}\xspace%
 % }
 
-\newcommand{\Siehe}[2][\empty]{\xmakefirstuc{\seename} \ReferTo[#1]{#2}}
-\newcommand{\siehe}[2][\empty]{\seename{} \ReferTo[#1]{#2}}
+\newcommand{\Siehe}[2][\empty]{\xmakefirstuc{\seename} \ReferTo[#1]{#2}\xspace}
+\newcommand{\siehe}[2][\empty]{\seename{} \ReferTo[#1]{#2}\xspace}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 

@@ -18,6 +18,12 @@
 ]{acro}
 \DeclareTranslation{German}{acronym-list-name}{Abkürzungsverzeichnis}
 
+%% https://bitbucket.org/cgnieder/acro/issue/32
+\let\acro@patch@org@acl\acl\relax
+\let\acro@patch@org@ac\ac\relax
+\renewcommand{\acl}[1]{\acro@patch@org@acl{#1}\acuse{#1}\xspace}
+\renewcommand{\ac}[1]{\acro@patch@org@ac{#1}\acuse{#1}\xspace}
+
 % \newlist{acronyms}{description}{1}
 % \newcommand*\addcolon[1]{#1:}
 % \setlist[acronyms]{
@@ -75,6 +81,16 @@
 \DeclareAcronym{SQL}{
   short = {SQL},
   long  = {\urlSQL},
+  class = {IT},
+}
+\DeclareAcronym{MTA}{
+  short = {MTA},
+  long  = {\href{https://de.wikipedia.org/wiki/Mail_Transfer_Agent}{Mail Transfer Agent}},
+  class = {IT},
+}
+\DeclareAcronym{MDA}{
+  short = {MDA},
+  long  = {\href{https://de.wikipedia.org/wiki/Mail_Delivery_Agent}{Mail Delivery Agent}},
   class = {IT},
 }
 \DeclareAcronym{SSID}{

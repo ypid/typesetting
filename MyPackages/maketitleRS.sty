@@ -10,8 +10,7 @@
 % Patching \maketitle {{{
 \pretocmd{\maketitle}{%
   \phantomsection%
-  \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}%
-  \label{sec:titlepage}%
+  \pdfbookmark[1]{\LanguageTitlepageName}{titlepage}\label{sec:titlepage}%
   \pagenumbering{Roman}%
 }{}{}
 \apptocmd{\maketitle}{%

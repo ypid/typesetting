@@ -23,6 +23,9 @@ echo '
 GPO
 HE
 LED
+SQL
+MTA
+MDA
 URL
 SNMP
 MIB
