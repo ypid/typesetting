@@ -100,8 +100,8 @@
   }\xspace%
 }
 
-\newcommand{\SimpleReferTo}[2][\empty]{\autoref{#2} \Myvpageref[#1]{#2}\xspace}
-\newcommand{\ReferTo}[2][\empty]{\autoref{#2}: \textit{\nameref{#2}} \Myvpageref[#1]{#2}\xspace}
+\newcommand{\SimpleReferTo}[2][\empty]{\autoref{#2} \Myvpageref[#1]{#2}}
+\newcommand{\ReferTo}[2][\empty]{\autoref{#2}: \textit{\nameref{#2}} \Myvpageref[#1]{#2}}
 
 %% Macro redundant. Use \ReferTo
 % \newcommand{\ReferToAppendix}[2][\empty]{%
@@ -110,8 +110,8 @@
   % % \autoref{#2} \vpageref{#2}\xspace%
 % }
 
-\newcommand{\Siehe}[2][\empty]{\xmakefirstuc{\seename} \ReferTo[#1]{#2}\xspace}
-\newcommand{\siehe}[2][\empty]{\seename{} \ReferTo[#1]{#2}\xspace}
+\newcommand{\Siehe}[2][\empty]{\xmakefirstuc{\seename} \ReferTo[#1]{#2}}
+\newcommand{\siehe}[2][\empty]{\seename{} \ReferTo[#1]{#2}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 
