@@ -92,18 +92,26 @@
   \renewcommand{\reftextcurrent}{\unskip}
 }
 
-\newcommand{\SimpleReferTo}[1]{\autoref{#1} \vpageref{#1}\xspace}
-\newcommand{\ReferTo}[1]{\autoref{#1}: \textit{\nameref{#1}} \vpageref{#1}\xspace}
-% \newcommand{\ReferTo}[1]{\autoref{#1} (\nameref{#1}) \vpageref{#1}\xspace}
-
-\newcommand{\ReferToAppendix}[1]{%
-  \appendixname{} als
-  \ReferTo{#1}%
-  % \autoref{#1} \vpageref{#1}\xspace%
+\newcommand{\Myvpageref}[2][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{%
+    \vpageref{#2}%
+  }{%
+    #1~\pageref{#2}%
+  }\xspace
 }
 
-\newcommand{\Siehe}[1]{\xmakefirstuc{\seename} \ReferTo{#1}}
-\newcommand{\siehe}[1]{\seename{} \ReferTo{#1}}
+\newcommand{\SimpleReferTo}[2][\empty]{\autoref{#2} \Myvpageref[#1]{#2}\xspace}
+\newcommand{\ReferTo}[2][\empty]{\autoref{#2}: \textit{\nameref{#2}} \Myvpageref[#1]{#2}\xspace}
+
+%% Macro redundant. Use \ReferTo
+% \newcommand{\ReferToAppendix}[2][\empty]{%
+  % \appendixname{} als
+  % \ReferTo[#1]{#2}%
+  % % \autoref{#2} \vpageref{#2}\xspace%
+% }
+
+\newcommand{\Siehe}[2][\empty]{\xmakefirstuc{\seename} \ReferTo[#1]{#2}}
+\newcommand{\siehe}[2][\empty]{\seename{} \ReferTo[#1]{#2}}
 %\newcommand{\namepageref}[1]{\nameref{#1} \vpageref{#1}\xspace}
 %\newcommand{\printfullref}[1]{\ref{#1} \nameref{#1} \vpageref{#1}\xspace}
 

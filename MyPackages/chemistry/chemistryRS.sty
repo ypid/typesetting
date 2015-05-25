@@ -15,7 +15,8 @@
 
 \newcommand{\aggre}[1]{\, \textit{(#1)}}
 
-\RequirePackage[nohyperlinks,printonlyused]{acronym}     % nolist,withpage,footnote
+% \RequirePackage[nohyperlinks,printonlyused]{acronym}     % nolist,withpage,footnote
+% Use package acronymRS.
 
 \newcommand{\includeListOfAbbreviationsChemistry}[1][]{%
 \setlength{\columnsep}{5cm}%
@@ -27,7 +28,7 @@
 \ifthenelse{\equal{#1}{multicols}}{%
 \begin{multicols}{2}%	%% Für Chemie Praktikum deaktivieren
 }{}%
-\input{ListOfAbbreviationsChemistry.tex}
+\input{ListOfAbbreviationsChemistry}
 \ifthenelse{\equal{#1}{multicols}}{\end{multicols}}{}%
 \end{acronym}%
 \setlength{\columnsep}{1.5pc}%
