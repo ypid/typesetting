@@ -7,7 +7,7 @@
 
 % I know about notags={},
 \newcommand{\@printVersionNote}{%
-    Die Basis für dieses Dokuement stellt die Version
+    Die Basis für dieses Dokument stellt die Version
     \printVersionNumber{vom}
     dar.
 }
