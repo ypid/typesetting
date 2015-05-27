@@ -12,7 +12,7 @@
   page-ref     = comma,
   % page-ref   = paren,
   hyperref     = true,
-  first-style  = empty,
+  first-style  = empty, %% Be sure to check the result when changing this.
   % list-type  = table,
   % list-style = ,
 ]{acro}
@@ -71,11 +71,6 @@
 \DeclareAcronym{CTAN}{
   short = {CTAN},
   long  = {\href{https://de.wikipedia.org/wiki/Comprehensive_TeX_Archive_Network}{Comprehensive \TeX{} Archive Network}},
-  class = {IT},
-}
-\DeclareAcronym{TK}{
-  short = {TK},
-  long  = {\href{https://de.wikipedia.org/wiki/Telekommunikation}{Telekommunikation}},
   class = {IT},
 }
 \DeclareAcronym{SQL}{
@@ -294,6 +289,11 @@
   long  = {\href{https://de.wikipedia.org/wiki/Global_System_for_Mobile_Communications}{Global System for Mobile Communications}},
   class = {TK},
 }
+\DeclareAcronym{TK}{
+  short = {TK},
+  long  = {\href{https://de.wikipedia.org/wiki/Telekommunikation}{Telekommunikation}},
+  class = {TK},
+}
 \DeclareAcronym{SIM}{
   short   = {SIM},
   long    = {\href{https://de.wikipedia.org/wiki/SIM-Karte}{Teilnehmer-Identitätsmodul}},
@@ -306,16 +306,34 @@
   foreign = {Uniform Resource Locator},
   class   = {IT},
 }
+\DeclareAcronym{RAID}{
+  short   = {RAID},
+  long    = {\href{https://de.wikipedia.org/wiki/RAID}{Redundante Anordnung unabhängiger Festplatten}},
+  foreign = {Redundant Array of Independent Disks},
+  class   = {IT},
+}
 \DeclareAcronym{HE}{
   short   = {HE},
   long    = {\href{https://de.wikipedia.org/wiki/Höheneinheit}{Höheneinheit}},
   foreign = {Rack Unit},
   class   = {IT},
 }
+\DeclareAcronym{GPL}{
+  short   = {GPL},
+  long    = {\href{https://de.wikipedia.org/wiki/GNU_General_Public_License}{\acs{GNU} General Public License}},
+  class   = {IT},
+}
+\DeclareAcronym{GNU}{
+  short   = {GNU},
+  long    = {\href{https://de.wikipedia.org/wiki/GNU}{GNU ist Nicht Unix}},
+  foreign = {GNU‘s Not Unix},
+  class   = {IT},
+}
 \DeclareAcronym{LED}{
-  short = {LED},
-  long  = {\href{https://de.wikipedia.org/wiki/Leuchtdiode}{Leuchtdiode}},
-  class = {electronic},
+  short   = {LED},
+  long    = {\href{https://de.wikipedia.org/wiki/Leuchtdiode}{Leuchtdiode}},
+  foreign = {light-emitting diode},
+  class   = {electronic},
 }
 \DeclareAcronym{EST}{
   short = {EST},
