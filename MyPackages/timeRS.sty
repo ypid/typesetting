@@ -28,15 +28,22 @@
 \RequirePackage{isodate}
 
 %% Ugly hack to make german the default language for isodate in case when language detection fails e.g. with LuaLaTeX. Use from document.
-%% See timeRS.sty
-\def\CurrentOption{german}
-\input{german.idf}
+\oneIF{\value{fnumprint@language}}{% German
+  \ifLuaTeX%
+    \def\CurrentOption{german}
+    % \makeatletter
+    \input{german.idf}
+    % \makeatother
+  \fi
+}{%
+}
 
 % \@namedef{iso@rangesign@english}{~s to~}%
 
 %% Testing
-\daymonthsepgerman{}%
-\monthyearsepgerman{}{}%
+% \daymonthsepgerman{}%
+% \monthyearsepgerman{}{}%
+% biblatex has his own definitions …
 
 %% Use:
 %% \printdate{2015-05-13}
