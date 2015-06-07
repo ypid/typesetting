@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{letterRS}
-          [2011/09/24 v0.99 Erweiterungen für die Dokumentklasse scrlttr2 von Robin Schneider]
+          [2015/06/07 v1.0 Erweiterungen für die Dokumentklasse scrlttr2 von Robin Schneider]
 
 %% Hauptsächlich Anschriften Verwaltungen in einzelnen Dateien
 
@@ -10,10 +10,10 @@
 }
 
 \newcommand{\printUnterschriftenfeld}[1]{%
-	\begin{tabularx}{\textwidth}[b]{p{5cm}}%
-		\cline{1-1}%
-		#1%
-	\end{tabularx}%
+  \begin{tabularx}{\textwidth}[b]{p{5cm}}%
+    \cline{1-1}%
+    #1%
+  \end{tabularx}%
 }
 
 %% Empfänger
@@ -28,47 +28,47 @@
 \newcommand{\EmKompAddresse}{}
 
 \newcommand{\Anschrift}[7]{
-\renewcommand{\EmVorname}{#1}
-\renewcommand{\EmNachname}{#2}
-\renewcommand{\EmSex}{#3}
-\ifthenelse{\equal{\EmVorname}{}}{
-	\ifthenelse{\equal{\EmSex}{m}}{\renewcommand{\EmName}{Herr~\EmNachname}}{}
-	\ifthenelse{\equal{\EmSex}{w}}{\renewcommand{\EmName}{Frau~\EmNachname}}{}
-	}{
-	\renewcommand{\EmName}{\EmVorname ~\EmNachname}
-	}
-\renewcommand{\EmStrasse}{#4~#5}
-\renewcommand{\EmPLZ}{#6}
-\renewcommand{\EmOrt}{#7}
+  \renewcommand{\EmVorname}{#1}
+  \renewcommand{\EmNachname}{#2}
+  \renewcommand{\EmSex}{#3}
+  \ifthenelse{\equal{\EmVorname}{}}{
+      \ifthenelse{\equal{\EmSex}{m}}{\renewcommand{\EmName}{Herr~\EmNachname}}{}
+      \ifthenelse{\equal{\EmSex}{w}}{\renewcommand{\EmName}{Frau~\EmNachname}}{}
+      }{
+      \renewcommand{\EmName}{\EmVorname ~\EmNachname}
+      }
+  \renewcommand{\EmStrasse}{#4~#5}
+  \renewcommand{\EmPLZ}{#6}
+  \renewcommand{\EmOrt}{#7}
 }
 
 \newcommand{\CheckIfEmAddress}{%
-\ifthenelse{\equal{\EmStrasse}{~}}{%
-	\renewcommand{\EmAddress}{\EmPLZ ~\EmOrt}%
-}{%
-	\renewcommand{\EmAddress}{\EmStrasse\\ \EmPLZ ~\EmOrt}
-}%
+  \ifthenelse{\equal{\EmStrasse}{~}}{%
+      \renewcommand{\EmAddress}{\EmPLZ~\EmOrt}%
+  }{%
+      \renewcommand{\EmAddress}{\EmStrasse\\ \EmPLZ~\EmOrt}
+  }%
 }
-\newcommand{\EmName}{\EmVorname ~\EmNachname}
+\newcommand{\EmName}{\EmVorname~\EmNachname}
 
 \newcommand{\AnschriftAuslesen}[1]{%
-\input{/home/rsadmin/Dokumente/LaTeX/input-document/Anschrift/#1.tex}%
-\CheckIfEmAddress%
-\CheckIfEmFirma%
+  \input{/home/rsadmin/Dokumente/LaTeX/input-document/Anschrift/#1.tex}%
+  \CheckIfEmAddress%
+  \CheckIfEmFirma%
 }
 
-\newcommand{\BriefAn}[1]{
-\Anschrift{}{}{}{}{}{}{}
-\AnschriftAuslesen{#1}
-\Serienbrief{\EmVorname}{\EmNachname}{\EmSex}{\EmStrasse}{\EmPLZ}{\EmOrt}
+\newcommand{\BriefAn}[1]{%
+  \Anschrift{}{}{}{}{}{}{}
+  \AnschriftAuslesen{#1}
+  \Serienbrief{\EmVorname}{\EmNachname}{\EmSex}{\EmStrasse}{\EmPLZ}{\EmOrt}
 }
 
 \newcommand{\CheckIfEmFirma}{%
-\ifthenelse{\equal{\EmFirma}{}}{%
-	\renewcommand{\EmKompAddresse}{\EmName\\ \EmAddress}%
-}{%
-	\renewcommand{\EmKompAddresse}{\EmFirma\\ \EmName\\ \EmAddress}%
-}%
+  \ifthenelse{\equal{\EmFirma}{}}{%
+      \renewcommand{\EmKompAddresse}{\EmName\\ \EmAddress}%
+  }{%
+      \renewcommand{\EmKompAddresse}{\EmFirma\\ \EmName\\ \EmAddress}%
+  }%
 }
 
 \newcommand{\Osehrgeehrte}[2]{
@@ -89,7 +89,15 @@
       \ifthenelse{\equal{#1}{f}}{Dear Family #2,}{}
       \ifthenelse{\equal{#1}{dh}}{Dear Sir or Madam,}{}
     }{
-      \PackageError{\@currname}{Opening line for used language is not defined.}
+      \iflanguage{UKenglish}{
+        %% https://www.linkedin.com/groups/Writing-in-letter-in-English-4319755.S.121829504
+        \ifthenelse{\equal{#1}{m}}{Dear Mr.~#2,}{}
+        \ifthenelse{\equal{#1}{w}}{Dear Ms.~#2,}{}
+        \ifthenelse{\equal{#1}{f}}{Dear Family #2,}{}
+        \ifthenelse{\equal{#1}{dh}}{Dear Sir or Madam,}{}
+      }{
+        \PackageError{\@currname}{Opening line for used language is not defined.}
+      }
     }
   }
 }

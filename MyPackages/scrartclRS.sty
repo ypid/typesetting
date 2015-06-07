@@ -30,6 +30,21 @@
 %% (scrartcl)              a package that still implements the
 %% (scrartcl)              deprecated \float@listhead interface  on input line 131.
 
+\KOMAoptions{
+  % toc=listof, % Abbildungsverzeichnis sowie Tabellenverzeichnis in das Inhaltsverzeichnis aufnehmen
+  %% https://studi-lektor.de/tipps/masterarbeit-schreiben/masterarbeit-inhaltsverzeichnis.html
+  %% Can not be declared here …
+  %% Defining it directly in the class options …
+  %
+  % toc=bibliography, % Literaturverzeichnis in das Inhaltsverzeichnis aufnehmen
+  % bibliography=totoc,
+  %% https://www.wissenschaftliches-arbeiten.org/hausarbeit/aufbau/das-abbildungsverzeichnis.html
+  %
+  % footnotes=multiple, % Trennen von direkt aufeinander folgenden Fußnoten
+  numbers=noendperiod, % Den letzten Punkt nach einer Nummerierung entfernen (nach DIN 5008)
+  %% https://www.wissenschaftliches-arbeiten.org/hausarbeit/aufbau/das-inhaltsverzeichnis.html
+}
+
 \BeforeTOCHead{%
   % \cleardoublepage%
   \edef\@tempa{%

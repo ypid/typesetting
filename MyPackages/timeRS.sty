@@ -10,21 +10,13 @@
 
 %\RequirePackage{scrtime}
 
+%% isodate (((
+% \RequirePackage[ngerman]{isodate}
 %% Not working with LuaLaTeX
 %% Does not help much because isodate detects the currently active language which is good.
 %% Patching is not really required.
 %% Package isodate Warning: Language german unknown to isodate.
 %% (isodate)                Using default format on input line 85.
-% \ifLuaTeX%
-%   \twoIF{\value{fnumprint@language}}{%
-%     \RequirePackage[ngerman]{isodate}
-%   }{%
-%     \RequirePackage{isodate}
-%   }{%
-%   }
-% \else
-%   \RequirePackage{isodate}
-% \fi
 \RequirePackage{isodate}
 
 %% Ugly hack to make german the default language for isodate in case when language detection fails e.g. with LuaLaTeX. Use from document.
@@ -48,6 +40,7 @@
 %% Use:
 %% \printdate{2015-05-13}
 %% \daterange{2015-05-18}{2015-05-22}
+%% )))
 
 % \newcommand{\printdate}{}
 \RequirePackage{datetime}	%% only \pdfdate and \currenttime or \the\currentsecond

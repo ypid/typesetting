@@ -4,15 +4,22 @@
 %\listfiles %% listfiles to logfile
 \RequirePackage{RequirePackageRS}
 \documentclass[
-  % ngerman,
-  english,
+  ngerman,
+  % english,
   default_settings,
   address_Robin,
   % signature_picture
 ]{scrlttr2}
-\usepackage{
-  baseRS,
+%% Package list {{{
+\usepackage{%
+  % defaultsRS,
+  % debugRS,
+  timeRS,
+  % graphicRS,
+  % qrcode,
+  % UrlDefinitionsRS,
 }
+%% }}}
 
 %% specific indications
 \AnschriftAuslesen{MaxMustermann}
@@ -24,7 +31,7 @@
 \begin{letter}{\EmKompAddresse}
 \Osehrgeehrte{\EmSex}{\EmNachname}
 
-ich wollte ihnen nur mal \LaTeX{} empfehlen~\dots
+ich wollte ihnen nur mal \LaTeX{} empfehlen~…
 
 \closing{Mit freudlichen Grüßen}
 %\cc{name1 \\ name2}
