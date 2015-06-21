@@ -20,7 +20,6 @@
 
 %% Author (((
 \newcommand{\AUTHOR}{\MyAuthor}
-\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
 \newcommand{\SetAUTHOR}[2]{%
   \IfInteger{#1}{}{\PackageError{\@currname}{Parameter 1 is not a number parameter.}}
   \setcounter{Author@ChosenNumber}{#1}%% if #1 == 4

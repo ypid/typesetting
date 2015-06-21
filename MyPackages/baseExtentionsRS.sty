@@ -1,0 +1,31 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{baseExtentionsRS}
+  [2015/06/21 v1.0 Base extentions packages by Robin Schneider]
+
+\RequirePackage{
+  eqlist,
+  csquotes,
+  multicol,    %% \begin{multicols}{2}
+  verbatim,
+}
+
+\RequirePackage[autolanguage]{numprint}
+% \npfourdigitnosep% %% If set in a table it looks ugly when you have numbers with 4 digits and more than 4 digits following each other.
+
+\RequirePackage{
+  mathPatchesRS,
+  physicsRS,
+}
+
+%% \iflanguage{ngerman} seems to not work correctly with my LuaLaTeX setup.
+% \iflanguage{ngerman}{
+  \RequirePackage[
+    right,
+  ]{eurosym}
+% }{
+  % \RequirePackage{eurosym}
+% }
+\let\RawEUR\EUR\relax
+\renewcommand{\EUR}[1]{\mbox{\num[round-mode=places,round-precision=2]{#1}\,\euro}}
+
+\endinput

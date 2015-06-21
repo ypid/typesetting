@@ -2,6 +2,8 @@
 \ProvidesPackage{BeamerLayoutRS}
   [2015/06/19 v1.1 Default layout for the beamer class by Robin Schneider]
 
+%% I use my own style, based on Berlin and beetle.
+
 \RequirePackage{
   fontRS,
 }
@@ -9,20 +11,31 @@
 \beamertemplatenavigationsymbolsempty%
 
 % opaque preview of further text on sheet
-\setbeamercovered{transparent}
+% \setbeamercovered{transparent}
 
 \usepackage{beamerthemeshadow}
 
+%% in main.tex
+% \useoutertheme[
+%   footline=authorinstitutetitle,
+%   subsection=false,
+% ]{miniframes}
+\usecolortheme{whale}
+\usecolortheme{orchid}
+\useinnertheme{rectangles}
+
+\setbeamerfont{block title}{size={}}
+
 \usetheme{%
-  Berlin%
-  % boxes%
-  % EastLansing%
+  % Berlin%
   % Antibes%
+  % EastLansing%
+  % boxes%
   % Bergen%
+  % Dresden%
   % Copenhagen%
   % Darmstadt%
   % default%
-  % Dresden%
   % Frankfurt%
   % Goettingen%
   % Hannover%
@@ -45,24 +58,39 @@
   % AnnArbor%
 }
 
+% \usecolortheme{beetle}
 \usecolortheme{%
   % default%
   %
-  % beaver%
-  spruce%
-  % albatross%
+  % spruce%
   % beetle%
-  % dove%
   % sidebartab%
+  % dove%
+  % seahorse%
+  % beaver%
   %
+  % albatross%
   % fly%
   % seagull%
-  % wolverine%
-  % crane%
   % monarca%
+  % crane%
+  % wolverine%
   %
   % structure%% Package xcolor Error: Undefined color `beamer@structure@color'.
 }
+% \setbeamercolor{title}{fg=black}%% for beetle
+
+\definecolor{beetle@other}{RGB}{64,80,127}
+
+\setbeamercolor*{palette primary}{fg=white,bg=beetle@other}
+\setbeamercolor*{palette secondary}{parent=palette primary,use=palette primary,bg=palette primary.bg!95}
+\setbeamercolor*{palette tertiary}{parent=palette primary,use=palette primary,bg=palette primary.bg!90!black}
+\setbeamercolor*{palette quaternary}{parent=palette primary,use=palette primary,bg=palette primary.bg!85!black}
+
+\setbeamercolor{structure}{fg=beetle@other!70}
+\setbeamercolor{normal text}{fg=black}
+% \setbeamercolor*{titlelike}{parent=structure}
+
 % \useinnertheme{%
 \usecolortheme{%
   % default%
@@ -76,15 +104,16 @@
   % default%
   %
   % whale%
-  % seahorse%
   % dolphin%
 }
 
-% \usecolortheme{albatross}
-%\setbeamercolor*{normal text}{fg=black!5!white,bg=black!85!white}		%% von janapirat@gmx.de
-%\setbeamercolor*{normal text}{fg=black!5!white,bg=black!50!white}
-% \setbeamercolor*{normal text}{fg=black!95!white,bg=white}
-% \setbeamercolor*{structure}{fg=green!70!black}
+\begin{comment}
+\usecolortheme{albatross}
+\setbeamercolor*{normal text}{fg=black!5!white,bg=black!85!white}		%% von janapirat@gmx.de
+\setbeamercolor*{normal text}{fg=black!5!white,bg=black!50!white}
+\setbeamercolor*{normal text}{fg=black!95!white,bg=white}
+\setbeamercolor*{structure}{fg=green!70!black}
+\end{comment}
 
 
 %\setbeamertemplate{footline}{

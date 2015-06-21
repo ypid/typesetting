@@ -48,29 +48,6 @@
   \href{mailto:#1}{#1}%
 }
 
-\newcounter{headpages}
-\newcounter{vorstatpage}
-\newcounter{tablesvorstat}	%% Alternative: \@arabic\c@table
-
-\newcommand{\printendsignature}[1][]{%
-  \begin{center}
-    \ifthenelse{\(%
-        \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4}
-      \) \AND\( \NOT \equal{#1}{without-typesetter} \)}{%
-
-      \Language@SignatureTextWithTypesetter{}
-    }{%
-      \Language@SignatureText{}
-    }%
-    \Language@SignatureTeX{}
-    \Language@SignatureOS%
-    \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
-      \setcounter{vorstatpage}{\value{page}}%
-      \setcounter{tablesvorstat}{\value{table}}%
-    }.\\
-  \end{center}
-}
-
 \newcommand{\PrintDefaultTitlepage}{\input{/home/rsadmin/Dokumente/LaTeX/input-document/titelpages/maketitle}}
 
 \providecommand{\frontmatter}{%

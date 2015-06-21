@@ -6,6 +6,7 @@
   iftex,
   baseRS,
   languageBaseRS,
+  baseExtentionsRS,
 }
 \ifPDFTeX%
   \RequirePackage{pdflatexDefaultsRS}
@@ -55,26 +56,6 @@
   prefix={sol-}
 ]{xcolor-solarized}
 
-\RequirePackage[autolanguage]{numprint}
-% \npfourdigitnosep% %% If set in a table it looks ugly when you have numbers with 4 digits and more than 4 digits following each other.
-
-\RequirePackage{mathPatchesRS}
-
-\RequirePackage{physicsRS}
-
-%% \iflanguage{ngerman} seems to not work correctly with my LuaLaTeX setup.
-% \iflanguage{ngerman}{
-  \RequirePackage[
-    right,
-  ]{eurosym}
-% }{
-  % \RequirePackage{eurosym}
-% }
-\let\RawEUR\EUR\relax
-\renewcommand{\EUR}[1]{\mbox{\num[round-mode=places,round-precision=2]{#1}\,\euro}}
-
-\RequirePackage{csquotes}
-
 \RequirePackage{
   TeXinfoRS,
   % mmap,        %% Better copy-paste support for PDFs. Not sure if this package is still needed.
@@ -86,7 +67,6 @@
   nicefrac,      %% Darstellung eines Bruchs im Fließtext; Aussehen zB 1/4
   romanbar,
   metalogo,
-  multicol,    %% \begin{multicols}{2}
   paralist,    %% besseres enumerate und itemize und neue compactenum/compactitem
   eqlist,      %% Beschreibungslisten mit gleicher Einrückung
     %% Es kann auch die labeling Umgebung aus (scrextend) der KOMA-Script Klasse benutzt werden

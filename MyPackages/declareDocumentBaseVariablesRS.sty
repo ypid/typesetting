@@ -13,6 +13,11 @@
   authoraftertitle,
 }
 
+\newcounter{headpages}
+\newcounter{vorstatpage}
+\newcounter{tablesvorstat}	%% Alternative: \@arabic\c@table
+
+\newcounter{Author@ChosenNumber}  %% Sets the pdfcreator to \Typesetter
 
 %% URL (((
 \newcommand{\URL}{}
@@ -90,5 +95,24 @@
   }
 }
 %% )))
+
+\newcommand{\printendsignature}[1][]{%
+  \begin{center}
+    \ifthenelse{\(%
+        \equal{#1}{with-typesetter} \OR \equal{\value{Author@ChosenNumber}}{4}
+      \) \AND\( \NOT \equal{#1}{without-typesetter} \)}{%
+
+      \Language@SignatureTextWithTypesetter{}
+    }{%
+      \Language@SignatureText{}
+    }%
+    \Language@SignatureTeX{}
+    \Language@SignatureOS%
+    \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
+      \setcounter{vorstatpage}{\value{page}}%
+      \setcounter{tablesvorstat}{\value{table}}%
+    }.\\
+  \end{center}
+}
 
 \endinput
