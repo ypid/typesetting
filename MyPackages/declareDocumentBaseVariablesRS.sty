@@ -1,0 +1,94 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{declareDocumentBaseVariablesRS}
+  [2015/02/05 v1.1 Packages for declaring base document variables by Robin Schneider]
+
+\RequirePackage{%
+  xifthen,
+  IfconstructsRS,
+  % timeRS,
+  datetime, %% Should be enough
+  qrcode,
+  xspace,
+  subjectRS,
+  authoraftertitle,
+}
+
+
+%% URL (((
+\newcommand{\URL}{}
+\newcommand{\SetURL}[1]{\renewcommand{\URL}{#1}}
+\newcommand{\printURLshort}{\ifthenelse{\equal{\URL}{}}{}{\url{\URL}\xspace}}
+\newlength{\hURLlongtextsize}%
+\newcommand{\printURLlong}[1][3cm]{%
+  \ifthenelse{\equal{\URL}{}}{%
+    \printGitURLlong%
+  }{%
+    \setlength{\hURLlongtextsize}{\textwidth -#1 -2em}
+    \ifthenelse{\isnamedefined{iflandscape}}{
+      \iflandscape{
+        \setlength{\hURLlongtextsize}{\hURLlongtextsize-10em}
+      }{}
+    }{}
+    \ifthenelse{\isnamedefined{setkomavar}}{% scrlttr2
+      \addtolength{\hURLlongtextsize}{-1cm}%
+    }{}%
+    \begin{center}%
+      \begin{minipage}{#1}%
+        \href{\URL}{\qrcode[height=#1]{\URL}}
+      \end{minipage}%
+      \hfill
+      \begin{minipage}{\hURLlongtextsize}%
+        Dieses Dokument ist als PDF Datei unter \printURLshort{} abrufbar.
+        \LanguageURLlongExtension%
+        \@printVersionNote
+        \printGitURLlong%
+      \end{minipage}%
+    \end{center}%
+  }%
+}
+%% )))
+
+%% git URL (((
+\newcommand{\GitURL}{}
+\newcommand{\SetGitURL}[1]{\renewcommand{\GitURL}{#1}}
+\newcommand{\printGitURLlong}{%
+  \ifthenelse{\equal{\GitURL}{}}{}{%
+    \LanguageGitURLlong{} \url{\GitURL}
+  }%
+}
+%% )))
+
+%% Create date (((
+\newboolean{@ifCREATEDATE}
+\newcommand{\SetCREATEDATE}[7][]{
+  \ifthenelse{\equal{#1}{usecurrent}}{
+    \newcommand{\CREATEDYEAR}{\the\year}
+    \newcommand{\CREATEDMONTH}{\the\month}
+    \newcommand{\CREATEDDAY}{\the\day}
+    \newcommand{\CREATEDHOUR}{\the\currenthour}
+    \newcommand{\CREATEDMINUTE}{\the\currentminute}
+    \newcommand{\CREATEDSECOND}{\the\currentsecond}
+    \newcommand{\CREATEDATE}{\pdfdate}
+    \setboolean{@ifCREATEDATE}{false}
+  }{
+    \IfInteger{#2}{}{\PackageError{\@currname}{Parameter 2 is not a number parameter.}}
+    \IfInteger{#3}{}{\PackageError{\@currname}{Parameter 3 is not a number parameter.}}
+    \IfInteger{#4}{}{\PackageError{\@currname}{Parameter 4 is not a number parameter.}}
+    \IfInteger{#5}{}{\PackageError{\@currname}{Parameter 5 is not a number parameter.}}
+    \IfInteger{#6}{}{\PackageError{\@currname}{Parameter 6 is not a number parameter.}}
+    \IfInteger{#7}{}{\PackageError{\@currname}{Parameter 7 is not a number parameter.}}
+    \newcommand{\CREATEDYEAR}{#2}
+    \newcommand{\CREATEDMONTH}{#3}
+    \newcommand{\CREATEDDAY}{#4}
+    \newcommand{\CREATEDHOUR}{#5}
+    \newcommand{\CREATEDMINUTE}{#6}
+    \newcommand{\CREATEDSECOND}{#7}
+
+    \newcommand{\CREATEDATE}{\CREATEDYEAR\CREATEDMONTH\CREATEDDAY%
+      \CREATEDHOUR\CREATEDMINUTE\CREATEDSECOND}
+    \setboolean{@ifCREATEDATE}{true}
+  }
+}
+%% )))
+
+\endinput

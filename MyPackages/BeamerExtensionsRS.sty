@@ -1,0 +1,37 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{defaultsRS}
+  [2015/06/19 v1.1 Default extentions for the beamer class by Robin Schneider]
+
+\RequirePackage{
+  % declareDocumentVariablesRS,
+  declareDocumentBaseVariablesRS,
+  ifdraft,
+  % authorBeamerPatchRS,
+}
+
+
+% \renewcommand{\PrintDefaultTitlepage}{\input{%
+% /home/rsadmin/Dokumente/LaTeX/input-document/titelpages/beamer}}
+
+\newcommand{\printlicenseBeamer}{
+  % \section*{\LanguageLicenceName}
+  \begin{frame}
+    % \frametitle{\LanguageLicenceName}
+    \frametitle{Hinweise zu den Folien}
+    \doclicenseThis
+    \printendsignature
+  \end{frame}
+}
+% \newboolean{showbeamerlogo}
+
+\AtEndPreamble{%
+  \@ifpackageloaded{hyperref}{%
+    \ifdraft{
+      %
+    }{
+      % \hypersetup{pdfpagemode={FullScreen}}
+    }
+  }{}
+}
+
+\endinput

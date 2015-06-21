@@ -1,0 +1,124 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{BeamerLayoutRS}
+  [2015/06/19 v1.1 Default layout for the beamer class by Robin Schneider]
+
+\RequirePackage{
+  fontRS,
+}
+
+\beamertemplatenavigationsymbolsempty%
+
+% opaque preview of further text on sheet
+\setbeamercovered{transparent}
+
+\usepackage{beamerthemeshadow}
+
+\usetheme{%
+  Berlin%
+  % boxes%
+  % EastLansing%
+  % Antibes%
+  % Bergen%
+  % Copenhagen%
+  % Darmstadt%
+  % default%
+  % Dresden%
+  % Frankfurt%
+  % Goettingen%
+  % Hannover%
+  % Ilmenau%
+  % JuanLesPins%
+  % Luebeck%
+  % Malmoe%
+  % Marburg%
+  % Montpellier%
+  % PaloAlto%
+  % Pittsburgh%
+  % Rochester%
+  % Singapore%
+  % Szeged%
+  % Warsaw%
+  %
+  % Berkeley%
+  % CambridgeUS%
+  % Madrid,Boadilla%% geht nur ohne das Paket beamerthemeshadow
+  % AnnArbor%
+}
+
+\usecolortheme{%
+  % default%
+  %
+  % beaver%
+  spruce%
+  % albatross%
+  % beetle%
+  % dove%
+  % sidebartab%
+  %
+  % fly%
+  % seagull%
+  % wolverine%
+  % crane%
+  % monarca%
+  %
+  % structure%% Package xcolor Error: Undefined color `beamer@structure@color'.
+}
+% \useinnertheme{%
+\usecolortheme{%
+  % default%
+  %
+  % lily%
+  % orchid%
+  % rose%
+}
+% \useoutertheme{%
+\usecolortheme{%
+  % default%
+  %
+  % whale%
+  % seahorse%
+  % dolphin%
+}
+
+% \usecolortheme{albatross}
+%\setbeamercolor*{normal text}{fg=black!5!white,bg=black!85!white}		%% von janapirat@gmx.de
+%\setbeamercolor*{normal text}{fg=black!5!white,bg=black!50!white}
+% \setbeamercolor*{normal text}{fg=black!95!white,bg=white}
+% \setbeamercolor*{structure}{fg=green!70!black}
+
+
+%\setbeamertemplate{footline}{
+%  \begin{beamercolorbox}{sidebar}
+%    \vskip3pt%
+%    \hskip8pt{}Seite \insertframenumber{}/{}\inserttotalframenumber{}%
+%    \hspace*{\fill}\href{http://creativecommons.org/licenses/by-nc-sa/3.0/de/}{\includegraphics[height=6px]{/home/rsadmin/Dokumente/LaTeX/input-document/creativecommons/graphics/by-nc-sa}}\hspace*{5pt}\vskip-1pt
+%    \vskip2pt
+%  \end{beamercolorbox}
+%}
+
+%\setbeamertemplate{footline}[text line]{
+%\begin{minipage}[b]{116mm}
+%\insertauthor \hfill %%neue Navigationsleiste
+%\insertsectionnavigationsymbol  \insertslidenavigationsymbol \quad \insertframenumber ~/ \inserttotalframenumber\\[1ex]
+%\end{minipage}}
+
+
+%\setbeamertemplate{footline}{
+%\begin{beamercolorbox}[wd=\paperwidth,ht=0.25cm,center]{section in head/foot}
+%    \begin{beamercolorbox}[wd=0.49\paperwidth,ht=0.25cm,right]{section in head/foot}
+%      \raisebox{0.05cm}{\insertauthor}
+%    \end{beamercolorbox}
+%    \setbeamercolor{section in head/foot}{bg=gray!30!white}
+%    \begin{beamercolorbox}[wd=0.46\paperwidth,ht=0.25cm]{section in head/foot}
+%      \raisebox{0.05cm}{\quad \inserttitle}
+%    \end{beamercolorbox}
+%    \hskip-0.01\paperwidth
+%    \begin{beamercolorbox}[wd=0.04\paperwidth,ht=0.25cm,center]{section in head/foot}
+%      \raisebox{0.05cm}{\insertframenumber}
+%    \end{beamercolorbox}
+% \end{beamercolorbox}
+%}
+
+% \setbeamertemplate{footline}[frame number]		%% Seitenzahlen in Fußzeile einfügen
+
+\endinput

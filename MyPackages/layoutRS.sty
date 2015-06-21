@@ -4,23 +4,8 @@
 
 \RequirePackage{
   xifthen,
-  iftex,
+  fontRS,
 }
-
-%% Fonts {{{
-\ifPDFTeX%
-  \RequirePackage{lmodern}          %% skalierbare Schriftfamilie "Latin Modern"
-
-  % \RequirePackage[osf]{libertine} %% Nice font. Could be used.
-  % \RequirePackage{chancery}       %% Like handwriting :)
-\fi
-%% }}}
-
-\ifLuaTeX%
-  % Ligatures
-  % http://tex.stackexchange.com/a/145498
-  \RequirePackage{selnolig}
-\fi
 
 \ifthenelse{\isnamedefined{opening}}{%% Letter
 }{%
@@ -46,10 +31,6 @@
   % DIV      = 15,
   %% Typographically not so nice but it saves space.
 }
-
-\RequirePackage[
-  tracking=true,
-]{microtype}
 
 % \tolerance=1414
 %% Default is 200.

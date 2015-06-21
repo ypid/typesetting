@@ -5,7 +5,7 @@
 %% Should be loaded after most packages: http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
 
 \RequirePackage{%
-  declareDocumentVariablesRS,
+  declareDocumentBaseVariablesRS,
   languageBaseRS,
   xifthen,
   % thumbpdf, %% PDF Thumbnails erstellen
@@ -32,6 +32,7 @@
 }
 
 \@ifclassloaded{moderncv}{%
+  %
 }{%
   \RequirePackage{
     hyperref,
