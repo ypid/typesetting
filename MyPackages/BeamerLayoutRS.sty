@@ -13,8 +13,28 @@
 % opaque preview of further text on sheet
 % \setbeamercovered{transparent}
 
-\usepackage{beamerthemeshadow}
+%% beamerthemeshadow (((
+% \usepackage{beamerthemeshadow}
+%
+% \begin{comment}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+% \useoutertheme{shadow} %% Results in dots being overwritten
+% Problem related to:
+% \useoutertheme[
+%   footline=authorinstitutetitle,
+%   subsection=false,
+% ]{miniframes}
+\useoutertheme{shadowRS} %% Patched version.
+\usefonttheme[onlysmall]{structurebold}
 
+\setbeamercolor{title}{use=structure,fg=white,bg=structure.fg}
+\setbeamerfont{block title}{size={}}
+% \end{comment}
+%% )))
+
+% \begin{comment}
 %% in main.tex
 % \useoutertheme[
 %   footline=authorinstitutetitle,
@@ -25,7 +45,11 @@
 \useinnertheme{rectangles}
 
 \setbeamerfont{block title}{size={}}
+% \end{comment}
 
+% \beamer@theme@subsectionfalse
+
+% \usetheme[compress]{Berlin}
 \usetheme{%
   % Berlin%
   % Antibes%
@@ -80,16 +104,18 @@
 }
 % \setbeamercolor{title}{fg=black}%% for beetle
 
+% \begin{comment}
 \definecolor{beetle@other}{RGB}{64,80,127}
+
+\setbeamercolor{structure}{fg=beetle@other!70}
+\setbeamercolor{normal text}{fg=black}
+% \setbeamercolor*{titlelike}{parent=structure}
 
 \setbeamercolor*{palette primary}{fg=white,bg=beetle@other}
 \setbeamercolor*{palette secondary}{parent=palette primary,use=palette primary,bg=palette primary.bg!95}
 \setbeamercolor*{palette tertiary}{parent=palette primary,use=palette primary,bg=palette primary.bg!90!black}
 \setbeamercolor*{palette quaternary}{parent=palette primary,use=palette primary,bg=palette primary.bg!85!black}
-
-\setbeamercolor{structure}{fg=beetle@other!70}
-\setbeamercolor{normal text}{fg=black}
-% \setbeamercolor*{titlelike}{parent=structure}
+% \end{comment}
 
 % \useinnertheme{%
 \usecolortheme{%
