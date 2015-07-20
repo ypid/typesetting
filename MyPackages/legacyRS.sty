@@ -23,21 +23,21 @@
 
 %% \Calcprogresspromille {{{
 \newcommand{\Calcprogresspromille}{
-	\ifthenelse{\equal{\value{ReleaseDate@ChosenNumber}}{2}}{
-		\daydiffCValuetodayU{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}
-		\ifthenelse{0 > \value{datetwo}}{}{
-			\setcounter{tmp}{\value{datetwo}}
-			\daydiffCValue{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{\ABGABEJahr}{\ABGABEMonat}{\ABGABETag}
-			\ifthenelse{0 > \value{datetwo}}{}{
-				\ifthenelse{\value{tmp} > \value{datetwo}}
-				{\FPset\myprogresskomma{1}}
-				{\FPeval\myprogresskomma{\thetmp/\thedatetwo}}
-				\FPround\myprogresskomma\myprogresskomma3
-				\FPeval\myprogress{\myprogresskomma*1000}
-				\FPtrunc\myprogress\myprogress0
-			}
-		}
-	}{}
+  \ifthenelse{\equal{\value{ReleaseDate@ChosenNumber}}{2}}{
+    \daydiffCValuetodayU{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}
+    \ifthenelse{0 > \value{datetwo}}{}{
+      \setcounter{tmp}{\value{datetwo}}
+      \daydiffCValue{\CREATEDYEAR}{\CREATEDMONTH}{\CREATEDDAY}{\ABGABEJahr}{\ABGABEMonat}{\ABGABETag}
+      \ifthenelse{0 > \value{datetwo}}{}{
+        \ifthenelse{\value{tmp} > \value{datetwo}}
+        {\FPset\myprogresskomma{1}}
+        {\FPeval\myprogresskomma{\thetmp/\thedatetwo}}
+        \FPround\myprogresskomma\myprogresskomma3
+        \FPeval\myprogress{\myprogresskomma*1000}
+        \FPtrunc\myprogress\myprogress0
+      }
+    }
+  }{}
 }
 \newcommand{\ifmyprogressdef}[2]{\ifthenelse{\isnamedefined{myprogress}}{#1}{#2}}
 %% }}}
@@ -56,20 +56,20 @@
 \newboolean{extensionsRS@draft}	%% Can be changed in the file
 \newboolean{extensionsRS@draftclassoption} %% Static
 \ifoptiondraft{
-	\setboolean{extensionsRS@draft}{true}
-	\setboolean{extensionsRS@draftclassoption}{true}
+  \setboolean{extensionsRS@draft}{true}
+  \setboolean{extensionsRS@draftclassoption}{true}
 }{
-	\setboolean{extensionsRS@draft}{false}
-	\setboolean{extensionsRS@draftclassoption}{false}
+  \setboolean{extensionsRS@draft}{false}
+  \setboolean{extensionsRS@draftclassoption}{false}
 }
 
 \newcommand{\ifDraft}[2]{\ifthenelse{\boolean{extensionsRS@draft}}{#1}{#2}}
 
 
 \newcommand{\SetDraft}[1]{
-	\ifthenelse{\equal{#1}{on}}{\setboolean{extensionsRS@draft}{true}}{
-		\ifthenelse{\equal{#1}{off}}{\setboolean{extensionsRS@draft}{false}}{}
-	}
+  \ifthenelse{\equal{#1}{on}}{\setboolean{extensionsRS@draft}{true}}{
+    \ifthenelse{\equal{#1}{off}}{\setboolean{extensionsRS@draft}{false}}{}
+  }
 }
 
 \newcommand{\ifDraftv}{\ifDraft{\ifthenelse{\boolean{extensionsRS@draftclassoption}}{Entwurf}{Final- und
