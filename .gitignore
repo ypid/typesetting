@@ -1,7 +1,8 @@
 ## Ypid custom.
 *-pics.pdf
 *.zip
-
+*.ctr
+templates/letter/letter.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

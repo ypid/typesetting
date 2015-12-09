@@ -19,10 +19,17 @@
 
 # sed 's/\<ca\./circa/Ig' --in-place *.tex
 # \> does not match for dot.
-sed '
-s/\<z\.B./\\zB/Ig;
+#
+# s/\{\\textquotedbl\}([[:space:].)])/}\1/g;
+# s/\{\\textquotedbl\}(\w)/\\enquote{\1/g;
+# URL regex written quick and dirty for https://github.com/ypid/latex-packages/issues/7
+# s@(\<(https?|ftp)://[[:alnum:]_./-]+/)([^[:alnum:]]|[.])@\\url{\1}\2@ig;
+# s@(\<(https?|ftp)://[[:alnum:]_./-]+(/[[:alnum:]]+)+)@\\url{\1}@ig;
+sed --regexp-extended '
+s@\<(https://creativecommons.org/compatiblelicenses|https://creativecommons.org/)@\\url{\1}@ig;
+s/\<z\.B\./\\zB/Ig;
 s/\<ca\./circa/Ig;
 s/\<bzw./beziehungsweise/Ig;
 s/\<d\.h\./das heißt/Ig;
-' --in-place *.tex
-# ' test.tex
+' --in-place ./*.tex
+# ' latex-optimize-text-test-input
