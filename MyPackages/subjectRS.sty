@@ -13,9 +13,15 @@
 }
 
 % Patching \subject {{{
-\xapptocmd{\subject}{%
-  \renewcommand{\SUBJECT}{#1\xspace}
-}
+\ifthenelse{\isnamedefined{subject}}{
+  \xapptocmd{\subject}{%
+    \renewcommand{\SUBJECT}{#1\xspace}
+  }
+}{
+  \newcommand{\subject}[1]{%
+    \renewcommand{\SUBJECT}{#1\xspace}%
+  }
+}%
 %% }}}
 
 \endinput

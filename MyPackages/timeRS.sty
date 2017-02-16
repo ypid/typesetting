@@ -43,7 +43,7 @@
 %% )))
 
 % \newcommand{\printdate}{}
-\RequirePackage{datetime}	%% only \pdfdate and \currenttime or \the\currentsecond
+\RequirePackage{datetime}  %% only \pdfdate and \currenttime or \the\currentsecond
 %% May switch to datetime2, some features provided by isodate are not (yet) covered in datetime2.
 % \renewcommand{\dateseparator}{-}
 \RequirePackage{datenumber}
@@ -51,17 +51,17 @@
 \let\CalcAge\calcage%
 \RequirePackage{calctime}
 
-% \RequirePackage{clock}		% \clocktime \clock{14}{00}
+% \RequirePackage{clock}    % \clocktime \clock{14}{00}
 % \ClockStyle=1
 % \ClockFramefalse%
-%\bigclockfont			%% Führt zu endlos Schleife
+%\bigclockfont      %% Führt zu endlos Schleife
 %% besser \fontsize{60pt}{30pt}\selectfont verwenden
 %% \scalebox{78}{} ...
 
 %% Datum
 \newcommand{\printDate}[3]{%% {jahr}{monat}{tag}
-	% \setdatenumber{#1}{#2}{#3}\datedayname, \printdate{#3.#2.#1}%
-  \formatdate{#3}{#2}{#1}
+  % \setdatenumber{#1}{#2}{#3}\datedayname, \printdate{#3.#2.#1}%
+  \formatdate{#3}{#2}{#1}%
 }
 
 \newcommand{\toDay}{\printDate{\the\year}{\the\month}{\the\day}}
@@ -84,11 +84,13 @@
 \newcommand{\daydiff}[6]{\daydiffCValue{#1}{#2}{#3}{#4}{#5}{#6}\thedatetwo}
 \newcommand{\daydiffU}[6]{\daydiffCValueU{#1}{#2}{#3}{#4}{#5}{#6}\thedatetwo}
 \newcommand{\daydiffRot}[6]{\daydiffValue{#1}{#2}{#3}{#4}{#5}{#6}%
-	\ifthenelse{\value{dateone} > \value{datetwo}}{\addtocounter{datetwo}{-\thedateone}\textcolor{red}{\thedatetwo}}%
-	{\addtocounter{datetwo}{-\thedateone}\thedatetwo}}%
+  \ifthenelse{\value{dateone} > \value{datetwo}}{\addtocounter{datetwo}{-\thedateone}\textcolor{red}{\thedatetwo}}%
+  {\addtocounter{datetwo}{-\thedateone}\thedatetwo}%
+}%
 \newcommand{\daydiffURot}[6]{\daydiffValueU{#1}{#2}{#3}{#4}{#5}{#6}%
-	\ifthenelse{\value{dateone} > \value{datetwo}}{\addtocounter{datetwo}{-\thedateone}\textcolor{red}%
-	{\thedatetwo}}{\addtocounter{datetwo}{-\thedateone}\thedatetwo}}%
+  \ifthenelse{\value{dateone} > \value{datetwo}}{\addtocounter{datetwo}{-\thedateone}\textcolor{red}%
+  {\thedatetwo}}{\addtocounter{datetwo}{-\thedateone}\thedatetwo}%
+}%
 
 
 \newcommand{\daydiffCValuetoday}[3]{\daydiffCValue{\the\year}{\the\month}{\the\day}{#1}{#2}{#3}}

@@ -1,0 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{microtypeoptRS}
+          [2016/09/03 v0.5 Micro typography optimizations by Robin Schneider]
+
+\RequirePackage{
+  % xifthen,
+  iftex,
+}
+
+\usepackage[defaultlines=4,all]{nowidow}
+
+\ifLuaTeX%
+  % Ligatures
+  % http://tex.stackexchange.com/a/145498
+  \RequirePackage{selnolig}
+\fi
+
+\RequirePackage[
+  tracking=true,
+]{microtype}
+
+\endinput

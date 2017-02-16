@@ -1,36 +1,39 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{layoutRS}
-          [2015/02/11 v0.8 Settings for layout by Robin Schneider]
+          [2016/09/05 v0.9 Layout settings by Robin Schneider]
 
 \RequirePackage{
   xifthen,
   fontRS,
+  microtypeoptRS,
 }
 
-\ifthenelse{\isnamedefined{opening}}{%% Letter
-}{%
-  \KOMAoptions{
-    % captions = tableheading,
+\ifthenelse{\isnamedefined{KOMAoptions}}{
+  \ifthenelse{\isnamedefined{opening}}{%% Letter
+  }{%
+    \KOMAoptions{
+      % captions = tableheading,
+    }
   }
-}
-\KOMAoptions{
-  % fontsize = 11pt, %% KOMA-Script default
-  % fontsize = 12pt,
-  %
-  %% I like this more and I am more used to this. I guess my paragraphs are just to small and in this case without the parskip it looks ugly.
-  %% Also I don‘t quite get the normal behavior. Some paragraphs are indented, some others are not?
-  parskip  = half,
-  % parskip  = half*, %% half a line vertical space between paragraphs; there must be at least a quarter of a line free space at the end of a paragraph
-  % parskip  = full,
-  % parskip  = full+,
-  %
-  % DIV      = default, %% 9
-  DIV      = 11, %% Leave this as global default hear and change it in the document, if needed …
-  % DIV      = 13,
-  % DIV      = 14,
-  % DIV      = 15,
-  %% Typographically not so nice but it saves space.
-}
+  \KOMAoptions{
+    % fontsize = 11pt, %% KOMA-Script default
+    % fontsize = 12pt,
+    %
+    %% I like this more and I am more used to this. I guess my paragraphs are just to small and in this case without the parskip it looks ugly.
+    %% Also I don‘t quite get the normal behavior. Some paragraphs are indented, some others are not?
+    parskip  = half,
+    % parskip  = half*, %% half a line vertical space between paragraphs; there must be at least a quarter of a line free space at the end of a paragraph
+    % parskip  = full,
+    % parskip  = full+,
+    %
+    % DIV      = default, %% 9
+    DIV      = 11, %% Leave this as global default here and change it in the document, if needed …
+    % DIV      = 13,
+    % DIV      = 14,
+    % DIV      = 15,
+    %% Typographically not so nice but it saves space.
+  }
+}{}
 
 % \tolerance=1414
 %% Default is 200.

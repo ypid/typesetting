@@ -4,7 +4,6 @@
 
 \RequirePackage{
   % xifthen,
-  iftex,
 }
 
 %% Fonts {{{
@@ -16,15 +15,5 @@
   % \RequirePackage{chancery}       %% Like handwriting :)
 % \fi
 %% }}}
-
-\ifLuaTeX%
-  % Ligatures
-  % http://tex.stackexchange.com/a/145498
-  \RequirePackage{selnolig}
-\fi
-
-\RequirePackage[
-  tracking=true,
-]{microtype}
 
 \endinput
