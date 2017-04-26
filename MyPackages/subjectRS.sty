@@ -3,23 +3,24 @@
           [2015/02/07 v0.8 Package for dealing with subject definition in documents by Robin Schneider]
 
 \RequirePackage{
+  ifthen,
   regexpatch,
 }
 
 \newcommand{\SUBJECT}{}
 \newcommand{\SetSUBJECT}[1]{%
   \renewcommand{\SUBJECT}{#1\xspace}%
-  \ifthenelse{\isnamedefined{subject}}{\subject{\SUBJECT}}{}%
+  \ifthenelse{\isundefined{\subject}}{}{\subject{\SUBJECT}}%
 }
 
 % Patching \subject {{{
-\ifthenelse{\isnamedefined{subject}}{
-  \xapptocmd{\subject}{%
-    \renewcommand{\SUBJECT}{#1\xspace}
-  }
-}{
+\ifthenelse{\isundefined{\subject}}{
   \newcommand{\subject}[1]{%
     \renewcommand{\SUBJECT}{#1\xspace}%
+  }
+}{
+  \xapptocmd{\subject}{%
+    \renewcommand{\SUBJECT}{#1\xspace}
   }
 }%
 %% }}}

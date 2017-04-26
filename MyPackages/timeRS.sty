@@ -4,7 +4,6 @@
 
 \RequirePackage{
   iftex,
-  fnumprint,
   IfconstructsRS,
 }
 
@@ -20,15 +19,13 @@
 \RequirePackage{isodate}
 
 %% Ugly hack to make german the default language for isodate in case when language detection fails e.g. with LuaLaTeX. Use from document.
-\oneIF{\value{fnumprint@language}}{% German
+
+\iflanguage{ngerman}{
   \ifLuaTeX%
     \def\CurrentOption{german}
-    % \makeatletter
     \input{german.idf}
-    % \makeatother
   \fi
-}{%
-}
+}{}
 
 % \@namedef{iso@rangesign@english}{~s to~}%
 
@@ -48,7 +45,6 @@
 % \renewcommand{\dateseparator}{-}
 \RequirePackage{datenumber}
 \RequirePackage{calcage}
-\let\CalcAge\calcage%
 \RequirePackage{calctime}
 
 % \RequirePackage{clock}    % \clocktime \clock{14}{00}

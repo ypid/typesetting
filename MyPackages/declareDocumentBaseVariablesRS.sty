@@ -3,7 +3,7 @@
   [2015/02/05 v1.1 Packages for declaring base document variables by Robin Schneider]
 
 \RequirePackage{%
-  xifthen,
+  ifthen,
   IfconstructsRS,
   % timeRS,
   datetime, %% Should be enough
@@ -29,14 +29,14 @@
     \printGitURLlong%
   }{%
     \setlength{\hURLlongtextsize}{\textwidth -#1 -2em}
-    \ifthenelse{\isnamedefined{iflandscape}}{
+    \ifthenelse{\isundefined{\iflandscape}}{}{
       \iflandscape{
         \setlength{\hURLlongtextsize}{\hURLlongtextsize-10em}
-      }{}
+      }
     }{}
-    \ifthenelse{\isnamedefined{setkomavar}}{% scrlttr2
+    \ifthenelse{\isundefined{\setkomavar}}{}{% scrlttr2
       \addtolength{\hURLlongtextsize}{-1cm}%
-    }{}%
+    }%
     \begin{center}%
       \begin{minipage}{#1}%
         \href{\URL}{\qrcode[height=#1]{\URL}}
@@ -108,10 +108,10 @@
     }%
     \Language@SignatureTeX{}
     \Language@SignatureOS%
-    \ifthenelse{\isnamedefined{setkomavar}}{}{% scrlttr2
+    \ifthenelse{\isundefined{\setkomavar}}{% scrlttr2
       \setcounter{vorstatpage}{\value{page}}%
       \setcounter{tablesvorstat}{\value{table}}%
-    }.\\
+    }{}.\\
   \end{center}
 }
 
