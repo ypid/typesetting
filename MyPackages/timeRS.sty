@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{timeRS}
-  [2015/02/05 v1.1 Bundle of packages for working with dates and times by Robin Schneider]
+  [2017/10/08 v1.2.0 Bundle of packages for working with dates and times by Robin Schneider]
 
 \RequirePackage{
   iftex,
@@ -39,10 +39,10 @@
 %% \daterange{2015-05-18}{2015-05-22}
 %% )))
 
-% \newcommand{\printdate}{}
-\RequirePackage{datetime}  %% only \pdfdate and \currenttime or \the\currentsecond
+%% Keep it simple and standardized. No more legacy anymore. ISO 8601 is an international standard.
+\RequirePackage[iso]{datetime}  %% only \pdfdate and \currenttime or \the\currentsecond
 %% May switch to datetime2, some features provided by isodate are not (yet) covered in datetime2.
-% \renewcommand{\dateseparator}{-}
+
 \RequirePackage{datenumber}
 \RequirePackage{calcage}
 \RequirePackage{calctime}
@@ -55,7 +55,7 @@
 %% \scalebox{78}{} ...
 
 %% Datum
-\newcommand{\printDate}[3]{%% {jahr}{monat}{tag}
+\newcommand{\printDate}[3]{%% {year}{month}{day}
   % \setdatenumber{#1}{#2}{#3}\datedayname, \printdate{#3.#2.#1}%
   \formatdate{#3}{#2}{#1}%
 }
