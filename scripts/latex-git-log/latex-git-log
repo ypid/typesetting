@@ -31,13 +31,13 @@ use Locale::Maketext::Simple (
 # }}}
 
 # Optional parameters {{{
-my $print_author = 0;
-my $commit_count = 1;
-my $width        = 0;
-my $lang         = undef;
-my $version      = 0;
-my $help         = 0;
-my $man          = 0;
+my $print_author   = 0;
+my $commit_count   = 1;
+my $width          = 0;
+my $lang           = undef;
+my $version        = 0;
+my $help           = 0;
+my $man            = 0;
 my $revision_range = 0;
 my ( $git_user, $git_repo, $git_commit_address );
 GetOptions(
