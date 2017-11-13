@@ -38,6 +38,7 @@ my $lang         = undef;
 my $version      = 0;
 my $help         = 0;
 my $man          = 0;
+my $revision_range = 0;
 my ( $git_user, $git_repo, $git_commit_address );
 GetOptions(
     'author'        => \$print_author,
@@ -50,6 +51,7 @@ GetOptions(
     'version'       => \$version,
     'help|?'        => \$help,
     'man'           => \$man,
+    'range=s'       => \$revision_range,
 );
 pod2usage(1) if $help;
 pod2usage( -verbose => 2,  -exitstatus => 0, )        if $man;
@@ -133,6 +135,9 @@ if ($print_author) {
 }
 else {
     push( @git_command, qq(--pretty=format:%H %ad & $git_command_commit_msg) );
+}
+if ($revision_range) {
+    push( @git_command, qq($revision_range) );
 }
 @lines = reverse capturex(@git_command);
 # }}}

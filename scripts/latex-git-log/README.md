@@ -48,6 +48,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
       --version, -v     print version of this script
       --help            brief help message
       --man             full documentation
+      --range           specify a git revision range
 
 ### Description of some options
 
