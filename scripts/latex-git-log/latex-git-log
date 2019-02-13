@@ -144,11 +144,12 @@ if ($revision_range) {
 # }}}
 
 # Get tags {{{
-my @tags_commits = capturex( 'git', 'for-each-ref', '--format=%(refname:short) %(objectname)', 'refs/tags' );
+my @tags_commits = capturex( 'git', 'log', '--tags', '--no-walk', '--pretty=\'%H %d\'' );
 my %commit_tags; # The key will be a SHA1 commit hash and the value a comma separated list of all tags.
 for (@tags_commits) {
-    my ( $tag, $c_hash ) = split /\s/xms, $_;
-    chomp($c_hash);
+    m/\A'([0-9a-f]{40})\s.+tag:\s([0-9A-Za-z-_$%&\\]+),/;
+    my $tag = $2;
+    my $c_hash = $1;
     if ( defined $commit_tags{$c_hash} ) {
         $commit_tags{$c_hash} .= ", $tag";
     }
