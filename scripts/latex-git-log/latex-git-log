@@ -198,7 +198,7 @@ for (@lines) {
     }
     if ($which_line) {
         s/\A([0-9a-f]{40})\s//xms or die "Did not match the commit hash\n";
-        my $tags = $1;
+        my $tags = exists $commit_tags{$1} ? $commit_tags{$1} : q();
         my $date_author = '';
         my $c_msg = '';
         if ($print_author) {
@@ -217,7 +217,7 @@ for (@lines) {
                 $c_msg = sprintf '\\href{%s/%s}{%s}', $git_commit_address, $1, latex_escape($2);
             }
             else {
-                $c_msg = latex_escape($2);
+                $c_msg = latex_escape($c_msg);
             }
         }
         else {
