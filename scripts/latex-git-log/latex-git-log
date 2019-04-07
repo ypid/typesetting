@@ -147,9 +147,11 @@ if ($revision_range) {
 my @tags_commits = capturex( 'git', 'log', '--tags', '--no-walk', '--pretty=\'%H %d\'' );
 my %commit_tags; # The key will be a SHA1 commit hash and the value a comma separated list of all tags.
 for (@tags_commits) {
-    m/\A'([0-9a-f]{40})\s.+tag:\s([0-9A-Za-z-_$%&\\]+),/;
-    my $tag = $2;
+    chomp;
+    m/\A'([^ ]+)\s*\(([^)]+)\)'\z/xms;
     my $c_hash = $1;
+    my $tag = $2;
+    $tag =~ s/tag: //g;
     if ( defined $commit_tags{$c_hash} ) {
         $commit_tags{$c_hash} .= ", $tag";
     }
