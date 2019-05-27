@@ -1,15 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{RequirePackageRS}
-          [2015/02/07 v1.1 Set options are require packages before a documentclass ist set by Robin Schneider]
+          [2019/05/27 v1.1.1 Set options are require packages before a documentclass ist set by Robin Schneider]
 
+\RequirePackage{iftex}
 % \RequirePackage{ifthen}
 
 \RequirePackage[l2tabu,orthodox]{nag}  %% nag überprüft den Text auf veraltete
                    % %% Befehle oder solche, die man nicht in LaTeX verwenden
                    % %% soll -- l2tabu-Checker in LaTeX
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}  %% einbinden der neuen
-                   %% Trennmuster, diese korrigieren einige Fehler der alten
-                   %% und bieten mehr Trennstellen
+
+\ifPDFTeX%
+  \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+  % Einbinden der neuen Trennmuster, diese korrigieren einige Fehler der alten
+  % und bieten mehr Trennstellen.
+\fi
 
 % \RequirePackage{classlist}	%% \MainClassName
 
