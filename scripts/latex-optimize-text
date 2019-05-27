@@ -1,7 +1,7 @@
 #!/bin/bash
 ## Optimize a text used as LaTeX input (mainly micro typography stuff)
 ##
-## @licence AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>
+## @licence AGPL-3.0-only <https://www.gnu.org/licenses/agpl-3.0.html>
 ## @author Copyright (C) 2015 Robin Schneider <ypid@riseup.net>
 ##
 ## This program is free software: you can redistribute it and/or modify
