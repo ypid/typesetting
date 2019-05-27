@@ -1,0 +1,5 @@
+#!/bin/bash
+
+latexmk -c
+
+find . -regextype posix-egrep -iregex '.*\.(:?nav|snm|run.xml|fls|aux|log|out|bbl)$' -delete
