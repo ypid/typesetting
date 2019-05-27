@@ -7,47 +7,27 @@
   enumitem,
 }
 
-\RequirePackage[
-  % page-ref   = plain,
-  page-ref     = comma,
-  % page-ref   = paren,
-  hyperref     = true,
-  first-style  = empty, %% Be sure to check the result when changing this.
-  % list-type  = table,
-  % list-style = ,
-]{acro}
+\RequirePackage{acro}
 \DeclareTranslation{German}{acronym-list-name}{Abkürzungsverzeichnis}
 
 %% https://bitbucket.org/cgnieder/acro/issue/32
-\let\acro@patch@org@acl\acl\relax
-\let\acro@patch@org@ac\ac\relax
-\renewcommand{\acl}[1]{\acro@patch@org@acl{#1}\acuse{#1}\xspace}
-\renewcommand{\ac}[1]{\acro@patch@org@ac{#1}\acuse{#1}\xspace}
+%% Not working with v2.7 anymore.
+% \let\acro@patch@org@acl\acl\relax
+% \let\acro@patch@org@ac\ac\relax
+% \renewcommand{\acl}[1]{\acro@patch@org@acl{#1}\acuse{#1}\xspace}
+% \renewcommand{\ac}[1]{\acro@patch@org@ac{#1}\acuse{#1}\xspace}
 
-% \newlist{acronyms}{description}{1}
-% \newcommand*\addcolon[1]{#1:}
-% \setlist[acronyms]{
-  % labelwidth=5em,
-  % leftmargin=5.5em,
+\newlist{acronyms}{description}{1}
+\setlist[acronyms]{
+  labelwidth = 5em,
+  leftmargin = 5.5em,
   % noitemsep,
-  % itemindent=0pt,
-  % font=\addcolon,
-% }
-%% To enable, remove % sign on the next line.
-% \acsetup{list-type=acronyms}
-
-%% https://tex.stackexchange.com/questions/160219/acro-package-customise-the-printacronyms-style-with-hyphen-or-other
-\newenvironment{acronymsLabel}{%
-  % \labeling[~\dots]{RADIUS XX}%
-  % \labeling[--]{RADIUS XX}%
-  \labeling{RADIUS XX}%
-}{%
-  \endlabeling%
+  itemindent = 0pt,
 }
+\DeclareAcroListStyle{acronymCustomList}{list}{list = acronyms}
+
 %% To enable, remove % sign on the next line.
 \acsetup{
-  list-type=acronymsLabel,
-  list-short-format = {\bfseries}, % Abkürzungen in fetter Serifenschrift im Verzeichnis
 }
 
 %% https://tex.stackexchange.com/questions/236860/acronyms-with-same-style-as-lot-acro-package
@@ -61,8 +41,21 @@
  % pages      = first,
  % page-name  = {},
  % pages-name = {},
- % page-ref   = dotfill,
+ % page-style   = dotfill,
 % }
+
+\acsetup{
+  % page-style   = plain,
+  page-style     = comma,
+  % page-style   = paren,
+  hyperref     = true,
+  first-style  = empty,
+  % first-style  = empty, %% Be sure to check the result when changing this.
+  % list-type  = table,
+  % list-style = ,
+  list-style = acronymCustomList,
+  list-short-format = {\bfseries}, % Abkürzungen in fetter Serifenschrift im Verzeichnis
+}
 
 \RequirePackage{
   lualatexAcroPatchRS,
