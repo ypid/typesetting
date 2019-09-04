@@ -40,6 +40,8 @@
   \renewcommand{\EmStrasse}{#4~#5}
   \renewcommand{\EmPLZ}{#6}
   \renewcommand{\EmOrt}{#7}
+  \CheckIfEmAddress%
+  \CheckIfEmFirma%
 }
 
 \newcommand{\CheckIfEmAddress}{%
@@ -53,8 +55,6 @@
 
 \newcommand{\AnschriftAuslesen}[1]{%
   \input{/home/user/p-priv/latex/input-document/Anschrift/#1.tex}%
-  \CheckIfEmAddress%
-  \CheckIfEmFirma%
 }
 
 \newcommand{\BriefAn}[1]{%
