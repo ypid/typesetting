@@ -129,7 +129,7 @@ say '\endfoot
 # git log --pretty=format:'%ai'
 # git log --date=short --pretty=format:'%ad'
 my @lines;
-my @git_command = qw(git log --date=short --shortstat);
+my @git_command = qw(git log --date=short --shortstat --no-merges);
 if ($print_author) {
     push( @git_command, qq(--pretty=format:%H & %an NoTinAuthorFiled& %ad & $git_command_commit_msg) );
 }
