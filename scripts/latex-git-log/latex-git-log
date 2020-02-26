@@ -52,9 +52,9 @@ GetOptions(
     'man'           => \$man,
     'range=s'       => \$revision_range,
 );
-pod2usage(1) if $help;
-pod2usage( -verbose => 2,  -exitstatus => 0, )        if $man;
-pod2usage( -verbose => 99, -sections   => 'Version' ) if $version;
+pod2usage( -verbose  => 99, -sections => [ qw(Synopsis Options) ] ) if $help;
+pod2usage( -verbose  => 2,  -exitstatus => 0, )        if $man;
+pod2usage( -verbose  => 99, -sections   => 'Version' ) if $version;
 my $git_remote = ( split /\n/xms, capturex(qw(git remote -v)) )[0];
 
 loc_lang($lang) if ( defined $lang );
@@ -228,6 +228,7 @@ say '\end{longtable}';
 __END__
 # Documentation {{{
 
+=encoding UTF-8
 =head1 NAME
 
 latex-git-log - Generates the version history of a git project as LaTeX source code.
