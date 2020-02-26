@@ -1,4 +1,5 @@
 # latex-git-log
+
 This program will output the entire version history as table written in LaTeX
 if it is executed within a git repository.
 
@@ -8,7 +9,9 @@ Because the table can be very large you might want to put the thing on a
 landscape page.
 
 ## Dependencies
+
 ### Of this script
+
 This module requires these other modules and libraries:
 
     IPC::System::Simple
@@ -17,6 +20,7 @@ This module requires these other modules and libraries:
 Everything else should already be installed.
 
 ### To compile the output
+
 The table is using the *longtable* package and the links to a web resource for
 each commit use the `\href` macro from *hyperref*. So these two packages have
 to be loaded.
@@ -27,10 +31,12 @@ page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
 
 ## License and development
-Copyright (C) by Robin Schneider <ypid@riseup.net> <br/>
-CTAN: http://ctan.org/pkg/latex-git-log <br/>
+
+Copyright (C) 2012-2013,2017,2019-2020 Robin Schneider <ypid@riseup.net> <br/>
+SPDX-License-Identifier: GPL-3.0-or-later <br/>
+CTAN: https://ctan.org/pkg/latex-git-log <br/>
 Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/latex-git-log <br/>
-Please report bugs and feature requests at https://github.com/ypid/typesetting/issues <br/>
+Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
 
 ## Usage
 
