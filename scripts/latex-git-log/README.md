@@ -2,6 +2,8 @@
 
 This program will output the entire version history as table written in LaTeX
 if it is executed within a git repository.
+When file argument(s) are given, only the history that changed these file(s)
+will be output.
 
 It is intended that you redirect the standard output of this script to a file which can then be included from your main LaTeX document.
 
@@ -40,7 +42,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
 
 ## Usage
 
-    latex-git-log [options]
+    latex-git-log [options] [file] ...
 
     Options:
 

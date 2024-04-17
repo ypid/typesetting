@@ -130,6 +130,12 @@ else {
 if ($revision_range) {
     push( @git_command, qq($revision_range) );
 }
+
+# check for command-line file arguments
+if ($#ARGV >= 0) {
+    push( @git_command, ("--", @ARGV) );
+}
+
 @lines = reverse capturex(@git_command);
 # }}}
 
@@ -235,7 +241,7 @@ latex-git-log - Generates the version history of a git project as LaTeX source c
 
 =head1 Synopsis
 
-latex-git-log [options]
+latex-git-log [options] [file] ...
 
 Options:
 
@@ -313,6 +319,8 @@ table is not complete and will be continued.
 
 B<This program> will output the entire version history as table written in
 LaTeX if it is executed within a git repository.
+When I<file> argument(s) are given, only the history that changed these file(s)
+will be output.
 
 It is intended that you redirect the standard output of this script to a file
 which can then be included from your main LaTeX document.
