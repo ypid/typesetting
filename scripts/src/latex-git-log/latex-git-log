@@ -1,4 +1,6 @@
 #!/usr/bin/env perl
+# SPDX-FileCopyrightText: 2012-2013,2017,2019-2020,2024 Robin Schneider <ypid@riseup.net>
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Modules and pragmas {{{

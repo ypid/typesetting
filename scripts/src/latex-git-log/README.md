@@ -34,8 +34,7 @@ table is not complete and will be continued.
 
 ## License and development
 
-Copyright (C) 2012-2013,2017,2019-2020 Robin Schneider <ypid@riseup.net> <br/>
-SPDX-License-Identifier: GPL-3.0-or-later <br/>
+License: GPL-3.0-or-later <br/>
 CTAN: https://ctan.org/pkg/latex-git-log <br/>
 Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/latex-git-log <br/>
 Please report bugs and feature requests at https://github.com/ypid/typesetting/issues

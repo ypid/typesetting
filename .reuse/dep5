@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ypid-typesetting
+Upstream-Contact: Robin Schneider <ypid@riseup.net>
+Source: https://github.com/ypid/typesetting
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
