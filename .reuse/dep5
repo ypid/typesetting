@@ -3,8 +3,6 @@ Upstream-Name: ypid-typesetting
 Upstream-Contact: Robin Schneider <ypid@riseup.net>
 Source: https://github.com/ypid/typesetting
 
-# Sample paragraph, commented out:
-#
-# Files: src/*
-# Copyright: $YEAR $NAME <$CONTACT>
-# License: ...
+Files: scripts/src/latex-git-log/.cz.yaml
+Copyright: 2024 Robin Schneider <ypid@riseup.net>
+License: CC0-1.0
