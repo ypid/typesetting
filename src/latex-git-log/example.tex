@@ -1,0 +1,43 @@
+\documentclass[
+  a4paper,
+  ngerman,
+  landscape,
+  DIV=15,
+]{scrartcl}
+
+\usepackage{
+  iftex,
+}
+
+\ifPDFTeX%
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{babel}
+\fi
+\ifLuaTeX%
+  \usepackage{
+    fontspec,
+    polyglossia,
+  }
+\fi
+
+\ifLuaTeX%
+  \usepackage{selnolig}
+\fi
+
+\usepackage[
+  tracking=true,
+]{microtype}
+
+\usepackage{longtable,hyperref}
+\newcommand{\longtableendfoot}{Please continue at the next page}
+
+\begin{document}
+\input{src/latex-git-log/example-output}
+
+The example-output.tex was generated with this command:
+\begin{verbatim}
+	latex-git-log --user ypid --repo typesetting --width=12 --lang=en > example-output.tex
+\end{verbatim}
+
+\end{document}

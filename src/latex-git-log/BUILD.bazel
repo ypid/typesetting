@@ -1,0 +1,99 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
+load("@rules_pkg//pkg:mappings.bzl", "pkg_attributes", "pkg_filegroup", "pkg_files", "strip_prefix")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load("@rules_pkg//pkg:zip.bzl", "pkg_zip")
+
+genrule(
+    name = "example_output_tex",
+    srcs = ["latex-git-log"],
+    outs = ["example-output-in-bazel.tex"],
+    cmd = "$(location latex-git-log) --user ypid --repo typesetting --width=12 --lang=en > \"$@\"",
+    local = True,
+)
+
+# This generated file is tracked in git more as a test to see what changed on
+# the output in lack of better tests.
+write_source_files(
+    name = "write_example_output_tex",
+    diff_test = False,
+    files = {
+        "example-output.tex": "example-output-in-bazel.tex",
+    },
+)
+
+genrule(
+    name = "example_pdf",
+    srcs = [
+        "example.tex",
+        "example-output.tex",
+    ],
+    outs = ["example.pdf"],
+    cmd = """
+        # TEXINPUTS="$$(dirname $(location example.tex))"
+        # export TEXINPUTS
+        lualatex $(location example.tex)
+        if [[ $(COMPILATION_MODE) == "opt" ]]; then lualatex $(location example.tex); fi
+        mv example.pdf $@
+        # echo $(OUTS) | tee $@
+    """,
+)
+
+# rules_pkg [[[
+pkg_files(
+    name = "pkg_po_files",
+    srcs = ["//src/latex-git-log/po"],
+    prefix = "po",
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_files(
+    name = "pkg_exec_files",
+    srcs = ["latex-git-log"],
+    attributes = pkg_attributes(mode = "0755"),
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_files(
+    name = "pkg_non_exec_files",
+    srcs = [
+        "README.md",
+    ],
+    # Required, but why?: see #354
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_filegroup(
+    name = "pkg_all_files",
+    srcs = [
+        ":pkg_exec_files",
+        ":pkg_non_exec_files",
+        ":pkg_po_files",
+    ],
+    prefix = "latex-git-log",
+)
+
+pkg_zip(
+    name = "pkg_zip",
+    srcs = [":pkg_all_files"],
+    package_file_name = "latex-git-log",
+    stamp = 1,
+)
+
+pkg_tar(
+    name = "pkg_tar_gz",
+    srcs = [":pkg_all_files"],
+    extension = "tar.gz",
+    mode = "0644",
+    modes = {
+        "latex-git-log": "0755",
+    },
+    package_file_name = "latex-git-log",
+    stamp = 1,
+)
+# ]]]

@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+filegroup(
+    name = "po",
+    srcs = glob(
+        ["**/*"],
+        exclude = ["BUILD.bazel"],
+    ),
+    visibility = ["//visibility:public"],
+)

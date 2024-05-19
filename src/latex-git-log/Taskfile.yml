@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# https://taskfile.dev/
+
+version: '3'
+
+set: [nounset, pipefail]
+output: prefixed
+
+tasks:
+  latex-git-log.tar:
+    # desc:
+    cmds:
+      - silent: true
+        cmd: |-
+          git archive --verbose --output "latex-git-log.tar" HEAD -- .
+          gzip "latex-git-log.tar"
+    silent: true
+
+  '*.tar.gz':
+    vars:
+      src_file: '{{index .MATCH 0}}.tar'
+    deps:
+      - '{{.src_file}}'
+    cmds:
+      - cmd: gzip "{{.src_file}}"
+    generates:
+      - '{{ .TASK }}'
