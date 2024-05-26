@@ -4,4 +4,25 @@
 
 common --enable_bzlmod
 
+import %workspace%/bazel/aspect-correctness.bazelrc
 build --noincompatible_strict_action_env
+
+common --sandbox_fake_hostname
+common --sandbox_fake_username
+common --sandbox_block_path=/home/user/.ssh
+common --sandbox_block_path=/home/user/.config
+common --sandbox_block_path=/home/user/.local
+
+# common --experimental_use_hermetic_linux_sandbox
+# common --sandbox_add_mount_pair=/nix
+# common --sandbox_add_mount_pair=/bin
+
+common --worker_sandboxing
+common --experimental_worker_multiplex_sandboxing
+common --experimental_worker_sandbox_hardening
+
+# https://docs.aspect.build/rulesets/aspect_bazel_lib/docs/stamping
+# build --workspace_status_command bazel/print-workspace-status.sh
+build:release --workspace_status_command "bazel/print-workspace-status.sh release"
+build:release --stamp
+build:release --compilation_mode opt

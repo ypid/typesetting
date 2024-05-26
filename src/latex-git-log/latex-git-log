@@ -89,8 +89,11 @@ say '\begin{tabular}{lp{12cm}}
 \end{tabular}
 
 \bigskip
+';
 
-\iflanguage{ngerman}{\shorthandoff{"}}{}';
+# Users should set this themselves if they need it because it can cause build errors like:
+# Undefined control sequence.
+# \iflanguage{ngerman}{\shorthandoff{"}}{}';
 
 if ($print_author) {
     say "\\begin{longtable}{|rllllrrr|}";

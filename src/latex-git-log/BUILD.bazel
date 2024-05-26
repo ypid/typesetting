@@ -15,6 +15,7 @@ genrule(
     outs = ["example-output-in-bazel.tex"],
     cmd = "$(location latex-git-log) --user ypid --repo typesetting --width=12 --lang=en > \"$@\"",
     local = True,
+    stamp = 1,
 )
 
 # This generated file is tracked in git more as a test to see what changed on
@@ -31,23 +32,30 @@ genrule(
     name = "example_pdf",
     srcs = [
         "example.tex",
-        "example-output.tex",
+        "example_output_tex",
     ],
     outs = ["example.pdf"],
     cmd = """
+        out_file="$$PWD/$@"
+        SOURCE_DATE_EPOCH="$$(awk '/^BUILD_TIMESTAMP / { print $$2 }' bazel-out/volatile-status.txt)"
+        export SOURCE_DATE_EPOCH
+        cp $(location example_output_tex) $$(dirname $(location example.tex))/example-output.tex
+        cd $$(dirname $(location example.tex))
         # TEXINPUTS="$$(dirname $(location example.tex))"
         # export TEXINPUTS
-        lualatex $(location example.tex)
-        if [[ $(COMPILATION_MODE) == "opt" ]]; then lualatex $(location example.tex); fi
-        mv example.pdf $@
-        # echo $(OUTS) | tee $@
+        lualatex example.tex
+        if [[ $(COMPILATION_MODE) == "opt" ]]; then lualatex example.tex; fi
+        mv example.pdf "$${out_file}"
     """,
+    # Undocumented attr to depend on workspace status files.
+    # https://github.com/bazelbuild/bazel/issues/4942
+    stamp = 1,
 )
 
 # rules_pkg [[[
 pkg_files(
     name = "pkg_po_files",
-    srcs = ["//src/latex-git-log/po"],
+    srcs = ["//src/latex-git-log/po:all"],
     prefix = "po",
     strip_prefix = strip_prefix.from_pkg(),
 )
@@ -56,15 +64,20 @@ pkg_files(
     name = "pkg_exec_files",
     srcs = ["latex-git-log"],
     attributes = pkg_attributes(mode = "0755"),
-    strip_prefix = strip_prefix.from_pkg(),
 )
 
 pkg_files(
     name = "pkg_non_exec_files",
     srcs = [
         "README.md",
+        "example.tex",
+        ":example_output_tex",
+        ":example_pdf",
     ],
-    # Required, but why?: see #354
+    renames = {
+        "example_output_tex": "example-output.tex",
+    },
+    # https://github.com/bazelbuild/rules_pkg/issues/354
     strip_prefix = strip_prefix.from_pkg(),
 )
 
@@ -81,7 +94,7 @@ pkg_filegroup(
 pkg_zip(
     name = "pkg_zip",
     srcs = [":pkg_all_files"],
-    package_file_name = "latex-git-log",
+    package_file_name = "latex-git-log.zip",
     stamp = 1,
 )
 
@@ -93,7 +106,7 @@ pkg_tar(
     modes = {
         "latex-git-log": "0755",
     },
-    package_file_name = "latex-git-log",
+    package_file_name = "latex-git-log.tar.gz",
     stamp = 1,
 )
 # ]]]

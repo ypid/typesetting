@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 filegroup(
-    name = "po",
+    name = "all",
     srcs = glob(
         ["**/*"],
         exclude = ["BUILD.bazel"],
