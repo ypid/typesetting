@@ -5,7 +5,16 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [commit]
+
 repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: faff6a61f4f53585a965addd06156eedf0027643 # frozen: v3.25.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
   # - repo: https://github.com/pre-commit/pre-commit-hooks
   #   rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c # frozen: v4.6.0
   #   hooks:
