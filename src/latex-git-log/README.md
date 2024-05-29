@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2013,2020,2024 Robin Schneider <ypid@riseup.net>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # latex-git-log
 
 This program will output the entire version history as table written in LaTeX

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # Release steps
 
 * `datalad run --message "chore(latex-git-log): regenerate example.tex" "bazel run write_example_output_tex --config=release"`

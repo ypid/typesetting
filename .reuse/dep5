@@ -3,9 +3,13 @@ Upstream-Name: ypid-typesetting
 Upstream-Contact: Robin Schneider <ypid@riseup.net>
 Source: https://github.com/ypid/typesetting
 
-Files: scripts/src/latex-git-log/.cz.yaml
+Files: src/latex-git-log/.cz.yaml
 Copyright: 2024 Robin Schneider <ypid@riseup.net>
 License: CC0-1.0
+
+Files: src/latex-git-log/po/de.po
+Copyright: 2013,2020,2024 Robin Schneider <ypid@riseup.net>
+License: GPL-3.0-or-later
 
 Files: .bazelversion MODULE.bazel.lock
 Copyright: 2024 Robin Schneider <ypid@riseup.net>
