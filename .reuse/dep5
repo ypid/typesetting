@@ -6,3 +6,11 @@ Source: https://github.com/ypid/typesetting
 Files: scripts/src/latex-git-log/.cz.yaml
 Copyright: 2024 Robin Schneider <ypid@riseup.net>
 License: CC0-1.0
+
+Files: .bazelversion MODULE.bazel.lock
+Copyright: 2024 Robin Schneider <ypid@riseup.net>
+License: CC0-1.0
+
+Files: bazel/aspect-correctness.bazelrc
+Copyright: 2023 The aspect.build Authors
+License: Apache-2.0
