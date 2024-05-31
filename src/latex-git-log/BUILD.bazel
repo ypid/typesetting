@@ -37,8 +37,10 @@ genrule(
     outs = ["example.pdf"],
     cmd = """
         out_file="$$PWD/$@"
-        SOURCE_DATE_EPOCH="$$(awk '/^BUILD_TIMESTAMP / { print $$2 }' bazel-out/volatile-status.txt)"
-        export SOURCE_DATE_EPOCH
+        if [[ -z "$${SOURCE_DATE_EPOCH:-}" ]]; then
+            SOURCE_DATE_EPOCH="$$(awk '/^BUILD_TIMESTAMP / { print $$2 }' bazel-out/volatile-status.txt)"
+            export SOURCE_DATE_EPOCH
+        fi
         cp $(location example_output_tex) $$(dirname $(location example.tex))/example-output.tex
         cd $$(dirname $(location example.tex))
         # TEXINPUTS="$$(dirname $(location example.tex))"
