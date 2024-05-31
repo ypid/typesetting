@@ -322,7 +322,7 @@ be loaded.
 
 Furthermore you need to defined the macro B<\longtableendfoot> which will be
 expanded on the bottom of every page if the table will be continued on the next
-page. You can defined it to a localized message to inform the reader that this
+page. You can define it to a localized message to inform the reader that this
 table is not complete and will be continued.
 
 =head1 Description

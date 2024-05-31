@@ -33,7 +33,7 @@ The table is using the *longtable* package and the links to a web resource for
 each commit use the `\href` macro from *hyperref*. So these two packages have
 to be loaded.
 
-Furthermore you need to defined the macro `\longtableendfoot` which will be
+Furthermore you need to define the macro `\longtableendfoot` which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
