@@ -52,7 +52,6 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
     Options:
 
       --author          set this if you want the author included
-      --startcommit     set the start value of count commit
       --width           set the width in cm of the commit message field in the LaTeX table
       --git-c-add       set an base URL to link to a commit
       --user            set a github user to derive the base URL
