@@ -5,7 +5,7 @@ commitizen:
   name: cz_conventional_commits
   tag_format: latex-git-log/v$version
   use_shortcuts: true
-  version: 1.0.0
+  version: 1.1.0
   version_files:
   - latex-git-log
   version_scheme: semver
