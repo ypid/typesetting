@@ -20,7 +20,7 @@ landscape page.
 
 ### Of this script
 
-This module requires these other modules and libraries:
+This script requires the following Perl modules:
 
     IPC::System::Simple
     Locale::Maketext::Simple
