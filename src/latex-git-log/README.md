@@ -87,3 +87,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
             need a translation to another language then you can either
             create a .po file or I can register this project on one of those
             websites for online translation.
+
+## Bugs and limitations
+
+* The translation features does not seem to work. So this script is unable to output German. English works.

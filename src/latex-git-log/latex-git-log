@@ -354,6 +354,16 @@ Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/
 
 Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
 
+=head1 Bugs and limitations
+
+=over 4
+
+=item
+
+The translation features does not seem to work. So this script is unable to output German. English works.
+
+=back
+
 =head1 License and Copyright
 
 Copyright (C) 2012-2013,2017,2019-2020,2024 Robin Schneider <ypid@riseup.net>
