@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2013,2020,2024 Robin Schneider <ypid@riseup.net>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # latex-git-log
 
 This program will output the entire version history as table written in LaTeX
@@ -14,7 +20,7 @@ landscape page.
 
 ### Of this script
 
-This module requires these other modules and libraries:
+This script requires the following Perl modules:
 
     IPC::System::Simple
     Locale::Maketext::Simple
@@ -27,15 +33,14 @@ The table is using the *longtable* package and the links to a web resource for
 each commit use the `\href` macro from *hyperref*. So these two packages have
 to be loaded.
 
-Furthermore you need to defined the macro `\longtableendfoot` which will be
+Furthermore you need to define the macro `\longtableendfoot` which will be
 expanded on the bottom of every page if the table will be continued on the next
 page. You can defined it to a localized message to inform the reader that this
 table is not complete and will be continued.
 
 ## License and development
 
-Copyright (C) 2012-2013,2017,2019-2020 Robin Schneider <ypid@riseup.net> <br/>
-SPDX-License-Identifier: GPL-3.0-or-later <br/>
+License: GPL-3.0-or-later <br/>
 CTAN: https://ctan.org/pkg/latex-git-log <br/>
 Source code repository: https://github.com/ypid/typesetting/tree/master/scripts/latex-git-log <br/>
 Please report bugs and feature requests at https://github.com/ypid/typesetting/issues
@@ -47,7 +52,6 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
     Options:
 
       --author          set this if you want the author included
-      --startcommit     set the start value of count commit
       --width           set the width in cm of the commit message field in the LaTeX table
       --git-c-add       set an base URL to link to a commit
       --user            set a github user to derive the base URL
@@ -82,3 +86,7 @@ Please report bugs and feature requests at https://github.com/ypid/typesetting/i
             need a translation to another language then you can either
             create a .po file or I can register this project on one of those
             websites for online translation.
+
+## Bugs and limitations
+
+* The translation features does not seem to work. So this script is unable to output German. English works.

@@ -17,11 +17,11 @@ msgstr "Abkürzung"
 msgid "meaning"
 msgstr "Bedeutung"
 
-msgid "version"
-msgstr "Version"
+msgid "commit hash"
+msgstr "Commit Prüfsumme"
 
-msgid "V"
-msgid "V"
+msgid "H"
+msgid "H"
 
 msgid "tag"
 msgstr "Tag"

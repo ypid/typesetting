@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 ## Ypid custom.
 *-pics.pdf
 *.zip
@@ -140,3 +144,19 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
+
+# https://raw.githubusercontent.com/github/gitignore/7b22f8ab6c85b4ef1469d72a8ba96462e2a44853/community/Bazel.gitignore
+#
+# gitignore template for Bazel build system
+# website: https://bazel.build/
+
+# Ignore all bazel-* symlinks. There is no full list since this can change
+# based on the name of the directory bazel is cloned into.
+/bazel-*
+
+# Directories for the Bazel IntelliJ plugin containing the generated
+# IntelliJ project files and plugin configuration. Seperate directories are
+# for the IntelliJ, Android Studio and CLion versions of the plugin.
+/.ijwb/
+/.aswb/
+/.clwb/

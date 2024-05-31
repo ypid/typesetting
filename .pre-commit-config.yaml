@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [commit]
+
+repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: faff6a61f4f53585a965addd06156eedf0027643 # frozen: v3.25.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  # - repo: https://github.com/pre-commit/pre-commit-hooks
+  #   rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c # frozen: v4.6.0
+  #   hooks:
+  #     - id: debug-statements
+  #     - id: check-builtin-literals
+  #     - id: check-case-conflict
+  #     - id: check-docstring-first
+  #     - id: check-json
+  #     - id: check-toml
+  #     - id: check-xml
+  #     - id: check-yaml
+  #     - id: detect-private-key
+  #     - id: end-of-file-fixer
+  #     - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      # I am not using https://github.com/keith/pre-commit-buildifier/tree/main
+      # because I want to use Nix to manage installation.
+      - id: buildifier-fix
+        name: buildifier-fix
+        description: Format starlark code with buildifier
+        entry: buildifier --mode=fix --lint=fix
+        files: '^(.*/)?(BUILD\.bazel|BUILD|WORKSPACE|WORKSPACE\.bazel|WORKSPACE\.bzlmod|MODULE\.bazel)$|\.BUILD$|\.bzl$'
+        language: system
+      - id: buildifier-lint-warn
+        name: buildifier-lint-warn
+        description: Output warnings from linting starlark code with buildifier
+        entry: buildifier --lint=warn
+        files: '^(.*/)?(BUILD\.bazel|BUILD|WORKSPACE|WORKSPACE\.bazel|WORKSPACE\.bzlmod|MODULE\.bazel)$|\.BUILD$|\.bzl$'
+        language: system
+
+  # TODO: https://ctan.org/pkg/pkgcheck

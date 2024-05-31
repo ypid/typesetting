@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2024 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+bazel_dep(name = "rules_pkg", version = "0.10.1")
+bazel_dep(name = "aspect_bazel_lib", version = "2.7.6")

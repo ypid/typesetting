@@ -1,9 +1,0 @@
-#!/bin/bash
-# Post-{commit,checkout,merge}
-#
-# LaTeX-git-commit-count > files/git/version.tex ## \readgitstat{7}
-sh /usr/share/doc/texlive-doc/latex/gitinfo2/post-xxx-sample.txt
-# LaTeX-git-log --width=14 > files/git/versions-log.tex
-# LaTeX-gitstats >/dev/null
-#LaTeX-gitstats.sh "" >/dev/null
-git fsck --full

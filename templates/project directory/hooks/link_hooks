@@ -1,5 +1,0 @@
-#!/bin/bash
-
-ln -s ../../hooks/gen_git_version_for_latex .git/hooks/post-checkout
-ln -s ../../hooks/gen_git_version_for_latex .git/hooks/post-commit
-ln -s ../../hooks/gen_git_version_for_latex .git/hooks/post-merge
