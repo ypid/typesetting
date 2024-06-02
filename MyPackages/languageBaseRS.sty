@@ -31,10 +31,20 @@
 }
 
 \newcommand{\printlanguage}{%
+\ifPDFTeX%
 \iflanguage{ngerman}{Deutsch (neue Rechtschreibung)}{%
   \iflanguage{english}{Englisch}{%
   \iflanguage{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
   }
-}}
+}
+\fi
+\ifLuaTeX%
+\iflanguageloaded{ngerman}{Deutsch (neue Rechtschreibung)}{%
+  \iflanguageloaded{english}{Englisch}{%
+  \iflanguageloaded{british}{Britisches Englisch}{\textcolor{red}{\languagename}}
+  }
+}
+\fi
+}
 
 \endinput

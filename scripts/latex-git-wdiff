@@ -46,7 +46,12 @@ grep -v "\^\[\[1mdiff --git a" \
 }
 
 echoVersionstable (){
-echo '\iflanguage{ngerman}{\shorthandoff{"}}{}
+echo '\ifPDFTeX%
+\iflanguage{ngerman}{\shorthandoff{"}}{}
+\fi
+\ifLuaTeX%
+\iflanguageloaded{ngerman}{\shorthandoff{"}}{}
+\fi
 \renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Tag}}
 & \multicolumn{1}{c}{\textbf{Hash}}
 & \multicolumn{1}{c}{\textbf{Erstellungsdatum}}

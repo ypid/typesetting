@@ -76,20 +76,35 @@
 }
 
 \newcommand{\letterRS@letterOpeningLine}[2]{%
+\ifPDFTeX%
   \iflanguage{ngerman}{
+\fi
+\ifLuaTeX%
+  \iflanguageloaded{ngerman}{
+\fi
     \ifthenelse{\equal{#1}{m}}{Sehr geehrter Herr #2,}{}
     \ifthenelse{\equal{#1}{w}}{Sehr geehrte Frau #2,}{}
     \ifthenelse{\equal{#1}{f}}{Sehr geehrte Familie #2,}{}
     \ifthenelse{\equal{#1}{dh}}{Sehr geehrte Damen und Herren,}{}
   }{%
+    \ifPDFTeX%
     \iflanguage{english}{
+    \fi
+    \ifLuaTeX%
+    \iflanguageloaded{english}{
+    \fi
       %% https://www.linkedin.com/groups/Writing-in-letter-in-English-4319755.S.121829504
       \ifthenelse{\equal{#1}{m}}{Dear Mr.~#2,}{}
       \ifthenelse{\equal{#1}{w}}{Dear Ms.~#2,}{}
       \ifthenelse{\equal{#1}{f}}{Dear Family #2,}{}
       \ifthenelse{\equal{#1}{dh}}{Dear Sir or Madam,}{}
     }{
+      \ifPDFTeX%
       \iflanguage{UKenglish}{
+      \fi
+      \ifLuaTeX%
+      \iflanguageloaded{UKenglish}{
+      \fi
         %% https://www.linkedin.com/groups/Writing-in-letter-in-English-4319755.S.121829504
         \ifthenelse{\equal{#1}{m}}{Dear Mr.~#2,}{}
         \ifthenelse{\equal{#1}{w}}{Dear Ms.~#2,}{}

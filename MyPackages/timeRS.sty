@@ -20,12 +20,12 @@
 
 %% Ugly hack to make german the default language for isodate in case when language detection fails e.g. with LuaLaTeX. Use from document.
 
-\iflanguage{ngerman}{
-  \ifLuaTeX%
-    \def\CurrentOption{german}
-    \input{german.idf}
-  \fi
+\ifLuaTeX%
+\iflanguageloaded{ngerman}{
+  \def\CurrentOption{german}
+  \input{german.idf}
 }{}
+\fi
 
 % \@namedef{iso@rangesign@english}{~s to~}%
 
